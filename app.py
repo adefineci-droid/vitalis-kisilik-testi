@@ -1,27 +1,22 @@
 from flask import Flask, request, render_template_string, session, redirect, url_for
 import json
 import os 
-import logging # Hata ayıklama için logging ekliyoruz
+import logging
 
-# Flask'ın hata loglarını görebilmek için temel yapılandırma
 logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
-# SABİT GİZLİ ANAHTAR: Session sorununu çözmeli.
+# SABİT GİZLİ ANAHTAR: Session sorununu kökten çözer.
 app.secret_key = 'BU_COK_UZUN_VE_SABIT_BIR_GIZLI_ANAHTARDIR_1234567890ABCDEF' 
 
-# Soruları yükle (Dosya okuma hatası olabilir, bunu da loglayalım)
+# Soruları yükle
 try:
     with open("questions.json", "r", encoding="utf-8") as f:
         QUESTIONS = json.load(f)
     TOTAL_QUESTIONS = len(QUESTIONS)
-except FileNotFoundError:
-    logging.error("HATA: questions.json dosyası bulunamadı.")
-    QUESTIONS = []
-    TOTAL_QUESTIONS = 0
-except json.JSONDecodeError:
-    logging.error("HATA: questions.json dosyası geçersiz JSON formatında.")
+except Exception as e:
+    logging.error(f"HATA: questions.json yüklenemedi: {e}")
     QUESTIONS = []
     TOTAL_QUESTIONS = 0
 
@@ -57,37 +52,54 @@ def quiz():
         question_id_str = request.form.get('question_id')
         
         if question_id_str:
+            # POST isteğinden, mevcut sorunun cevabını al
             answer_value_str = request.form.get(f'q{question_id_str}')
             
+            # Cevabın geçerli olup olmadığını kontrol eden bayrak
+            answer_processed_successfully = False 
+            
             try:
-                # Cevap ID'sini ve değerini güvenli bir şekilde integer'a çevir
+                # 1. Cevap seçildi mi kontrol et
+                if answer_value_str is None:
+                    raise ValueError("Cevap seçilmediği için geçersiz form gönderimi.")
+
+                # 2. Değerleri sayıya çevir
                 question_id = int(question_id_str)
                 answer_value = int(answer_value_str)
                 
+                # 3. Cevabı oturuma kaydet ve başarılı say
                 session['answers'][question_id] = answer_value
-                session['current_question_index'] += 1
-                current_index = session['current_question_index']
+                answer_processed_successfully = True
                 
             except (ValueError, TypeError) as e:
-                # Eğer çevrim hatası olursa, bu muhtemelen 500 hatasına neden oluyordu.
-                logging.warning(f"Cevap işlenirken hata: {e}. Soru ID: {question_id_str}, Cevap Değeri: {answer_value_str}")
-                # Hata olsa bile kullanıcıyı bir sonraki soruya yönlendir (cevap kaydedilmeden)
+                # Çevrim hatası veya None hatası durumunda logla ve indeksi ilerletme
+                logging.warning(f"Cevap işlenirken kritik hata: {e}. Soru ID: {question_id_str}, Cevap Değeri: {answer_value_str}")
+                
+            # Cevap başarılıysa indeksi ilerlet
+            if answer_processed_successfully:
                 session['current_question_index'] += 1
                 current_index = session['current_question_index']
                 
+            # Hata olsa bile kullanıcıyı tekrar GET /quiz'e yönlendir, bu sayede formun tekrar gönderilmesini önleriz.
+            # Bu, tarayıcının "formu tekrar gönder" uyarısı vermesini engeller.
+            return redirect(url_for('quiz'))
+
+
+    # --- GET İsteği İşleme (Soru Gösterimi) ---
     
+    # Tüm sorular bitti mi kontrol et
     if current_index >= TOTAL_QUESTIONS:
         return redirect(url_for('submit'))
         
-    # Güvenlik kontrolü: Eğer sorular yüklenemediyse buraya gelmemeli, ama yine de kontrol edelim.
+    # Soru listesi boşsa hata döndür
     if not QUESTIONS:
         return "HATA: Sorular yüklenemedi.", 500
 
+    # Mevcut soruyu al
     try:
         q = QUESTIONS[current_index]
-    except IndexError as e:
-        # Index hatası, yani soru listesi beklenenden kısa. Sonuca yönlendir.
-        logging.error(f"Index hatası: {e}. Mevcut Index: {current_index}, Toplam Soru: {TOTAL_QUESTIONS}")
+    except IndexError:
+        # Eğer indeks beklenenden fazla ise, yine de sonuca yönlendir
         return redirect(url_for('submit'))
         
     # Soru için HTML şablonu oluştur
