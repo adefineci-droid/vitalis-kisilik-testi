@@ -36,63 +36,63 @@
   </div>
 
   <script>
-  let currentIndex = 0;
-  let responses = [];
-  let currentSelection = null;
-  let questions = [];
+    let currentIndex = 0;
+    let responses = [];
+    let currentSelection = null;
+    let questions = [];
 
-  fetch("/api/questions")
-    .then(res => res.json())
-    .then(data => {
-      questions = data;
-      showQuestion();
-    });
+    fetch("/api/questions")
+      .then(res => res.json())
+      .then(data => {
+        questions = data;
+        showQuestion();
+      });
 
-  function showQuestion() {
-    const question = questions[currentIndex];
-    if (!question) return;
+    function showQuestion() {
+      const question = questions[currentIndex];
+      if (!question) return;
 
-    document.getElementById("question").textContent = question.text;
-    const optionsDiv = document.getElementById("options");
-    optionsDiv.innerHTML = "";
-    currentSelection = null;
-    document.getElementById("next-button").disabled = true;
+      document.getElementById("question").textContent = question.text;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      currentSelection = null;
+      document.getElementById("next-button").disabled = true;
 
-    question.options.forEach(option => {
-      const label = document.createElement("label");
-      label.className = "option";
+      question.options.forEach(option => {
+        const label = document.createElement("label");
+        label.className = "option";
 
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = "option";
-      input.value = option.value;
-      input.onclick = () => {
-        currentSelection = option.value;
-        document.getElementById("next-button").disabled = false;
-      };
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "option";
+        input.value = option.value;
+        input.onclick = () => {
+          currentSelection = option.value;
+          document.getElementById("next-button").disabled = false;
+        };
 
-      label.appendChild(input);
-      label.appendChild(document.createTextNode(" " + option.text));
-      optionsDiv.appendChild(label);
-    });
-  }
-
-  document.getElementById("next-button").onclick = () => {
-    if (currentSelection == null) return;
-    responses.push({ id: questions[currentIndex].id, value: currentSelection });
-    currentIndex++;
-    if (currentIndex < questions.length) {
-      showQuestion();
-    } else {
-      fetch("/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers: responses })
-      }).then(() => {
-        window.location.href = "/result";
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(" " + option.text));
+        optionsDiv.appendChild(label);
       });
     }
-  };
-</script>
+
+    document.getElementById("next-button").onclick = () => {
+      if (currentSelection == null) return;
+      responses.push({ id: questions[currentIndex].id, value: currentSelection });
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        showQuestion();
+      } else {
+        fetch("/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answers: responses })
+        }).then(() => {
+          window.location.href = "/result";
+        });
+      }
+    };
+  </script>
 </body>
 </html>
