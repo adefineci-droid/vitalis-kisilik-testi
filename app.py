@@ -89,7 +89,8 @@ def quiz():
     # İlerleme çubuğu için yüzdelik hesaplama
     progress_percent = round(((current_index + 1) / TOTAL_QUESTIONS) * 100)
         
-    # /quiz rotasındaki HTML şablonu (CSS parantezleri kaçırılmış hali)
+    # DÜZELTME: question_html içinde dinamik Python değişkenlerini kullanmak yerine,
+    # Hepsini {{ Jinja2 }} değişkenlerine çeviriyoruz.
     question_html = """
     <!doctype html>
     <title>Young Şema Testi ({{ current_index_display }}/{{ total_questions }})</title>
@@ -130,7 +131,7 @@ def quiz():
         }}
         #progress-bar {{
             height: 100%;
-            /* Stili dinamik olarak atanacak */
+            /* progress_percent değişkeni Jinja2 tarafından işlenecek */
             background-color: #4CAF50; /* Yeşil ilerleme çubuğu */
             transition: width 0.4s ease;
         }}
@@ -250,7 +251,7 @@ def submit():
         if total >= rule["threshold"]:
             triggered.append(name)
             explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
-    
+
     # DÜZELTME: SyntaxError'ı gidermek için /submit şablonu tek satır dize birleştirmesiyle yeniden tanımlandı.
     result_template = (
         "<!doctype html>"
