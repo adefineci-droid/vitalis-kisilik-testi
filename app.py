@@ -89,7 +89,7 @@ def quiz():
     # İlerleme çubuğu için yüzdelik hesaplama
     progress_percent = round(((current_index + 1) / TOTAL_QUESTIONS) * 100)
         
-    # Saf string tanımı. TÜM CSS süslü parantezleri kaçırıldı.
+    # /quiz rotasındaki HTML şablonu (CSS parantezleri kaçırılmış hali)
     question_html = """
     <!doctype html>
     <title>Young Şema Testi ({{ current_index_display }}/{{ total_questions }})</title>
@@ -250,65 +250,28 @@ def submit():
         if total >= rule["threshold"]:
             triggered.append(name)
             explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
-
-    # DÜZELTME: /submit rotasındaki CSS süslü parantezleri de kaçırıldı.
-    result_template = """
-    <!doctype html>
-    <title>Young Şema Testi - Sonuç</title>
-    <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            text-align: center;
-        }}
-        .container {{
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            text-align: left;
-        }}
-        h2 {{
-            color: #1e88e5;
-            text-align: center;
-            margin-bottom: 20px;
-        }}
-        h3 {{
-            color: #e53935;
-            border-bottom: 2px solid #ffcdd2;
-            padding-bottom: 5px;
-            margin-top: 20px;
-        }}
-        p {{
-            line-height: 1.6;
-        }}
-        a {{
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #1e88e5;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }}
-        a:hover {{
-            background-color: #1565c0;
-        }}
-    </style>
-    <body>
-        <div class="container">
-            <h2>Young Şema Testi Sonuçları</h2>
-            {{ result_content | safe }}
-            <p style="text-align: center;"><a href="/">Yeniden Başla</a></p>
-        </div>
-    </body>
-    """
+    
+    # DÜZELTME: SyntaxError'ı gidermek için /submit şablonu tek satır dize birleştirmesiyle yeniden tanımlandı.
+    result_template = (
+        "<!doctype html>"
+        "<title>Young Şema Testi - Sonuç</title>"
+        "<style>"
+        "body {font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; text-align: center;}"
+        ".container {max-width: 600px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); text-align: left;}"
+        "h2 {color: #1e88e5; text-align: center; margin-bottom: 20px;}"
+        "h3 {color: #e53935; border-bottom: 2px solid #ffcdd2; padding-bottom: 5px; margin-top: 20px;}"
+        "p {line-height: 1.6;}"
+        "a {display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #1e88e5; color: white; text-decoration: none; border-radius: 8px; transition: background-color 0.3s;}"
+        "a:hover {background-color: #1565c0;}"
+        "</style>"
+        "<body>"
+        "<div class=\"container\">"
+        "<h2>Young Şema Testi Sonuçları</h2>"
+        "{{ result_content | safe }}"
+        "<p style=\"text-align: center;\"><a href=\"/\">Yeniden Başla</a></p>"
+        "</div>"
+        "</body>"
+    )
     
     # Dinamik içerik
     result_content = ""
@@ -321,4 +284,15 @@ def submit():
     
     
     # template'i render_template_string ile işliyoruz
-    return render_template_string(
+    html_result = render_template_string(
+        result_template,
+        result_content=result_content
+    )
+    
+    session.clear() 
+    return html_result
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
