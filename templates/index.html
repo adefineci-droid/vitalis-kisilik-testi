@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kişilik Testi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .option {
+      display: block;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="test-container">
+    <div id="question" class="question"></div>
+    <div id="options"></div>
+    <button id="next-button" disabled>Sonraki</button>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    let responses = [];
+    let currentSelection = null;
+    let questions = [];
+
+    fetch("/api/questions")
+      .then(res => res.json())
+      .then(data => {
+        questions = data;
+        showQuestion();
+      });
+
+    function showQuestion() {
+      const question = questions[currentIndex];
+      if (!question) return;
+
+      document.getElementById("question").textContent = question.text;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      currentSelection = null;
+      document.getElementById("next-button").disabled = true;
+
+      question.options.forEach(option => {
+        const label = document.createElement("label");
+        label.className = "option";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "option";
+        input.value = option.value;
+        input.onclick = () => {
+          currentSelection = option.value;
+          document.getElementById("next-button").disabled = false;
+        };
+
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(" " + option.text));
+        optionsDiv.appendChild(label);
+      });
+    }
+
+    document.getElementById("next-button").onclick = () => {
+      if (currentSelection == null) return;
+      responses.push({ id: questions[currentIndex].id, value: currentSelection });
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        showQuestion();
+      } else {
+        fetch("/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answers: responses })
+        }).then(() => {
+          window.location.href = "/result";
+        });
+      }
+    };
+  </script>
+</body>
+</html>
