@@ -1,10 +1,14 @@
-from flask import Flask, request, jsonify, render_template_string, session, redirect, url_for
+from flask import Flask, request, render_template_string, session, redirect, url_for
 import json
+import os # Ortam değişkenlerini kullanmak için
 
 app = Flask(__name__)
-# Oturumları kullanmak için bir gizli anahtar ayarlayın.
-# Bunu güvenli bir şekilde gizli tutmanız ve bir ortam değişkeninden almanız önerilir.
-app.secret_key = 'super_secret_key_veya_daha_iyisi_bir_ortam_degiskeni' 
+
+# Ortam değişkenini okuyarak SECRET_KEY'i ayarla. 
+# Render'da SECRET_KEY ortam değişkenini tanımladığınızdan emin olun.
+# Eğer tanımlı değilse, geçici olarak 'FALLBACK_SECRET_KEY' kullanılır, 
+# ancak bu bir üretim ortamı için güvenli değildir!
+app.secret_key = os.environ.get('SECRET_KEY', 'FALLBACK_SECRET_KEY') 
 
 # Soruları yükle
 with open("questions.json", "r", encoding="utf-8") as f:
@@ -49,25 +53,25 @@ def quiz():
             
     # Tüm sorular bitti mi kontrol et
     if current_index >= TOTAL_QUESTIONS:
-        return redirect(url_for('submit')) # Sonuç sayfasına yönlendir
+        return redirect(url_for('submit'))
         
     # Mevcut soruyu göster
     q = QUESTIONS[current_index]
     
-    # Soru için HTML şablonu oluştur
-    question_html = f"""
+    # Soru için HTML şablonu oluştur (F-STRING KULLANILMIYOR)
+    question_html = """
     <!doctype html>
-    <title>Kişilik Testi ({current_index + 1}/{TOTAL_QUESTIONS})</title>
+    <title>Kişilik Testi ({{ current_index_display }}/{{ total_questions }})</title>
     <h1>Kişilik Testi</h1>
-    <h2>Soru {current_index + 1} / {TOTAL_QUESTIONS}</h2>
+    <h2>Soru {{ current_index_display }} / {{ total_questions }}</h2>
     
-    <form method="post" action="{url_for('quiz')}">
-        <input type="hidden" name="question_id" value="{q['id']}">
+    <form method="post" action="{{ url_for_quiz }}">
+        <input type="hidden" name="question_id" value="{{ question_id }}">
         
-        <p><strong>{q['text']}</strong></p> 
+        <p><strong>{{ question_text }}</strong></p> 
         
         {% for opt in options %}
-        <input type="radio" name="q{q['id']}" value="{{ opt['value'] }}" required> {{ opt['text'] }}<br>
+        <input type="radio" name="q{{ question_id }}" value="{{ opt['value'] }}" required> {{ opt['text'] }}<br>
         {% endfor %}
         
         <br>
@@ -75,7 +79,16 @@ def quiz():
     </form>
     """
     
-    return render_template_string(question_html, options=q["options"])
+    # Şablonu render et ve dinamik değişkenleri aktar
+    return render_template_string(
+        question_html, 
+        current_index_display=current_index + 1,
+        total_questions=TOTAL_QUESTIONS,
+        url_for_quiz=url_for('quiz'),
+        question_id=q['id'],
+        question_text=q['text'],
+        options=q["options"]
+    )
 
 
 @app.route("/submit")
@@ -111,4 +124,5 @@ def submit():
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    # 'debug=True' Render'da genellikle kullanılmaz, ancak yerel test için bırakılabilir.
+    app.run(host="0.0.0.0", port=port)
