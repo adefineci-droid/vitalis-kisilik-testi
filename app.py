@@ -89,8 +89,8 @@ def quiz():
     # İlerleme çubuğu için yüzdelik hesaplama
     progress_percent = round(((current_index + 1) / TOTAL_QUESTIONS) * 100)
         
-    # ❗ DÜZELTME: question_html'i düzgün bir şekilde Jinja2 şablonu olarak tanımlamak için
-    # f-string'i sadece dinamik Python değişkenlerini (progress_percent) yerleştirmek için kullanıyoruz.
+    # question_html'i Python f-string'i olarak tutmaya devam ediyoruz, ancak Jinja2 
+    # ifadelerini dörtlü süslü parantez ile koruyoruz ve Python değişkenlerini doğrudan CSS'e basıyoruz.
     question_html = f"""
     <!doctype html>
     <title>Young Şema Testi ({{{{ current_index_display }}}}/{{{{ total_questions }}}})</title>
@@ -201,98 +201,4 @@ def quiz():
             <h2>Soru {{{{ current_index_display }}}} / {{{{ total_questions }}}}</h2>
             
             <div id="progress-bar-container">
-                <div id="progress-bar"></div>
-            </div>
-            
-            <form method="post" action="{{{{ url_for('quiz') }}}}">
-                <input type="hidden" name="question_id" value="{q['id']}">
-                
-                <div class="card">
-                    <p class="question-text"><strong>{q['text']}</strong></p> 
-                    
-                    <div class="options-list">
-                        {{% for opt in options %}}
-                            <label>
-                                <input type="radio" name="q{q['id']}" value="{{{{ opt['value'] }}}}" required>
-                                <span class="option-card">{{{{ opt['text'] }}}}</span>
-                            </label>
-                        {{% endfor %}}
-                    </div>
-                </div>
-                
-                <input type="submit" value="Sonraki Soru">
-            </form>
-        </div>
-    </body>
-    """
-    
-    # render_template_string'e sadece Jinja2'nin döngüleri ve koşulları için değişkenleri gönderiyoruz.
-    return render_template_string(
-        question_html, 
-        current_index_display=current_index + 1,
-        total_questions=TOTAL_QUESTIONS,
-        options=q["options"]
-    )
-
-
-@app.route("/submit")
-def submit():
-    scores = session.get('answers', {})
-    
-    if not scores:
-        return redirect(url_for('index'))
-    
-    triggered = []
-    explanations = []
-    
-    for name, rule in SCHEMA_RULES.items():
-        total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
-        if total >= rule["threshold"]:
-            triggered.append(name)
-            explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
-
-    # Sonuç sayfası için stil eklenmiş HTML
-    html_result = f"""
-    <!doctype html>
-    <title>Young Şema Testi - Sonuç</title>
-    <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            text-align: center;
-        }}
-        .container {{
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            text-align: left;
-        }}
-        h2 {{
-            color: #1e88e5;
-            text-align: center;
-            margin-bottom: 20px;
-        }}
-        h3 {{
-            color: #e53935;
-            border-bottom: 2px solid #ffcdd2;
-            padding-bottom: 5px;
-            margin-top: 20px;
-        }}
-        p {{
-            line-height: 1.6;
-        }}
-        a {{
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #1e88e5;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color
+                <div id="progress
