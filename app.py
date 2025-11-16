@@ -89,7 +89,7 @@ def quiz():
     # İlerleme çubuğu için yüzdelik hesaplama
     progress_percent = round(((current_index + 1) / TOTAL_QUESTIONS) * 100)
         
-    # DÜZELTME: Saf string tanımı. TÜM CSS süslü parantezleri kaçırıldı.
+    # Saf string tanımı. TÜM CSS süslü parantezleri kaçırıldı.
     question_html = """
     <!doctype html>
     <title>Young Şema Testi ({{ current_index_display }}/{{ total_questions }})</title>
@@ -251,8 +251,8 @@ def submit():
             triggered.append(name)
             explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
 
-    # Sonuç sayfası için stil eklenmiş HTML (CSS süslü parantezleri kaçırıldı)
-    html_result = """
+    # DÜZELTME: /submit rotasındaki CSS süslü parantezleri de kaçırıldı.
+    result_template = """
     <!doctype html>
     <title>Young Şema Testi - Sonuç</title>
     <style>
@@ -280,4 +280,45 @@ def submit():
         }}
         h3 {{
             color: #e53935;
-            border-bottom: 2px solid #
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }}
+        p {{
+            line-height: 1.6;
+        }}
+        a {{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }}
+        a:hover {{
+            background-color: #1565c0;
+        }}
+    </style>
+    <body>
+        <div class="container">
+            <h2>Young Şema Testi Sonuçları</h2>
+            {{ result_content | safe }}
+            <p style="text-align: center;"><a href="/">Yeniden Başla</a></p>
+        </div>
+    </body>
+    """
+    
+    # Dinamik içerik
+    result_content = ""
+    if triggered:
+        result_content += "<h3>Tetiklenen Şemalar:</h3>" + "".join(explanations)
+    else:
+        result_content += "<p>Tebrikler! Belirgin olarak tetiklenmiş bir şema tespit edilmedi.</p>"
+    
+    result_content += f'<p>Toplam Cevaplanan Soru: {len(scores)}/{TOTAL_QUESTIONS}</p>'
+    
+    
+    # template'i render_template_string ile işliyoruz
+    return render_template_string(
