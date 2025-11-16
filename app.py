@@ -1,14 +1,14 @@
 from flask import Flask, request, render_template_string, session, redirect, url_for
 import json
-import os # Ortam değişkenlerini kullanmak için
+import os 
 
 app = Flask(__name__)
 
-# Ortam değişkenini okuyarak SECRET_KEY'i ayarla. 
-# Render'da SECRET_KEY ortam değişkenini tanımladığınızdan emin olun.
-# Eğer tanımlı değilse, geçici olarak 'FALLBACK_SECRET_KEY' kullanılır, 
-# ancak bu bir üretim ortamı için güvenli değildir!
-app.secret_key = os.environ.get('SECRET_KEY', 'FALLBACK_SECRET_KEY') 
+# ❗ DÜZELTME: Gizli Anahtar doğrudan atandı. 
+# Bu, Render'daki ortam değişkeni sorununu bypass eder.
+# Üretim ortamında, bu anahtarı ortam değişkeni olarak kullanmak daha güvenlidir,
+# ancak şimdilik bu hata çözülmelidir.
+app.secret_key = 'BU_COK_UZUN_VE_SABIT_BIR_GIZLI_ANAHTARDIR_1234567890ABCDEF' 
 
 # Soruları yükle
 with open("questions.json", "r", encoding="utf-8") as f:
@@ -44,10 +44,13 @@ def quiz():
     if request.method == "POST":
         # Önceki sorunun cevabını kaydet
         question_id = request.form.get('question_id')
-        answer_value = request.form.get(f'q{question_id}')
+        # Cevap input'unun adı q<soru_id> şeklinde olduğu için bu şekilde alıyoruz
+        answer_value = request.form.get(f'q{question_id}') 
         
         if question_id and answer_value:
+            # Cevabı session'daki answers sözlüğüne kaydet
             session['answers'][int(question_id)] = int(answer_value)
+            # Bir sonraki soruya geç
             session['current_question_index'] += 1
             current_index = session['current_question_index']
             
@@ -56,9 +59,16 @@ def quiz():
         return redirect(url_for('submit'))
         
     # Mevcut soruyu göster
-    q = QUESTIONS[current_index]
-    
-    # Soru için HTML şablonu oluştur (F-STRING KULLANILMIYOR)
+    # current_index, listenin indeksini (0'dan başlar) temsil eder.
+    try:
+        q = QUESTIONS[current_index]
+    except IndexError:
+        # Bu hata, tüm sorular bittiğinde ve redirect çalışmadığında oluşur, 
+        # ancak kod mantığı bunu yakalamalı.
+        # Yine de bir güvenlik önlemi olarak sonuca yönlendiriyoruz.
+        return redirect(url_for('submit')) 
+        
+    # Soru için HTML şablonu oluştur
     question_html = """
     <!doctype html>
     <title>Kişilik Testi ({{ current_index_display }}/{{ total_questions }})</title>
@@ -103,6 +113,7 @@ def submit():
     
     # Şema sonuçlarını hesapla
     for name, rule in SCHEMA_RULES.items():
+        # Sorunun id'si ile cevaplanan puanı toplar (qid -> question id)
         total = sum([scores.get(qid, 0) for qid in rule["question_ids"]])
         if total >= rule["threshold"]:
             triggered.append(name)
@@ -124,5 +135,4 @@ def submit():
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 5000))
-    # 'debug=True' Render'da genellikle kullanılmaz, ancak yerel test için bırakılabilir.
     app.run(host="0.0.0.0", port=port)
