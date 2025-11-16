@@ -10,30 +10,30 @@ SCHEMA_RULES = {
     "Başarısızlık": {
         "question_ids": [5, 23, 41, 59, 77],
         "threshold": 20,
-        "description": "Başarısızlık şeması, bireyin kendisini yetersiz, başarısız ya da aptal hissetmesiyle karakterizedir."
+        "description": "Başarısızlık şeması, bireyin kendisini yetersiz, başarısız ya da aptal hissetmesiyle karakterizedir.",
     },
     "Terk Edilme": {
         "question_ids": [1, 19, 37, 55, 73],
         "threshold": 20,
-        "description": "Terk edilme şeması, kişinin sevdiklerinin onu bırakacağına dair yoğun bir inanç taşımasıdır."
+        "description": "Terk edilme şeması, kişinin sevdiklerinin onu bırakacağına dair yoğun bir inanç taşımasıdır.",
     }
 }
 
 @app.route("/")
 def index():
     return render_template_string("""
-        <!doctype html>
-        <title>Kişilik Testi</title>
-        <h1>Kişilik Testi</h1>
-        <form method="post" action="/submit">
-        {% for q in questions %}
-          <p>{{ q["text"] }}</p>
-          {% for opt in q["options"] %}
-            <input type="radio" name="q{{ q['id'] }}" value="{{ opt['value'] }}" required> {{ opt['text'] }}<br>
-          {% endfor %}
-        {% endfor %}
-        <input type="submit" value="Gönder">
-        </form>
+    <!doctype html>
+    <title>Kişilik Testi</title>
+    <h1>Kişilik Testi</h1>
+    <form method="post" action="/submit">
+    {% for q in questions %}
+    <p><strong>{{ q["text"] }}</strong></p> 
+    {% for opt in q["options"] %}
+    <input type="radio" name="q{{ q['id'] }}" value="{{ opt['value'] }}" required> {{ opt['text'] }}<br>
+    {% endfor %}
+    {% endfor %}
+    <input type="submit" value="Gönder">
+    </form>
     """, questions=QUESTIONS)
 
 @app.route("/submit", methods=["POST"])
@@ -64,5 +64,5 @@ def submit():
 
 if __name__ == "__main__":
     import os
-port = int(os.environ.get("PORT", 5000))
-app.run(host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
