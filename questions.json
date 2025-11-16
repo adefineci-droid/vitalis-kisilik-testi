@@ -1,0 +1,14 @@
+[
+  {
+    "id": 0,
+    "text": "Bu sadece örnek bir sorudur.",
+    "options": [
+      { "text": "1 - Katılmıyorum", "value": 1 },
+      { "text": "2", "value": 2 },
+      { "text": "3", "value": 3 },
+      { "text": "4", "value": 4 },
+      { "text": "5", "value": 5 },
+      { "text": "6 - Tamamen Katılıyorum", "value": 6 }
+    ]
+  }
+]
