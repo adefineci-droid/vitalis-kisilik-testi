@@ -89,74 +89,74 @@ def quiz():
     # İlerleme çubuğu için yüzdelik hesaplama
     progress_percent = round(((current_index + 1) / TOTAL_QUESTIONS) * 100)
         
-    # DÜZELTME: Saf string tanımı. Python değişkenleri Jinja2 içine aktarılacak.
+    # DÜZELTME: Saf string tanımı. TÜM CSS süslü parantezleri kaçırıldı.
     question_html = """
     <!doctype html>
     <title>Young Şema Testi ({{ current_index_display }}/{{ total_questions }})</title>
     <style>
-        body {
+        body {{
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
             color: #333;
-        }
-        .container {
+        }}
+        .container {{
             max-width: 700px;
             margin: 0 auto;
             background-color: #fff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-        h1 {
+        }}
+        h1 {{
             color: #1e88e5;
             text-align: center;
             margin-bottom: 5px;
-        }
-        h2 {
+        }}
+        h2 {{
             font-size: 1.2em;
             color: #555;
             text-align: center;
             margin-bottom: 25px;
-        }
+        }}
         /* İlerleme Çubuğu Stilleri */
-        #progress-bar-container {
+        #progress-bar-container {{
             height: 8px;
             background-color: #e0e0e0;
             border-radius: 4px;
             margin-bottom: 25px;
             overflow: hidden;
-        }
-        #progress-bar {
+        }}
+        #progress-bar {{
             height: 100%;
-            /* progress_percent değişkeni JS ile değil, doğrudan style attribute ile atanacak */
+            /* Stili dinamik olarak atanacak */
             background-color: #4CAF50; /* Yeşil ilerleme çubuğu */
             transition: width 0.4s ease;
-        }
-        .card {
+        }}
+        .card {{
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
             background-color: #fcfcfc;
-        }
-        .question-text {
+        }}
+        .question-text {{
             font-size: 1.2em;
             margin-bottom: 15px;
             color: #333;
-        }
-        .options-list {
+        }}
+        .options-list {{
             display: grid;
             gap: 10px;
             margin-top: 15px;
-        }
+        }}
         /* Radyo butonunu gizle */
-        input[type="radio"] {
+        input[type="radio"] {{
             display: none;
-        }
+        }}
         /* Seçenek kartı görünümü */
-        .option-card {
+        .option-card {{
             display: block;
             padding: 15px;
             border: 2px solid #ddd;
@@ -165,19 +165,19 @@ def quiz():
             transition: all 0.2s;
             font-size: 1em;
             font-weight: 500;
-        }
-        .option-card:hover {
+        }}
+        .option-card:hover {{
             border-color: #b3d9ff;
             background-color: #e6f2ff;
-        }
+        }}
         /* Seçili kartın görünümü */
-        input[type="radio"]:checked + .option-card {
+        input[type="radio"]:checked + .option-card {{
             border-color: #1e88e5;
             background-color: #e0f7fa;
             color: #1e88e5;
             box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
-        }
-        input[type="submit"] {
+        }}
+        input[type="submit"] {{
             width: 100%;
             padding: 12px;
             background-color: #1e88e5; /* Mavi Buton */
@@ -188,10 +188,10 @@ def quiz():
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 20px;
-        }
-        input[type="submit"]:hover {
+        }}
+        input[type="submit"]:hover {{
             background-color: #1565c0;
-        }
+        }}
     </style>
 
     <body>
@@ -212,3 +212,72 @@ def quiz():
                     <div class="options-list">
                         {% for opt in options %}
                             <label>
+                                <input type="radio" name="q{{ question.id }}" value="{{ opt.value }}" required>
+                                <span class="option-card">{{ opt.text }}</span>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <input type="submit" value="Sonraki Soru">
+            </form>
+        </div>
+    </body>
+    """
+    
+    return render_template_string(
+        question_html, 
+        current_index_display=current_index + 1,
+        total_questions=TOTAL_QUESTIONS,
+        progress_percent=progress_percent,
+        question=q,
+        options=q["options"]
+    )
+
+
+@app.route("/submit")
+def submit():
+    scores = session.get('answers', {})
+    
+    if not scores:
+        return redirect(url_for('index'))
+    
+    triggered = []
+    explanations = []
+    
+    for name, rule in SCHEMA_RULES.items():
+        total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
+        if total >= rule["threshold"]:
+            triggered.append(name)
+            explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
+
+    # Sonuç sayfası için stil eklenmiş HTML (CSS süslü parantezleri kaçırıldı)
+    html_result = """
+    <!doctype html>
+    <title>Young Şema Testi - Sonuç</title>
+    <style>
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            text-align: center;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }}
+        h2 {{
+            color: #1e88e5;
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        h3 {{
+            color: #e53935;
+            border-bottom: 2px solid #
