@@ -6,8 +6,6 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
-
-# SABİT GİZLİ ANAHTAR
 app.secret_key = 'BU_COK_UZUN_VE_SABIT_BIR_GIZLI_ANAHTARDIR_1234567890ABCDEF' 
 
 # Soruları yükle
@@ -41,7 +39,6 @@ def index():
         
     session.clear()
     session['current_question_index'] = 0
-    # session['answers'] anahtarlarını string olarak tutmak için hazırla
     session['answers'] = {}
     return redirect(url_for('quiz'))
 
@@ -59,13 +56,10 @@ def quiz():
             
             try:
                 if answer_value_str is None:
-                    # Cevap seçilmediyse, butona basılmış olsa bile işlemi durdur
+                    # Cevap seçilmediyse ilerleme
                     return redirect(url_for('quiz'))
 
-                # Cevap değerini sayıya çevir (bu kısım sayı olarak kalmalı)
                 answer_value = int(answer_value_str)
-                
-                # ❗ DÜZELTME 1: Anahtarı (question_id_str) string olarak sakla!
                 session['answers'][question_id_str] = answer_value
                 answer_processed_successfully = True
                 
@@ -92,28 +86,124 @@ def quiz():
     except IndexError:
         return redirect(url_for('submit'))
         
-    # Soru için HTML şablonu oluştur (Önceki kod ile aynı)
+    # MODERN GÖRÜNÜM İÇİN YENİ HTML VE CSS ŞABLONU
     question_html = """
     <!doctype html>
     <title>Kişilik Testi ({{ current_index_display }}/{{ total_questions }})</title>
-    <h1>Kişilik Testi</h1>
-    <h2>Soru {{ current_index_display }} / {{ total_questions }}</h2>
-    
-    <form method="post" action="{{ url_for_quiz }}">
-        <input type="hidden" name="question_id" value="{{ question_id }}">
-        
-        <p><strong>{{ question_text }}</strong></p> 
-        
-        {% for opt in options %}
-        <input type="radio" name="q{{ question_id }}" value="{{ opt['value'] }}" required> {{ opt['text'] }}<br>
-        {% endfor %}
-        
-        <br>
-        <input type="submit" value="Sonraki Soru">
-    </form>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            color: #1e88e5;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 1.2em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #fcfcfc;
+        }
+        .question-text {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .options-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        /* Radyo butonunu gizle */
+        input[type="radio"] {
+            display: none;
+        }
+        /* Seçenek kartı görünümü */
+        .option-card {
+            display: block;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .option-card:hover {
+            border-color: #b3d9ff;
+            background-color: #e6f2ff;
+        }
+        /* Seçili kartın görünümü */
+        input[type="radio"]:checked + .option-card {
+            border-color: #1e88e5;
+            background-color: #e0f7fa;
+            color: #1e88e5;
+            box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #43a047;
+        }
+    </style>
+
+    <body>
+        <div class="container">
+            <h1>Kişilik Testi</h1>
+            <h2>Soru {{ current_index_display }} / {{ total_questions }}</h2>
+            
+            <form method="post" action="{{ url_for_quiz }}">
+                <input type="hidden" name="question_id" value="{{ question_id }}">
+                
+                <div class="card">
+                    <p class="question-text"><strong>{{ question_text }}</strong></p> 
+                    
+                    <div class="options-list">
+                        {% for opt in options %}
+                            <label>
+                                <input type="radio" name="q{{ question_id }}" value="{{ opt['value'] }}" required>
+                                <span class="option-card">{{ opt['text'] }}</span>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <input type="submit" value="Sonraki Soru">
+            </form>
+        </div>
+    </body>
     """
     
-    # Şablonu render et ve dinamik değişkenleri aktar
     return render_template_string(
         question_html, 
         current_index_display=current_index + 1,
@@ -129,6 +219,7 @@ def quiz():
 def submit():
     scores = session.get('answers', {})
     
+    # ... (Submit rotası görsel düzenleme dışında aynı kalır)
     if not scores:
         return redirect(url_for('index'))
     
@@ -136,21 +227,74 @@ def submit():
     explanations = []
     
     for name, rule in SCHEMA_RULES.items():
-        # ❗ DÜZELTME 2: rule["question_ids"] int iken, scores anahtarları string. 
-        # Bu yüzden rule'daki id'leri string'e çevirip scores sözlüğünden alıyoruz.
         total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
-        
         if total >= rule["threshold"]:
             triggered.append(name)
             explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
 
-    html_result = "<h2>Test Sonucunuz</h2>"
+    # Sonuç sayfası için de basit bir stil ekleyelim:
+    html_result = f"""
+    <!doctype html>
+    <title>Test Sonucu</title>
+    <style>
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            text-align: center;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }}
+        h2 {{
+            color: #1e88e5;
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        h3 {{
+            color: #e53935;
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }}
+        p {{
+            line-height: 1.6;
+        }}
+        a {{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }}
+        a:hover {{
+            background-color: #1565c0;
+        }}
+    </style>
+    <body>
+        <div class="container">
+            <h2>Test Sonucunuz</h2>
+    """
+
     if triggered:
         html_result += "<h3>Tetiklenen Şemalar:</h3>" + "".join(explanations)
     else:
-        html_result += "<p>Herhangi bir şema tetiklenmedi.</p>"
+        html_result += "<p>Tebrikler! Belirgin olarak tetiklenmiş bir şema tespit edilmedi.</p>"
+    
     html_result += f'<p>Toplam Cevaplanan Soru: {len(scores)}/{TOTAL_QUESTIONS}</p>'
-    html_result += '<p><a href="/">Yeniden Başla</a></p>'
+    html_result += '<p style="text-align: center;"><a href="/">Yeniden Başla</a></p>'
+    html_result += '</div></body>'
     
     session.clear() 
     return html_result
