@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "text": "Bana bakan, benimle zaman geçiren, başıma gelen olaylarla gerçekten ilgilenen kimsem olmadı.",
+    "text": "1-Bana bakan, benimle zaman geçiren, başıma gelen olaylarla gerçekten ilgilenen kimsem olmadı.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -37,7 +37,7 @@
   },
   {
     "id": 1,
-    "text": "Beni terk edeceklerinden korktuğum için yakın olduğum insanların peşini bırakmam.",
+    "text": "2-Beni terk edeceklerinden korktuğum için yakın olduğum insanların peşini bırakmam.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -73,7 +73,7 @@
   },
   {
     "id": 2,
-    "text": "İnsanların beni kullandıklarını hissediyorum.",
+    "text": "3-İnsanların beni kullandıklarını hissediyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -109,7 +109,7 @@
   },
   {
     "id": 3,
-    "text": "Uyumsuzum.",
+    "text": "4-Uyumsuzum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -145,7 +145,7 @@
   },
   {
     "id": 4,
-    "text": "Beğendiğim hiçbir erkek/kadın, kusurlarımı görürse beni sevmez.",
+    "text": "5-Beğendiğim hiçbir erkek/kadın, kusurlarımı görürse beni sevmez.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -181,7 +181,7 @@
   },
   {
     "id": 5,
-    "text": "İş (veya okul) hayatımda neredeyse hiçbir şeyi diğer insanlar kadar iyi yapamıyorum.",
+    "text": "6-İş (veya okul) hayatımda neredeyse hiçbir şeyi diğer insanlar kadar iyi yapamıyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -217,7 +217,7 @@
   },
   {
     "id": 6,
-    "text": "Günlük yaşamımı tek başıma idare edebilme becerisine sahip olduğumu hissetmiyorum.",
+    "text": "7-Günlük yaşamımı tek başıma idare edebilme becerisine sahip olduğumu hissetmiyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -253,7 +253,7 @@
   },
   {
     "id": 7,
-    "text": "Kötü bir şey olacağı duygusundan kurtulamıyorum.",
+    "text": "8-Kötü bir şey olacağı duygusundan kurtulamıyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -289,7 +289,7 @@
   },
   {
     "id": 8,
-    "text": "Anne babamdan ayrılmayı, bağımsız hareket edebilmeyi, yaşıtlarım kadar başaramadım.",
+    "text": "9-Anne babamdan ayrılmayı, bağımsız hareket edebilmeyi, yaşıtlarım kadar başaramadım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -325,7 +325,7 @@
   },
   {
     "id": 9,
-    "text": "Eğer istediğimi yaparsam, başımı derde sokarım diye düşünürüm.",
+    "text": "10-Eğer istediğimi yaparsam, başımı derde sokarım diye düşünürüm.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -361,7 +361,7 @@
   },
   {
     "id": 10,
-    "text": "Genellikle yakınlarıma ilgi gösteren ve bakan ben olurum.",
+    "text": "11-Genellikle yakınlarıma ilgi gösteren ve bakan ben olurum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -397,7 +397,7 @@
   },
   {
     "id": 11,
-    "text": "Olumlu duygularımı diğerlerine göstermekten utanırım (sevdiğimi, önemsediğimi göstermek gibi).",
+    "text": "12-Olumlu duygularımı diğerlerine göstermekten utanırım (sevdiğimi, önemsediğimi göstermek gibi).",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -433,7 +433,7 @@
   },
   {
     "id": 12,
-    "text": "Yaptığım çoğu şeyde en iyi olmalıyım; ikinci olmayı kabullenemem.",
+    "text": "13-Yaptığım çoğu şeyde en iyi olmalıyım; ikinci olmayı kabullenemem.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -469,7 +469,7 @@
   },
   {
     "id": 13,
-    "text": "Diğer insanlardan bir şeyler istediğimde bana “hayır” denilmesini çok zor kabullenirim.",
+    "text": "14-Diğer insanlardan bir şeyler istediğimde bana “hayır” denilmesini çok zor kabullenirim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -505,7 +505,7 @@
   },
   {
     "id": 14,
-    "text": "Kendimi sıradan ve sıkıcı işleri yapmaya zorlayamam.",
+    "text": "15-Kendimi sıradan ve sıkıcı işleri yapmaya zorlayamam.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -541,7 +541,7 @@
   },
   {
     "id": 15,
-    "text": "Paramın olması ve önemli insanlar tanıyor olmak beni değerli yapar.",
+    "text": "16-Paramın olması ve önemli insanlar tanıyor olmak beni değerli yapar.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -577,7 +577,7 @@
   },
   {
     "id": 16,
-    "text": "Her şey yolunda gidiyor görünse bile, bunun bozulacağını hissederim.",
+    "text": "17-Her şey yolunda gidiyor görünse bile, bunun bozulacağını hissederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -613,7 +613,7 @@
   },
   {
     "id": 17,
-    "text": "Eğer bir yanlış yaparsam, cezalandırılmayı hak ederim.",
+    "text": "18-Eğer bir yanlış yaparsam, cezalandırılmayı hak ederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -649,7 +649,7 @@
   },
   {
     "id": 18,
-    "text": "Çevremde bana sıcaklık, koruma ve duygusal yakınlık gösteren kimsem yok.",
+    "text": "19-Çevremde bana sıcaklık, koruma ve duygusal yakınlık gösteren kimsem yok.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -685,7 +685,7 @@
   },
   {
     "id": 19,
-    "text": "Diğer insanlara o kadar muhtacım ki onları kaybedeceğim diye çok endişeleniyorum.",
+    "text": "20-Diğer insanlara o kadar muhtacım ki onları kaybedeceğim diye çok endişeleniyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -721,7 +721,7 @@
   },
   {
     "id": 20,
-    "text": "İnsanlara karşı tedbiri elden bırakamam yoksa bana kasıtlı olarak zarar vereceklerini hissederim.",
+    "text": "21-İnsanlara karşı tedbiri elden bırakamam yoksa bana kasıtlı olarak zarar vereceklerini hissederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -757,7 +757,7 @@
   },
   {
     "id": 21,
-    "text": "Temel olarak diğer insanlardan farklıyım.",
+    "text": "22-Temel olarak diğer insanlardan farklıyım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -793,7 +793,7 @@
   },
   {
     "id": 22,
-    "text": "Gerçek beni tanırlarsa beğendiğim hiç kimse bana yakın olmak istemez.",
+    "text": "23-Gerçek beni tanırlarsa beğendiğim hiç kimse bana yakın olmak istemez.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -829,7 +829,7 @@
   },
   {
     "id": 23,
-    "text": "İşleri halletmede son derece yetersizim.",
+    "text": "24-İşleri halletmede son derece yetersizim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -865,7 +865,7 @@
   },
   {
     "id": 24,
-    "text": "Gündelik işlerde kendimi başkalarına bağımlı biri olarak görüyorum.",
+    "text": "25-Gündelik işlerde kendimi başkalarına bağımlı biri olarak görüyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -901,7 +901,7 @@
   },
   {
     "id": 25,
-    "text": "Her an bir felaket (doğal, adli, mali veya tıbbi) olabilir diye hissediyorum.",
+    "text": "26-Her an bir felaket (doğal, adli, mali veya tıbbi) olabilir diye hissediyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -937,7 +937,7 @@
   },
   {
     "id": 26,
-    "text": "Annem, babam ve ben birbirimizin hayatı ve sorunlarıyla aşırı ilgili olmaya eğilimliyiz.",
+    "text": "27-Annem, babam ve ben birbirimizin hayatı ve sorunlarıyla aşırı ilgili olmaya eğilimliyiz.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -973,7 +973,7 @@
   },
   {
     "id": 27,
-    "text": "Diğer insanların isteklerine uymaktan başka yolum yokmuş gibi hissediyorum; eğer böyle yapmazsam bir şekilde beni reddederler veya intikam alırlar.",
+    "text": "28-Diğer insanların isteklerine uymaktan başka yolum yokmuş gibi hissediyorum; eğer böyle yapmazsam bir şekilde beni reddederler veya intikam alırlar.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1009,7 +1009,7 @@
   },
   {
     "id": 28,
-    "text": "Başkalarını kendimden daha fazla düşündüğüm için ben iyi bir insanım.",
+    "text": "29-Başkalarını kendimden daha fazla düşündüğüm için ben iyi bir insanım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1045,7 +1045,7 @@
   },
   {
     "id": 29,
-    "text": "Duygularımı diğerlerine açmayı utanç verici bulurum.",
+    "text": "30-Duygularımı diğerlerine açmayı utanç verici bulurum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1081,7 +1081,7 @@
   },
   {
     "id": 30,
-    "text": "En iyisini yapmalıyım, “yeterince iyi” ile yetinemem.",
+    "text": "31-En iyisini yapmalıyım, “yeterince iyi” ile yetinemem.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1117,7 +1117,7 @@
   },
   {
     "id": 31,
-    "text": "Ben özel biriyim ve diğer insanlar için konulmuş olan kısıtlamaları veya sınırları kabul etmek zorunda değilim.",
+    "text": "32-Ben özel biriyim ve diğer insanlar için konulmuş olan kısıtlamaları veya sınırları kabul etmek zorunda değilim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1153,7 +1153,7 @@
   },
   {
     "id": 32,
-    "text": "Eğer hedefime ulaşamazsam kolaylıkla yılgınlığa düşer ve vazgeçerim.",
+    "text": "33-Eğer hedefime ulaşamazsam kolaylıkla yılgınlığa düşer ve vazgeçerim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1189,7 +1189,7 @@
   },
   {
     "id": 33,
-    "text": "Başkalarının da farkında olduğu başarılar benim için en değerlisidir.",
+    "text": "34-Başkalarının da farkında olduğu başarılar benim için en değerlisidir.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1225,7 +1225,7 @@
   },
   {
     "id": 34,
-    "text": "İyi bir şey olursa, bunu kötü bir şeyin izleyeceğinden endişe ederim.",
+    "text": "35-İyi bir şey olursa, bunu kötü bir şeyin izleyeceğinden endişe ederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1261,7 +1261,7 @@
   },
   {
     "id": 35,
-    "text": "Eğer yanlış yaparsam, bunun özürü yoktur.",
+    "text": "36-Eğer yanlış yaparsam, bunun özürü yoktur.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1297,7 +1297,7 @@
   },
   {
     "id": 36,
-    "text": "Birisi için özel olduğumu hiç hissetmedim.",
+    "text": "37-Birisi için özel olduğumu hiç hissetmedim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1333,7 +1333,7 @@
   },
   {
     "id": 37,
-    "text": "Yakınlarımın beni terk edeceği ya da ayrılacağından endişe duyarım.",
+    "text": "38-Yakınlarımın beni terk edeceği ya da ayrılacağından endişe duyarım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1369,7 +1369,7 @@
   },
   {
     "id": 38,
-    "text": "Herhangi bir anda birileri beni aldatmaya kalkışabilir.",
+    "text": "39-Herhangi bir anda birileri beni aldatmaya kalkışabilir.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1405,7 +1405,7 @@
   },
   {
     "id": 39,
-    "text": "Bir yere ait değilim, yalnızım.",
+    "text": "40-Bir yere ait değilim, yalnızım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1441,7 +1441,7 @@
   },
   {
     "id": 40,
-    "text": "Başkalarının sevgisine, ilgisine ve saygısına değer bir insan değilim.",
+    "text": "41-Başkalarının sevgisine, ilgisine ve saygısına değer bir insan değilim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1477,7 +1477,7 @@
   },
   {
     "id": 41,
-    "text": "İş ve başarı alanlarında birçok insan benden daha yeterli.",
+    "text": "42-İş ve başarı alanlarında birçok insan benden daha yeterli.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1513,7 +1513,7 @@
   },
   {
     "id": 42,
-    "text": "Doğru ile yanlışı birbirinden ayırmakta zorlanırım.",
+    "text": "43-Doğru ile yanlışı birbirinden ayırmakta zorlanırım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1549,7 +1549,7 @@
   },
   {
     "id": 43,
-    "text": "Fiziksel bir saldırıya uğramaktan endişe duyarım.",
+    "text": "44-Fiziksel bir saldırıya uğramaktan endişe duyarım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1585,7 +1585,7 @@
   },
   {
     "id": 44,
-    "text": "Annem, babam ve ben özel hayatımız birbirimizden saklarsak, birbirimizi aldatmış hisseder veya suçluluk duyarız.",
+    "text": "45-Annem, babam ve ben özel hayatımız birbirimizden saklarsak, birbirimizi aldatmış hisseder veya suçluluk duyarız.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1621,7 +1621,7 @@
   },
   {
     "id": 45,
-    "text": "İlişkilerimde, diğer kişinin yönlendirici olmasına izin veririm.",
+    "text": "46-İlişkilerimde, diğer kişinin yönlendirici olmasına izin veririm.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1657,7 +1657,7 @@
   },
   {
     "id": 46,
-    "text": "Yakınlarımla o kadar meşgulüm ki kendime çok az zaman kalıyor.",
+    "text": "47-Yakınlarımla o kadar meşgulüm ki kendime çok az zaman kalıyor.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1693,7 +1693,7 @@
   },
   {
     "id": 47,
-    "text": "İnsanlarla beraberken içten ve cana yakın olmak benim için zordur.",
+    "text": "48-İnsanlarla beraberken içten ve cana yakın olmak benim için zordur.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1729,7 +1729,7 @@
   },
   {
     "id": 48,
-    "text": "Tüm sorumluluklarımı yerine getirmek zorundayım.",
+    "text": "49-Tüm sorumluluklarımı yerine getirmek zorundayım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1765,7 +1765,7 @@
   },
   {
     "id": 49,
-    "text": "İstediğimi yapmaktan alıkonulmaktan veya kısıtlanmaktan nefret ederim.",
+    "text": "50-İstediğimi yapmaktan alıkonulmaktan veya kısıtlanmaktan nefret ederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1801,7 +1801,7 @@
   },
   {
     "id": 50,
-    "text": "Uzun vadeli amaçlara ulaşabilmek için şu andaki zevklerimden fedakarlık etmekte zorlanırım.",
+    "text": "51-Uzun vadeli amaçlara ulaşabilmek için şu andaki zevklerimden fedakarlık etmekte zorlanırım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1837,7 +1837,7 @@
   },
   {
     "id": 51,
-    "text": "Başkalarından yoğun bir ilgi görmezsem kendimi daha az önemli hissederim.",
+    "text": "52-Başkalarından yoğun bir ilgi görmezsem kendimi daha az önemli hissederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1873,7 +1873,7 @@
   },
   {
     "id": 52,
-    "text": "Yeterince dikkatli olmazsanız, neredeyse her zaman bir şeyler ters gider.",
+    "text": "53-Yeterince dikkatli olmazsanız, neredeyse her zaman bir şeyler ters gider.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1909,7 +1909,7 @@
   },
   {
     "id": 53,
-    "text": "Eğer işimi doğru yapmazsam sonuçlara katlanmam gerekir.",
+    "text": "54-Eğer işimi doğru yapmazsam sonuçlara katlanmam gerekir.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1945,7 +1945,7 @@
   },
   {
     "id": 54,
-    "text": "Beni gerçekten dinleyen, anlayan veya benim gerçek ihtiyaçlarımı ve duygularımı önemseyen kimsem olmadı.",
+    "text": "55-Beni gerçekten dinleyen, anlayan veya benim gerçek ihtiyaçlarımı ve duygularımı önemseyen kimsem olmadı.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -1981,7 +1981,7 @@
   },
   {
     "id": 55,
-    "text": "Önem verdiğim birisinin benden uzaklaştığını sezersem çok kötü hissederim.",
+    "text": "56-Önem verdiğim birisinin benden uzaklaştığını sezersem çok kötü hissederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2017,7 +2017,7 @@
   },
   {
     "id": 56,
-    "text": "Diğer insanların niyetleriyle ilgili oldukça şüpheciyimdir.",
+    "text": "57-Diğer insanların niyetleriyle ilgili oldukça şüpheciyimdir.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2053,7 +2053,7 @@
   },
   {
     "id": 57,
-    "text": "Kendimi diğer insanlara uzak veya kopmuş hissediyorum.",
+    "text": "58-Kendimi diğer insanlara uzak veya kopmuş hissediyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2089,7 +2089,7 @@
   },
   {
     "id": 58,
-    "text": "Kendimi sevilebilecek biri gibi hissetmiyorum.",
+    "text": "59-Kendimi sevilebilecek biri gibi hissetmiyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2125,7 +2125,7 @@
   },
   {
     "id": 59,
-    "text": "İş (okul) hayatımda diğer insanlar kadar yetenekli değilim.",
+    "text": "60-İş (okul) hayatımda diğer insanlar kadar yetenekli değilim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2161,7 +2161,7 @@
   },
   {
     "id": 60,
-    "text": "Gündelik işler için benim kararlarıma güvenilemez.",
+    "text": "61-Gündelik işler için benim kararlarıma güvenilemez.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2197,7 +2197,7 @@
   },
   {
     "id": 61,
-    "text": "Tüm paramı kaybedip çok fakir veya zavallı duruma düşmekten endişe duyarım.",
+    "text": "62-Tüm paramı kaybedip çok fakir veya zavallı duruma düşmekten endişe duyarım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2233,7 +2233,7 @@
   },
   {
     "id": 62,
-    "text": "Çoğunlukla annem ve babamın benimle iç içe yaşadığını hissediyorum-Benim kendime ait bir hayatım yok.",
+    "text": "63-Çoğunlukla annem ve babamın benimle iç içe yaşadığını hissediyorum-Benim kendime ait bir hayatım yok.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2269,7 +2269,7 @@
   },
   {
     "id": 63,
-    "text": "Kendim için ne istediğimi bilmediğim için daima benim adıma diğer insanların karar vermesine izin veririm.",
+    "text": "64-Kendim için ne istediğimi bilmediğim için daima benim adıma diğer insanların karar vermesine izin veririm.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2305,7 +2305,7 @@
   },
   {
     "id": 64,
-    "text": "Ben hep başkalarının sorunlarını dinleyen kişi oldum.",
+    "text": "65-Ben hep başkalarının sorunlarını dinleyen kişi oldum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2341,7 +2341,7 @@
   },
   {
     "id": 65,
-    "text": "Kendimi o kadar kontrol ederim ki insanlar beni duygusuz veya hissiz bulurlar.",
+    "text": "66-Kendimi o kadar kontrol ederim ki insanlar beni duygusuz veya hissiz bulurlar.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2377,7 +2377,7 @@
   },
   {
     "id": 66,
-    "text": "Başarmak ve bir şeyler yapmak için sürekli bir baskı altındayım.",
+    "text": "67-Başarmak ve bir şeyler yapmak için sürekli bir baskı altındayım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2413,7 +2413,7 @@
   },
   {
     "id": 67,
-    "text": "Diğer insanların uyduğu kurallara ve geleneklere uymak zorunda olmadığımı hissediyorum.",
+    "text": "68-Diğer insanların uyduğu kurallara ve geleneklere uymak zorunda olmadığımı hissediyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2449,7 +2449,7 @@
   },
   {
     "id": 68,
-    "text": "Benim yararıma olduğunu bilsem bile hoşuma gitmeyen şeyleri yapmaya kendimi zorlayamam.",
+    "text": "69-Benim yararıma olduğunu bilsem bile hoşuma gitmeyen şeyleri yapmaya kendimi zorlayamam.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2485,7 +2485,7 @@
   },
   {
     "id": 69,
-    "text": "Bir toplantıda fikrimi söylediğimde veya bir topluluğa tanıtıldığımda onaylanılmayı ve takdir görmeyi isterim.",
+    "text": "70-Bir toplantıda fikrimi söylediğimde veya bir topluluğa tanıtıldığımda onaylanılmayı ve takdir görmeyi isterim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2521,7 +2521,7 @@
   },
   {
     "id": 70,
-    "text": "Ne kadar çok çalışırsam çalışayım, maddi olarak iflas edeceğimden ve neredeyse her şeyimi kaybedeceğimden endişe ederim.",
+    "text": "71-Ne kadar çok çalışırsam çalışayım, maddi olarak iflas edeceğimden ve neredeyse her şeyimi kaybedeceğimden endişe ederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2557,7 +2557,7 @@
   },
   {
     "id": 71,
-    "text": "Neden yanlış yaptığımın önemi yoktur; eğer hata yaptıysam sonucuna da katlanmam gerekir.",
+    "text": "72-Neden yanlış yaptığımın önemi yoktur; eğer hata yaptıysam sonucuna da katlanmam gerekir.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2593,7 +2593,7 @@
   },
   {
     "id": 72,
-    "text": "Hayatımda ne yapacağımı bilmediğim zamanlarda uygun bir öneride bulunacak veya beni yönlendirecek kimsem olmadı.",
+    "text": "73-Hayatımda ne yapacağımı bilmediğim zamanlarda uygun bir öneride bulunacak veya beni yönlendirecek kimsem olmadı.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2629,7 +2629,7 @@
   },
   {
     "id": 73,
-    "text": "İnsanların beni terk edeceği endişesiyle bazen onları kendimden uzaklaştırırım.",
+    "text": "74-İnsanların beni terk edeceği endişesiyle bazen onları kendimden uzaklaştırırım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2665,7 +2665,7 @@
   },
   {
     "id": 74,
-    "text": "Genellikle insanların asıl veya art niyetlerini araştırırım.",
+    "text": "75-Genellikle insanların asıl veya art niyetlerini araştırırım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2701,7 +2701,7 @@
   },
   {
     "id": 75,
-    "text": "Kendimi hep grupların dışında hissederim.",
+    "text": "76-Kendimi hep grupların dışında hissederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2737,7 +2737,7 @@
   },
   {
     "id": 76,
-    "text": "Kabul edilemeyecek pek çok özelliğim yüzünden insanlara kendimi açamıyorum veya beni tam olarak tanımalarına izin vermiyorum.",
+    "text": "77-Kabul edilemeyecek pek çok özelliğim yüzünden insanlara kendimi açamıyorum veya beni tam olarak tanımalarına izin vermiyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2773,7 +2773,7 @@
   },
   {
     "id": 77,
-    "text": "İş (okul) hayatımda diğer insanlar kadar zeki değilim.",
+    "text": "78-İş (okul) hayatımda diğer insanlar kadar zeki değilim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2809,7 +2809,7 @@
   },
   {
     "id": 78,
-    "text": "Ortaya çıkan gündelik sorunları çözebilme konusunda kendime güvenmiyorum.",
+    "text": "79-Ortaya çıkan gündelik sorunları çözebilme konusunda kendime güvenmiyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2845,7 +2845,7 @@
   },
   {
     "id": 79,
-    "text": "Bir doktor tarafından herhangi bir ciddi hastalık bulunmamasına rağmen bende ciddi bir hastalığın gelişmekte olduğu endişesine kapılıyorum.",
+    "text": "80-Bir doktor tarafından herhangi bir ciddi hastalık bulunmamasına rağmen bende ciddi bir hastalığın gelişmekte olduğu endişesine kapılıyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2881,7 +2881,7 @@
   },
   {
     "id": 80,
-    "text": "Sık sık annemden babamdan ya da eşimden ayrı bir kimliğimin olmadığını hissediyorum.",
+    "text": "81-Sık sık annemden babamdan ya da eşimden ayrı bir kimliğimin olmadığını hissediyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2917,7 +2917,7 @@
   },
   {
     "id": 81,
-    "text": "Haklarıma saygı duyulmasını ve duygularımın hesaba katılmasını istemekte çok zorlanıyorum.",
+    "text": "82-Haklarıma saygı duyulmasını ve duygularımın hesaba katılmasını istemekte çok zorlanıyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2953,7 +2953,7 @@
   },
   {
     "id": 82,
-    "text": "Başkaları beni, diğerleri için çok, kendim için az şey yapan biri olarak görüyorlar.",
+    "text": "83-Başkaları beni, diğerleri için çok, kendim için az şey yapan biri olarak görüyorlar.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -2989,7 +2989,7 @@
   },
   {
     "id": 83,
-    "text": "Diğerleri beni duygusal olarak soğuk bulurlar.",
+    "text": "84-Diğerleri beni duygusal olarak soğuk bulurlar.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -3025,7 +3025,7 @@
   },
   {
     "id": 84,
-    "text": "Kendimi sorumluluktan kolayca sıyıramıyorum veya hatalarım için gerekçe bulamıyorum.",
+    "text": "85-Kendimi sorumluluktan kolayca sıyıramıyorum veya hatalarım için gerekçe bulamıyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -3061,7 +3061,7 @@
   },
   {
     "id": 85,
-    "text": "Benim yaptıklarımın, diğer insanların katkılarından daha önemli olduğunu hissediyorum.",
+    "text": "86-Benim yaptıklarımın, diğer insanların katkılarından daha önemli olduğunu hissediyorum.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -3097,7 +3097,7 @@
   },
   {
     "id": 86,
-    "text": "Kararlarıma nadiren sadık kalabilirim.",
+    "text": "87-Kararlarıma nadiren sadık kalabilirim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -3133,7 +3133,7 @@
   },
   {
     "id": 87,
-    "text": "Bir dolu övgüler ve iltifat almam kendimi değerli birisi olarak hissetmemi sağlar.",
+    "text": "88-Bir dolu övgüler ve iltifat almam kendimi değerli birisi olarak hissetmemi sağlar.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -3169,7 +3169,7 @@
   },
   {
     "id": 88,
-    "text": "Yanlış bir kararın bir felakete yol açabileceğinden endişe ederim.",
+    "text": "89-Yanlış bir kararın bir felakete yol açabileceğinden endişe ederim.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
@@ -3205,7 +3205,7 @@
   },
   {
     "id": 89,
-    "text": "Ben cezalandırılmayı hak eden kötü bir insanım.",
+    "text": "90-Ben cezalandırılmayı hak eden kötü bir insanım.",
     "options": [
       {
         "text": "1- Benim için tamamıyla yanlış",
