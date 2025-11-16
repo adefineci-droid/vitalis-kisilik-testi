@@ -1,14 +1,3242 @@
 [
   {
     "id": 0,
-    "text": "Bu sadece örnek bir sorudur.",
+    "text": "Bana bakan, benimle zaman geçiren, başıma gelen olaylarla gerçekten ilgilenen kimsem olmadı.",
     "options": [
-      { "text": "1 - Katılmıyorum", "value": 1 },
-      { "text": "2", "value": 2 },
-      { "text": "3", "value": 3 },
-      { "text": "4", "value": 4 },
-      { "text": "5", "value": 5 },
-      { "text": "6 - Tamamen Katılıyorum", "value": 6 }
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benk ölçüm için büyüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "text": "Beni terk edeceklerinden korktuğum için yakın olduğum insanların peşini bırakmam.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "İnsanların beni kullandıklarını hissediyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "Uyumsuzum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "Beğendiğim hiçbir erkek/kadın, kusurlarımı görürse beni sevmez.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "İş (veya okul) hayatımda neredeyse hiçbir şeyi diğer insanlar kadar iyi yapamıyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "text": "Günlük yaşamımı tek başıma idare edebilme becerisine sahip olduğumu hissetmiyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "text": "Kötü bir şey olacağı duygusundan kurtulamıyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "text": "Anne babamdan ayrılmayı, bağımsız hareket edebilmeyi, yaşıtlarım kadar başaramadım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "text": "Eğer istediğimi yaparsam, başımı derde sokarım diye düşünürüm.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "text": "Genellikle yakınlarıma ilgi gösteren ve bakan ben olurum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "text": "Olumlu duygularımı diğerlerine göstermekten utanırım (sevdiğimi, önemsediğimi göstermek gibi).",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "text": "Yaptığım çoğu şeyde en iyi olmalıyım; ikinci olmayı kabullenemem.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "text": "Diğer insanlardan bir şeyler istediğimde bana “hayır” denilmesini çok zor kabullenirim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "text": "Kendimi sıradan ve sıkıcı işleri yapmaya zorlayamam.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "text": "Paramın olması ve önemli insanlar tanıyor olmak beni değerli yapar.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "text": "Her şey yolunda gidiyor görünse bile, bunun bozulacağını hissederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "text": "Eğer bir yanlış yaparsam, cezalandırılmayı hak ederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "text": "Çevremde bana sıcaklık, koruma ve duygusal yakınlık gösteren kimsem yok.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "text": "Diğer insanlara o kadar muhtacım ki onları kaybedeceğim diye çok endişeleniyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "text": "İnsanlara karşı tedbiri elden bırakamam yoksa bana kasıtlı olarak zarar vereceklerini hissederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "text": "Temel olarak diğer insanlardan farklıyım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "text": "Gerçek beni tanırlarsa beğendiğim hiç kimse bana yakın olmak istemez.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "text": "İşleri halletmede son derece yetersizim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "text": "Gündelik işlerde kendimi başkalarına bağımlı biri olarak görüyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "text": "Her an bir felaket (doğal, adli, mali veya tıbbi) olabilir diye hissediyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "text": "Annem, babam ve ben birbirimizin hayatı ve sorunlarıyla aşırı ilgili olmaya eğilimliyiz.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "text": "Diğer insanların isteklerine uymaktan başka yolum yokmuş gibi hissediyorum; eğer böyle yapmazsam bir şekilde beni reddederler veya intikam alırlar.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "text": "Başkalarını kendimden daha fazla düşündüğüm için ben iyi bir insanım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "text": "Duygularımı diğerlerine açmayı utanç verici bulurum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "text": "En iyisini yapmalıyım, “yeterince iyi” ile yetinemem.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "text": "Ben özel biriyim ve diğer insanlar için konulmuş olan kısıtlamaları veya sınırları kabul etmek zorunda değilim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "text": "Eğer hedefime ulaşamazsam kolaylıkla yılgınlığa düşer ve vazgeçerim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "text": "Başkalarının da farkında olduğu başarılar benim için en değerlisidir.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "text": "İyi bir şey olursa, bunu kötü bir şeyin izleyeceğinden endişe ederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "text": "Eğer yanlış yaparsam, bunun özürü yoktur.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "text": "Birisi için özel olduğumu hiç hissetmedim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "text": "Yakınlarımın beni terk edeceği ya da ayrılacağından endişe duyarım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "text": "Herhangi bir anda birileri beni aldatmaya kalkışabilir.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "text": "Bir yere ait değilim, yalnızım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "text": "Başkalarının sevgisine, ilgisine ve saygısına değer bir insan değilim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "text": "İş ve başarı alanlarında birçok insan benden daha yeterli.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "text": "Doğru ile yanlışı birbirinden ayırmakta zorlanırım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "text": "Fiziksel bir saldırıya uğramaktan endişe duyarım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "text": "Annem, babam ve ben özel hayatımız birbirimizden saklarsak, birbirimizi aldatmış hisseder veya suçluluk duyarız.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "text": "İlişkilerimde, diğer kişinin yönlendirici olmasına izin veririm.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "text": "Yakınlarımla o kadar meşgulüm ki kendime çok az zaman kalıyor.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "text": "İnsanlarla beraberken içten ve cana yakın olmak benim için zordur.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "text": "Tüm sorumluluklarımı yerine getirmek zorundayım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "text": "İstediğimi yapmaktan alıkonulmaktan veya kısıtlanmaktan nefret ederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "text": "Uzun vadeli amaçlara ulaşabilmek için şu andaki zevklerimden fedakarlık etmekte zorlanırım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "text": "Başkalarından yoğun bir ilgi görmezsem kendimi daha az önemli hissederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "text": "Yeterince dikkatli olmazsanız, neredeyse her zaman bir şeyler ters gider.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "text": "Eğer işimi doğru yapmazsam sonuçlara katlanmam gerekir.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "text": "Beni gerçekten dinleyen, anlayan veya benim gerçek ihtiyaçlarımı ve duygularımı önemseyen kimsem olmadı.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "text": "Önem verdiğim birisinin benden uzaklaştığını sezersem çok kötü hissederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "text": "Diğer insanların niyetleriyle ilgili oldukça şüpheciyimdir.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "text": "Kendimi diğer insanlara uzak veya kopmuş hissediyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "text": "Kendimi sevilebilecek biri gibi hissetmiyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "text": "İş (okul) hayatımda diğer insanlar kadar yetenekli değilim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "text": "Gündelik işler için benim kararlarıma güvenilemez.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "text": "Tüm paramı kaybedip çok fakir veya zavallı duruma düşmekten endişe duyarım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "text": "Çoğunlukla annem ve babamın benimle iç içe yaşadığını hissediyorum-Benim kendime ait bir hayatım yok.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "text": "Kendim için ne istediğimi bilmediğim için daima benim adıma diğer insanların karar vermesine izin veririm.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "text": "Ben hep başkalarının sorunlarını dinleyen kişi oldum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "text": "Kendimi o kadar kontrol ederim ki insanlar beni duygusuz veya hissiz bulurlar.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "text": "Başarmak ve bir şeyler yapmak için sürekli bir baskı altındayım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "text": "Diğer insanların uyduğu kurallara ve geleneklere uymak zorunda olmadığımı hissediyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "text": "Benim yararıma olduğunu bilsem bile hoşuma gitmeyen şeyleri yapmaya kendimi zorlayamam.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "text": "Bir toplantıda fikrimi söylediğimde veya bir topluluğa tanıtıldığımda onaylanılmayı ve takdir görmeyi isterim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "text": "Ne kadar çok çalışırsam çalışayım, maddi olarak iflas edeceğimden ve neredeyse her şeyimi kaybedeceğimden endişe ederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "text": "Neden yanlış yaptığımın önemi yoktur; eğer hata yaptıysam sonucuna da katlanmam gerekir.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "text": "Hayatımda ne yapacağımı bilmediğim zamanlarda uygun bir öneride bulunacak veya beni yönlendirecek kimsem olmadı.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "text": "İnsanların beni terk edeceği endişesiyle bazen onları kendimden uzaklaştırırım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "text": "Genellikle insanların asıl veya art niyetlerini araştırırım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "text": "Kendimi hep grupların dışında hissederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "text": "Kabul edilemeyecek pek çok özelliğim yüzünden insanlara kendimi açamıyorum veya beni tam olarak tanımalarına izin vermiyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "text": "İş (okul) hayatımda diğer insanlar kadar zeki değilim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "text": "Ortaya çıkan gündelik sorunları çözebilme konusunda kendime güvenmiyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "text": "Bir doktor tarafından herhangi bir ciddi hastalık bulunmamasına rağmen bende ciddi bir hastalığın gelişmekte olduğu endişesine kapılıyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "text": "Sık sık annemden babamdan ya da eşimden ayrı bir kimliğimin olmadığını hissediyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "text": "Haklarıma saygı duyulmasını ve duygularımın hesaba katılmasını istemekte çok zorlanıyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "text": "Başkaları beni, diğerleri için çok, kendim için az şey yapan biri olarak görüyorlar.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "text": "Diğerleri beni duygusal olarak soğuk bulurlar.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "text": "Kendimi sorumluluktan kolayca sıyıramıyorum veya hatalarım için gerekçe bulamıyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "text": "Benim yaptıklarımın, diğer insanların katkılarından daha önemli olduğunu hissediyorum.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "text": "Kararlarıma nadiren sadık kalabilirim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "text": "Bir dolu övgüler ve iltifat almam kendimi değerli birisi olarak hissetmemi sağlar.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "text": "Yanlış bir kararın bir felakete yol açabileceğinden endişe ederim.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "text": "Ben cezalandırılmayı hak eden kötü bir insanım.",
+    "options": [
+      {
+        "text": "1- Benim için tamamıyla yanlış",
+        "value": 1,
+        "dimension": null
+      },
+      {
+        "text": "2- Benim için büyük ölçüde yanlış",
+        "value": 2,
+        "dimension": null
+      },
+      {
+        "text": "3- Bana uyan tarafı uymayan tarafından biraz fazla",
+        "value": 3,
+        "dimension": null
+      },
+      {
+        "text": "4- Benim için orta derecede doğru",
+        "value": 4,
+        "dimension": null
+      },
+      {
+        "text": "5- Benim için çoğunlukla doğru",
+        "value": 5,
+        "dimension": null
+      },
+      {
+        "text": "6- Beni mükemmel şekilde tanımlıyor",
+        "value": 6,
+        "dimension": null
+      }
     ]
   }
 ]
