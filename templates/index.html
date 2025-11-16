@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kişilik Testi</title>
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-  }
-  .question {
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-weight: bold; /* ← Bu satırı ekle */
-  }
-  .option {
-    display: block;
-    margin: 10px 0;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-</style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .option {
+      display: block;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div id="test-container">
@@ -53,7 +53,7 @@
       const question = questions[currentIndex];
       if (!question) return;
 
-      document.getElementById("question").textContent = question.text;
+      document.getElementById("question").textContent = (currentIndex + 1) + " - " + question.text;
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
       currentSelection = null;
