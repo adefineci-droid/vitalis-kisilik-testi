@@ -423,15 +423,27 @@ def submit():
         return redirect(url_for('index'))
     
     triggered = []
-    explanations = []
+    explanations_html = [] # HTML listesi
     
     for name, rule in SCHEMA_RULES.items():
         total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
         if total >= rule["threshold"]:
             triggered.append(name)
-            explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
+            
+            # YENİ: Her şema için tıklanabilir bir akordiyon kartı oluştur
+            card_html = f"""
+            <div class="schema-card">
+                <details>
+                    <summary>{name}</summary>
+                    <div class="details-content">
+                        <p>{rule['description']}</p>
+                    </div>
+                </details>
+            </div>
+            """
+            explanations_html.append(card_html)
 
-    # {% raw %} ile CSS hatası çözüldü
+    # YENİ: Akordiyon menüleri için güncellenmiş CSS stilleri
     result_template = """
     <!doctype html>
     <title>Young Şema Testi - Sonuç</title>
@@ -439,8 +451,75 @@ def submit():
         {% raw %}
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; text-align: center; }
         .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); text-align: left; }
+        
+        /* Ana Başlık */
         h2 { color: #1e88e5; text-align: center; margin-bottom: 20px; }
-        h3 { color: #e53935; border-bottom: 2px solid #ffcdd2; padding-bottom: 5px; margin-top: 20px; }
+        
+        /* "Tetiklenen Şemalar:" Başlığı */
+        h3.section-title {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 1.3em;
+        }
+
+        /* --- Yeni Akordiyon Stilleri --- */
+        .schema-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s;
+        }
+        .schema-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        
+        details {
+            font-family: inherit;
+        }
+        
+        /* Tıklanabilir başlık (Kırmızı Şema Adı) */
+        summary {
+            padding: 16px 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #e53935; /* Kırmızı Şema Başlığı */
+            list-style: none; /* Varsayılan oku kaldır */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; }
+        
+        /* Tıklanabilir + / - ikonu */
+        summary::after {
+            content: '+';
+            font-size: 1.5em;
+            font-weight: 300;
+            color: #1e88e5; /* Mavi Artı */
+            transition: transform 0.2s;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #eee;
+        }
+        details[open] summary::after {
+            content: '−'; /* Eksi ikonu */
+        }
+
+        /* Açılan içerik alanı */
+        .details-content {
+            padding: 16px 20px;
+            border-top: 1px solid #eee;
+            line-height: 1.6;
+            color: #333;
+        }
+        /* --- Bitiş: Yeni Stiller --- */
+
         p { line-height: 1.6; }
         a { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #1e88e5; color: white; text-decoration: none; border-radius: 8px; transition: background-color 0.3s; }
         a:hover { background-color: #1565c0; }
@@ -449,7 +528,9 @@ def submit():
     <body>
         <div class="container">
             <h2>Young Şema Testi Sonuçları</h2>
+            
             {{ result_content | safe }}
+            
             <p style="text-align: center;"><a href="/">Yeniden Başla</a></p>
         </div>
     </body>
@@ -458,11 +539,13 @@ def submit():
     # Dinamik içerik oluşturuluyor
     result_content = ""
     if triggered:
-        result_content += "<h3>Tetiklenen Şemalar:</h3>" + "".join(explanations)
+        # YENİ: Başlığı ve kartları ayır
+        result_content += '<h3 class="section-title">Tetiklenen Şemalar:</h3>'
+        result_content += "".join(explanations_html)
     else:
         result_content += "<p>Tebrikler! Belirgin olarak tetiklenmiş bir şema tespit edilmedi.</p>"
     
-    result_content += f'<p>Toplam Cevaplanan Soru: {len(scores)}/{TOTAL_QUESTIONS}</p>'
+    result_content += f'<p style="text-align:center; margin-top: 20px;">Toplam Cevaplanan Soru: {len(scores)}/{TOTAL_QUESTIONS}</p>'
     
     
     # template'i render_template_string ile işliyoruz
