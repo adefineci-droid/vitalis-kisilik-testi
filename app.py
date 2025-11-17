@@ -19,7 +19,7 @@ except Exception as e:
     QUESTIONS = []
     TOTAL_QUESTIONS = 0
 
-
+# --- SİZİN GÜNCELLEDİĞİNİZ SCHEMA_RULES BURAYA EKLENDİ ---
 SCHEMA_RULES = {
     "Başarısızlık Şeması": {
         "question_ids": [5, 23, 41, 59, 77],
@@ -108,7 +108,8 @@ SCHEMA_RULES = {
     }
 }
 
-# --- GİRİŞ SAYFASI (INDEX) ---
+
+# --- GİRİŞ SAYFASI (DEMOGRAFİK FORM İLE GÜNCELLENDİ) ---
 @app.route("/")
 def index():
     # Jinja2'nun CSS'i yanlış yorumlamasını engellemek için {% raw %} kullanıldı.
@@ -123,7 +124,6 @@ def index():
             margin: 0;
             padding: 20px;
             color: #333;
-            text-align: center;
         }
         .container {
             max-width: 700px;
@@ -160,6 +160,49 @@ def index():
             margin-bottom: 10px;
             border-radius: 4px;
         }
+        
+        /* --- YENİ FORM STİLLERİ --- */
+        .form-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .form-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .form-options label {
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .form-options input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #1e88e5;
+        }
+        .form-options label:hover {
+            background-color: #eef8ff;
+        }
+        .form-options input[type="radio"]:checked + span {
+            font-weight: 600;
+        }
+        
+        /* Buton */
         .start-button {
             display: inline-block;
             width: 100%;
@@ -167,6 +210,7 @@ def index():
             background-color: #4CAF50; /* Yeşil Buton */
             color: white;
             text-decoration: none;
+            border: none;
             border-radius: 8px;
             font-size: 1.2em;
             cursor: pointer;
@@ -186,39 +230,110 @@ def index():
             
             <h3>Test Hakkında Bilgilendirme</h3>
             <p>Bu test, toplam **3 aşamadan** oluşmaktadır ve Young Şema Terapisi modeli temel alınarak hazırlanmıştır. Şu anda cevaplayacağınız sorular, ilk aşamayı (Şema Değerlendirme) kapsamaktadır.</p>
+            <p>Teste başlamadan önce, sizi daha iyi tanıyabilmemiz için lütfen aşağıdaki demografik bilgi formunu doldurun. Bu bilgiler, sonuçlarınızın yorumlanmasında kullanılacaktır.</p>
 
-            <h3>Testin Aşamaları</h3>
-            <ul>
-                <li>**1. Aşama (Şema Soruları):** Temel şemalarınızın şiddetini belirleyen soruları içerir.</li>
-                <li>**2. Aşama (Tetikleyiciler):** Şemalarınızı hangi durumların tetiklediğine odaklanır.</li>
-                <li>**3. Aşama (Başa Çıkma):** Şemalarınızla nasıl başa çıktığınızı değerlendirir.</li>
-            </ul>
+            <form action="{{ url_for('start_test') }}" method="POST">
+                
+                <div class="form-group">
+                    <label>Cinsiyetiniz nedir?</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="cinsiyet" value="Kadin" required> <span>Kadın</span></label>
+                        <label><input type="radio" name="cinsiyet" value="Erkek"> <span>Erkek</span></label>
+                    </div>
+                </div>
 
-            <h3>Sonuçlar Nasıl Alınacak?</h3>
-            <p>Tüm 3 aşamayı tamamladığınızda, sistem size hangi şemaların baskın olduğunu belirten kapsamlı bir sonuç raporu sunacaktır. Sonuçlar, her şemanın kısa bir açıklamasını ve yaşamınızdaki potansiyel etkilerini içerecektir.</p>
+                <div class="form-group">
+                    <label>Yaş Aralığınız</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="yas_araligi" value="18-24" required> <span>18–24</span></label>
+                        <label><input type="radio" name="yas_araligi" value="25-31"> <span>25–31</span></label>
+                        <label><input type="radio" name="yas_araligi" value="32-39"> <span>32–39</span></label>
+                        <label><input type="radio" name="yas_araligi" value="40+"> <span>40 ve üzeri</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Medeni Durumunuz</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="medeni_durum" value="Sevgili" required> <span>Sevgili</span></label>
+                        <label><input type="radio" name="medeni_durum" value="Nisanli"> <span>Nişanlı</span></label>
+                        <label><input type="radio" name="medeni_durum" value="Evli"> <span>Evli</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Partnerinizle birlikte yaşıyor musunuz?</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="birlikte_yasam" value="Evet" required> <span>Evet</span></label>
+                        <label><input type="radio" name="birlikte_yasam" value="Hayir"> <span>Hayır</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Partnerinizle ilişkinizi nasıl tanımlarsınız?</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="iliski_tanimi" value="Sevgi Bagi" required> <span>Sevgi Bağı</span></label>
+                        <label><input type="radio" name="iliski_tanimi" value="Aliskanlik"> <span>Alışkanlık</span></label>
+                        <label><input type="radio" name="iliski_tanimi" value="Mecburiyet"> <span>Mecburiyet</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Şu anki ilişkinizin süresi ne kadardır?</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="iliski_suresi" value="0-6 Ay" required> <span>0–6 ay</span></label>
+                        <label><input type="radio" name="iliski_suresi" value="6-12 Ay"> <span>6–12 ay</span></label>
+                        <label><input type="radio" name="iliski_suresi" value="1-3 Yil"> <span>1–3 yıl</span></label>
+                        <label><input type="radio" name="iliski_suresi" value="3+ Yil"> <span>3 yıldan uzun</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Daha önce bir terapistten psikolojik destek aldınız mı?</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="terapi_destegi" value="Aldim" required> <span>Aldım</span></label>
+                        <label><input type="radio" name="terapi_destegi" value="Aliyorum"> <span>Alıyorum</span></label>
+                        <label><input type="radio" name="terapi_destegi" value="Hayir"> <span>Hayır, almadım</span></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="start-button">Teste Başla</button>
             
-            <a href="{{ url_for('start_test') }}" class="start-button">Teste Başla</a>
-        </div>
+            </form>
+            </div>
     </body>
     """
     return render_template_string(landing_page_html)
 
-# --- YENİ BAŞLANGIÇ ROTASI (SESSION İLKLEME) ---
-@app.route("/start_test")
+# --- BAŞLANGIÇ ROTASI (FORMU ALACAK ŞEKİLDE GÜNCELLENDİ) ---
+@app.route("/start_test", methods=["GET", "POST"])
 def start_test():
+    
+    if request.method == "POST":
+        # Demografik veriler 'request.form' içinden alınabilir.
+        # Örnek: cinsiyet = request.form.get('cinsiyet')
+        # Örnek: yas = request.form.get('yas_araligi')
+        # ŞİMDİLİK BU VERİLERİ KAYDETMİYORUZ, SADECE TESTİ BAŞLATIYORUZ.
+        # BİR SONRAKİ ADIMDA BU VERİLERİ SESSION'A EKLEYECEĞİZ.
+        pass
+
+    # Kullanıcı ister GET ister POST ile gelsin,
+    # sorular yüklenmişse oturumu sıfırla ve teste başlat.
+
     if not QUESTIONS:
         return "HATA: Sorular yüklenemedi. Lütfen 'questions.json' dosyanızı kontrol edin.", 500
         
     # Oturumu temizle ve yeni bir teste hazırla
     session.clear()
     session['current_question_index'] = 0
-    session['answers'] = {}
+    session['answers'] = {} # Test cevapları için
+    session['demographics'] = {} # Demografik veriler için (bir sonraki adımda doldurulacak)
+    
     return redirect(url_for('quiz'))
 
 # --- QUIZ ROTASI ---
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
-    # Session başlatma /start_test rotasına taşındığı için burada kontrol etmeye gerek yok.
     current_index = session.get('current_question_index', 0)
     
     # Session'ın başlangıçta ayarlanıp ayarlanmadığını kontrol et
@@ -239,7 +354,9 @@ def quiz():
                     return redirect(url_for('quiz'))
 
                 answer_value = int(answer_value_str)
-                session['answers'][question_id_str] = answer_value
+                # Cevapları string anahtarlarla saklamak (JSON uyumluluğu için daha iyi)
+                session['answers'][question_id_str] = answer_value 
+                session.modified = True # Session'ın değiştiğini belirt
                 answer_processed_successfully = True
                 
             except (ValueError, TypeError) as e:
@@ -415,8 +532,10 @@ def quiz():
     )
 
 
+# --- SUBMIT ROTASI (Akordiyon Stili) ---
 @app.route("/submit")
 def submit():
+    # 'answers' anahtarı artık string ID'ler içeriyor
     scores = session.get('answers', {})
     
     if not scores:
@@ -426,11 +545,13 @@ def submit():
     explanations_html = [] # HTML listesi
     
     for name, rule in SCHEMA_RULES.items():
+        # 'scores.get' için anahtarları int değil, string olarak kullan
         total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
+        
         if total >= rule["threshold"]:
             triggered.append(name)
             
-            # YENİ: Her şema için tıklanabilir bir akordiyon kartı oluştur
+            # Her şema için tıklanabilir bir akordiyon kartı oluştur
             card_html = f"""
             <div class="schema-card">
                 <details>
@@ -443,7 +564,7 @@ def submit():
             """
             explanations_html.append(card_html)
 
-    # YENİ: Akordiyon menüleri için güncellenmiş CSS stilleri
+    # Akordiyon menüleri için güncellenmiş CSS stilleri
     result_template = """
     <!doctype html>
     <title>Young Şema Testi - Sonuç</title>
@@ -550,7 +671,6 @@ def submit():
     
     # template'i render_template_string ile işliyoruz
     return render_template_string(
-        result_template,
         result_content=result_content
     )
 
