@@ -36,21 +36,21 @@ SCHEMA_RULES = {
 # --- GİRİŞ SAYFASI (INDEX) ---
 @app.route("/")
 def index():
-    # DÜZELTME: Jinja2 TemplateSyntaxError'ı çözmek için tüm CSS süslü parantezleri kaçırıldı ({{ ve }} kullanıldı).
+    # Jinja2'nun CSS'i yanlış yorumlamasını engellemek için {% raw %} kullanıldı.
     landing_page_html = """
     <!doctype html>
     <title>Young Şema Testi - Giriş</title>
     <style>
-        /* TÜM CSS SÜSLÜ PARANTEZLERİ ÇİFT PARANTEZ OLARAK KAÇIRILMIŞTIR */
-        body {{
+        {% raw %}
+        body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
             color: #333;
             text-align: center;
-        }}
-        .container {{
+        }
+        .container {
             max-width: 700px;
             margin: 0 auto;
             background-color: #fff;
@@ -58,34 +58,34 @@ def index():
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: left;
-        }}
-        h1 {{
+        }
+        h1 {
             color: #1e88e5;
             text-align: center;
             margin-bottom: 20px;
-        }}
-        h3 {{
+        }
+        h3 {
             color: #555;
             border-bottom: 1px solid #eee;
             padding-bottom: 5px;
             margin-top: 25px;
-        }}
-        p {{
+        }
+        p {
             line-height: 1.6;
             margin-bottom: 15px;
-        }}
-        ul {{
+        }
+        ul {
             list-style-type: none;
             padding: 0;
-        }}
-        li {{
+        }
+        li {
             background-color: #e3f2fd;
             border-left: 5px solid #2196f3;
             padding: 10px 15px;
             margin-bottom: 10px;
             border-radius: 4px;
-        }}
-        .start-button {{
+        }
+        .start-button {
             display: inline-block;
             width: 100%;
             padding: 15px;
@@ -98,10 +98,11 @@ def index():
             transition: background-color 0.3s;
             margin-top: 30px;
             text-align: center;
-        }}
-        .start-button:hover {{
+        }
+        .start-button:hover {
             background-color: #388E3C;
-        }}
+        }
+        {% endraw %}
     </style>
 
     <body>
@@ -139,7 +140,7 @@ def start_test():
     session['answers'] = {}
     return redirect(url_for('quiz'))
 
-# --- MEVCUT QUIZ VE SUBMIT ROTASI (DEĞİŞMEDİ) ---
+# --- QUIZ ROTASI ---
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
     # Session başlatma /start_test rotasına taşındığı için burada kontrol etmeye gerek yok.
@@ -192,74 +193,74 @@ def quiz():
     # İlerleme çubuğu için yüzdelik hesaplama
     progress_percent = round(((current_index + 1) / TOTAL_QUESTIONS) * 100)
         
-    # Düzeltilmiş ve Modern Görünüm Şablonu
+    # {% raw %} ile CSS hatası çözüldü
     question_html = """
     <!doctype html>
     <title>Young Şema Testi ({{ current_index_display }}/{{ total_questions }})</title>
     <style>
-        /* TÜM CSS SÜSLÜ PARANTEZLERİ ÇİFT PARANTEZ OLARAK KAÇIRILMIŞTIR */
-        body {{
+        {% raw %}
+        body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
             color: #333;
-        }}
-        .container {{
+        }
+        .container {
             max-width: 700px;
             margin: 0 auto;
             background-color: #fff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }}
-        h1 {{
+        }
+        h1 {
             color: #1e88e5;
             text-align: center;
             margin-bottom: 5px;
-        }}
-        h2 {{
+        }
+        h2 {
             font-size: 1.2em;
             color: #555;
             text-align: center;
             margin-bottom: 25px;
-        }}
+        }
         /* İlerleme Çubuğu Stilleri */
-        #progress-bar-container {{
+        #progress-bar-container {
             height: 8px;
             background-color: #e0e0e0;
             border-radius: 4px;
             margin-bottom: 25px;
             overflow: hidden;
-        }}
-        #progress-bar {{
+        }
+        #progress-bar {
             height: 100%;
             background-color: #4CAF50;
             transition: width 0.4s ease;
-        }}
-        .card {{
+        }
+        .card {
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
             background-color: #fcfcfc;
-        }}
-        .question-text {{
+        }
+        .question-text {
             font-size: 1.2em;
             margin-bottom: 15px;
             color: #333;
-        }}
-        .options-list {{
+        }
+        .options-list {
             display: grid;
             gap: 10px;
             margin-top: 15px;
-        }}
+        }
         /* Radyo butonunu gizle */
-        input[type="radio"] {{
+        input[type="radio"] {
             display: none;
-        }}
+        }
         /* Seçenek kartı görünümü */
-        .option-card {{
+        .option-card {
             display: block;
             padding: 15px;
             border: 2px solid #ddd;
@@ -268,19 +269,19 @@ def quiz():
             transition: all 0.2s;
             font-size: 1em;
             font-weight: 500;
-        }}
-        .option-card:hover {{
+        }
+        .option-card:hover {
             border-color: #b3d9ff;
             background-color: #e6f2ff;
-        }}
+        }
         /* Seçili kartın görünümü */
-        input[type="radio"]:checked + .option-card {{
+        input[type="radio"]:checked + .option-card {
             border-color: #1e88e5;
             background-color: #e0f7fa;
             color: #1e88e5;
             box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
-        }}
-        input[type="submit"] {{
+        }
+        input[type="submit"] {
             width: 100%;
             padding: 12px;
             background-color: #1e88e5; /* Mavi Buton */
@@ -291,10 +292,11 @@ def quiz():
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 20px;
-        }}
-        input[type="submit"]:hover {{
+        }
+        input[type="submit"]:hover {
             background-color: #1565c0;
-        }}
+        }
+        {% endraw %}
     </style>
 
     <body>
@@ -354,11 +356,12 @@ def submit():
             triggered.append(name)
             explanations.append(f"<h3>{name}</h3><p>{rule['description']}</p>")
 
-    # DÜZELTME: SyntaxError'ı önlemek için CSS tek satırda ve tırnak işaretleri ile kullanıldı.
+    # {% raw %} ile CSS hatası çözüldü
     result_template = """
     <!doctype html>
     <title>Young Şema Testi - Sonuç</title>
     <style>
+        {% raw %}
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; text-align: center; }
         .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); text-align: left; }
         h2 { color: #1e88e5; text-align: center; margin-bottom: 20px; }
@@ -366,6 +369,7 @@ def submit():
         p { line-height: 1.6; }
         a { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #1e88e5; color: white; text-decoration: none; border-radius: 8px; transition: background-color 0.3s; }
         a:hover { background-color: #1565c0; }
+        {% endraw %}
     </style>
     <body>
         <div class="container">
