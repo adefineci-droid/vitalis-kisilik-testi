@@ -33,9 +33,10 @@ SCHEMA_RULES = {
     }
 }
 
-# --- YENİ GİRİŞ SAYFASI (INDEX) ---
+# --- GİRİŞ SAYFASI (INDEX) ---
 @app.route("/")
 def index():
+    # DÜZELTME: Jinja2 TemplateSyntaxError'ı çözmek için tüm CSS süslü parantezleri kaçırıldı ({{ ve }} kullanıldı).
     landing_page_html = """
     <!doctype html>
     <title>Young Şema Testi - Giriş</title>
