@@ -2,6 +2,10 @@ from flask import Flask, request, render_template_string, session, redirect, url
 import json
 import os 
 import logging
+import smtplib # E-posta için eklendi
+import ssl # E-posta için eklendi
+from email.message import EmailMessage # E-posta için eklendi
+from datetime import datetime # Zaman damgası için eklendi
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,27 +33,27 @@ SCHEMA_RULES = {
     "Bağımlılık Şeması": {
         "question_ids": [6, 24, 60, 78],
         "threshold": 16,
-        "description": """Çocuklukta oluşumu: Ebeveynlerin aşırı koruyucu, kontrolcü veya yönlendirici olduğu ailelerde görülür. Çocuk, karar alma ve deneme fırsatı bulamadığında kendi gücüne güvenmeyi öğrenemez. Ailede “sen tek başına yapamazsın, ben senin yerine hallederim” tutumu sıkça gözlemlenir.Yetişkinlikte:Bu şemaya sahip bireyler genellikle kendi kararlarını verirken tedirginlik yaşarlar. Bir işi kendi başına yapmak zorunda kaldıklarında içlerinde yoğun bir kaygı hissedebilirler. “Ya yanlış yaparsam?” düşüncesi onları sıklıkla durdurur. Çoğu zaman birine danışma, onay alma ya da destek görme ihtiyacı hissederler.İlişkilerinde aşırı bağlanma eğilimleri olabilir; partnerleri veya aileleri olmadan karar almakta zorlanırlar. Yalnız kalmak onlarda panik, kaygı ya da değersizlik duygusu yaratabilir. Dışarıdan güçlü görünseler bile içlerinde “tek başıma kalırsam kontrolü kaybederim” inancı vardır. Bu nedenle genellikle rehberlik veya yönlendirme arayışındadırlar."""
+        "description": """Çocuklukta oluşumu: Ebeveynlerin aşırı koruyucu, kontrolcü veya yönlendirici olduğu ailelerde görülür. Çocuk, karar alma ve deneme fırsatı bulamadığında kendi gücüne güvenmeyi öğrenemez. Ailede “sen tek başına yapamazsın, ben senin yerine hallederim” tutumu sıkça gözlemlenir.Yetişkinlikte:Bu şemaya sahip bireyler genellikle kendi kararlarını verirken tedirginlik yaşarlar. Bir işi kendi başına yapmak zorunda kaldıklarında içlerinde yoğun bir kaygı hissedebilirler. “Ya yanlış yaparsam?” düşüncesi onları sıklıkla durdurur. Çoğu zaman birine danışma, onay alma ya da destek görme ihtiyacı hissederler.İlişkinlerinde aşırı bağlanma eğilimleri olabilir; partnerleri veya aileleri olmadan karar almakta zorlanırlar. Yalnız kalmak onlarda panik, kaygı ya da değersizlik duygusu yaratabilir. Dışarıdan güçlü görünseler bile içlerinde “tek başıma kalırsam kontrolü kaybederim” inancı vardır. Bu nedenle genellikle rehberlik veya yönlendirme arayışındadırlar."""
     },
     "Boyun Eğicilik Şeması": {
         "question_ids": [9, 27, 45, 63, 81],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Otoriter, cezalandırıcı veya duygusal olarak tehditkâr aile ortamlarında gelişir. Çocuk, kendi düşüncelerini savunduğunda cezalandırılacağını ya da sevgiden mahrum kalacağını öğrenir. Kabul görmek için uyum sağlaması gerektiğini hisseder.Yetişkinlikte:Bu şemaya sahip kişiler genellikle çevrelerine aşırı uyum sağlar, kendi ihtiyaçlarını bastırır ve sürekli başkalarının beklentilerini öncelerler. “Hayır” demekte güçlük çekerler çünkü reddedilmekten veya çatışmadan korkarlar. İçlerinde sıklıkla şu düşünce vardır: “Kırılmaması için sessiz kalmalıyım.”Zamanla bastırılmış öfke ve kırgınlık birikir. Dışarıdan sakin, uyumlu veya anlayışlı görünseler de iç dünyalarında “kimse beni anlamıyor, hep ben veriyorum” serzenişi vardır. İlişkilerinde kendi sınırlarını koruyamadıkları için tükenmişlik, sessiz öfke veya kendini değersiz hissetme eğilimi sık görülür.Bu şemaya sahip bireyler genellikle başkalarının onayını korumaya çalışırken kendi benliklerini arka plana atarlar. Bu da uzun vadede duygusal mesafe, bastırılmış kimlik ve içsel yalnızlık hissi yaratır."""
+        "description": """Çocuklukta oluşumu:Otoriter, cezalandırıcı veya duygusal olarak tehditkâr aile ortamlarında gelişir. Çocuk, kendi düşüncelerini savunduğunda cezalandırılacağını ya da sevgiden mahrum kalacağını öğrenir. Kabul görmek için uyum sağlaması gerektiğini hisseder.Yetişkinlikte:Bu şemaya sahip kişiler genellikle çevrelerine aşırı uyum sağlar, kendi ihtiyaçlarını bastırır ve sürekli başkalarının beklentilerini öncelerler. “Hayır” demekte güçlük çekerler çünkü reddedilmekten veya çatışmadan korkarlar. İçlerinde sıklıkla şu düşünce vardır: “Kırılmaması için sessiz kalmalıyım.”Zamanla bastırılmış öfke ve kırgınlık birikir. Dışarıdan sakin, uyumlu veya anlayışlı görünseler de iç dünyalarında “kimse beni anlamıyor, hep ben veriyorum” serzenişi vardır. İlişkinlerinde kendi sınırlarını koruyamadıkları için tükenmişlik, sessiz öfke veya kendini değersiz hissetme eğilimi sık görülür.Bu şemaya sahip bireyler genellikle başkalarının onayını korumaya çalışırken kendi benliklerini arka plana atarlar. Bu da uzun vadede duygusal mesafe, bastırılmış kimlik ve içsel yalnızlık hissi yaratır."""
     },
     "İç İçelik Şeması": {
         "question_ids": [8, 26, 44, 62, 80],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anısız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkiler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
+        "description": """Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anlamsız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkinler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
     },
     "Terk Edilme Şeması": {
         "question_ids": [1, 19, 37, 55, 73],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Sık taşınmalar, ayrılıklar, boşanma ya da ebeveynin duygusal olarak erişilemez olduğu durumlar bu şemayı oluşturabilir. Çocuk, kendini sevilen ama her an kaybedilebilecek biri olarak algılar.Yetişkinlikte:Terk edilme şeması olan bireyler, yakın ilişkilerde yoğun kaybetme korkusu yaşarlar. Partnerleri bir süre sessiz kaldığında bile “beni artık istemiyor” kaygısı doğabilir. Küçük ilgisizlikleri büyük tehdit gibi algılarlar ve duygusal dalgalanmalar sıklıkla görülür.Bazıları terk edilmemek için fazlasıyla yapışkan, bazıları ise “nasıl olsa giderler” düşüncesiyle mesafeli ve soğuk davranabilir. İlişkilerinde gerçek yakınlık istedikleri halde, bu yakınlık onlarda kaygı yaratır. Sıklıkla “ya benim için burada kalmazsa?” düşüncesi eşlik eder."""
+        "description": """Çocuklukta oluşumu:Sık taşınmalar, ayrılıklar, boşanma ya da ebeveynin duygusal olarak erişilemez olduğu durumlar bu şemayı oluşturabilir. Çocuk, kendini sevilen ama her an kaybedilebilecek biri olarak algılar.Yetişkinlikte:Terk edilme şeması olan bireyler, yakın ilişkilerde yoğun kaybetme korkusu yaşarlar. Partnerleri bir süre sessiz kaldığında bile “beni artık istemiyor” kaygısı doğabilir. Küçük ilgisizlikleri büyük tehdit gibi algılarlar ve duygusal dalgalanmalar sıklıkla görülür.Bazıları terk edilmemek için fazlasıyla yapışkan, bazıları ise “nasıl olsa giderler” düşüncesiyle mesafeli ve soğuk davranabilir. İlişkinlerinde gerçek yakınlık istedikleri halde, bu yakınlık onlarda kaygı yaratır. Sıklıkla “ya benim için burada kalmazsa?” düşüncesi eşlik eder."""
     },
     "Duygusal Yoksunluk Şeması": {
         "question_ids": [0, 18, 36, 54, 72],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Sevgi, ilgi ya da empati gibi temel duygusal gereksinimlerin karşılanmadığı ortamlarda gelişir. Çocuk, isteklerine cevap alamadıkça duygusal ihtiyaçların önemsiz olduğuna inanabilir.Yetişkinlikte:Bu şemaya sahip kişiler genellikle “kimse beni gerçekten anlamıyor” duygusunu taşırlar. İlişkilerinde hep bir eksiklik hisseder, karşısındakinin sevgisini tam olarak hissedemezler. Partnerleri onları sevse bile, içten içe “benim duygularımı anlamıyor” diye düşünürler. Bu hissetme biçimi, çoğu zaman çocuklukta ihtiyaç duyulan şefkatin yokluğundan beslenir.Bazı kişiler bu boşlukla başa çıkmak için duygusal yakınlıktan tamamen kaçınabilir — soğuk ve mesafeli görünebilirler. Bazıları ise çok fazla bağlanarak içlerindeki açlığı doldurmaya çalışırlar. Her iki durumda da temel inanç şudur: “Kimse beni gerçekten anlamaz."""
+        "description": """Çocuklukta oluşumu:Sevgi, ilgi ya da empati gibi temel duygusal gereksinimlerin karşılanmadığı ortamlarda gelişir. Çocuk, isteklerine cevap alamadıkça duygusal ihtiyaçların önemsiz olduğuna inanabilir.Yetişkinlikte:Bu şemaya sahip kişiler genellikle “kimse beni gerçekten anlamıyor” duygusunu taşırlar. İlişilerinde hep bir eksiklik hisseder, karşısındakinin sevgisini tam olarak hissedemezler. Partnerleri onları sevse bile, içten içe “benim duygularımı anlamıyor” diye düşünürler. Bu hissetme biçimi, çoğu zaman çocuklukta ihtiyaç duyulan şefkatin yokluğundan beslenir.Bazı kişiler bu boşlukla başa çıkmak için duygusal yakınlıktan tamamen kaçınabilir — soğuk ve mesafeli görünebilirler. Bazıları ise çok fazla bağlanarak içlerindeki açlığı doldurmaya çalışırlar. Her iki durumda da temel inanç şudur: “Kimse beni gerçekten anlamaz."""
     },
     "Sosyal İzolasyon Şeması": {
         "question_ids": [3, 39, 57, 75],
@@ -59,7 +63,7 @@ SCHEMA_RULES = {
     "Duyguları Bastırma Şeması": {
         "question_ids": [11, 29, 47, 65, 83],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Duyguların açıkça ifade edilmediği, duygusallığın zayıflık olarak görüldüğü ailelerde gelişir. Çocuk öfkesini, korkusunu veya sevgisini gösterdiğinde ayıplanmış ya da cezalandırılmış olabilir.Yetişkinlikte:Bu şemaya sahip kişiler duygularını göstermekten çekinirler. Ağlamayı, yardım istemeyi veya zayıf görünmeyi sevmeyebilirler. Dışarıdan soğukkanlı ve kontrollü görünseler de içlerinde yoğun duygusal gerilim taşırlar.İlişkilerinde duygusal yakınlıktan kaçınabilirler; çünkü duygularını açarlarsa “fazla hassas” ya da “güçsüz” görüneceklerinden korkarlar. Bazen öfke, üzüntü ya da sevgi yerine mantık ve kontrol ön plana çıkar. Zihinsel olarak yakın olsalar bile duygusal bağ kurmakta zorlanabilirler."""
+        "description": """Çocuklukta oluşumu:Duyguların açıkça ifade edilmediği, duygusallığın zayıflık olarak görüldüğü ailelerde gelişir. Çocuk öfkesini, korkusunu veya sevgisini gösterdiğinde ayıplanmış ya da cezalandırılmış olabilir.Yetişkinlikte:Bu şemaya sahip kişiler duygularını göstermekten çekinirler. Ağlamayı, yardım istemeyi veya zayıf görünmeyi sevmeyebilirler. Dışarıdan soğukkanlı ve kontrollü görünseler de içlerinde yoğun duygusal gerilim taşırlar.İlişilerinde duygusal yakınlıktan kaçınabilirler; çünkü duygularını açarlarsa “fazla hassas” ya da “güçsüz” görüneceklerinden korkarlar. Bazen öfke, üzüntü ya da sevgi yerine mantık ve kontrol ön plana çıkar. Zihinsel olarak yakın olsalar bile duygusal bağ kurmakta zorlanabilirler."""
     },
     "Kusurluluk Şeması": {
         "question_ids": [4, 22, 40, 58, 76, 42, 89],
@@ -326,7 +330,6 @@ def start_test():
         session['demographics'] = demographics_data
     else:
         # Eğer birisi forma girmeden doğrudan /start_test'e GET yaparsa
-        # (normalde olmamalı ama bir önlem olarak)
         session['demographics'] = {} # Boş bir demografi objesi oluştur
 
     # Soruların yüklendiğini kontrol et
@@ -540,26 +543,65 @@ def quiz():
     )
 
 
-# --- SUBMIT ROTASI (Akordiyon Stili) ---
+# --- YENİ E-POSTA GÖNDERME FONKSİYONU ---
+def send_results_email(report_body):
+    # Ortam Değişkenlerinden (Environment Variables) e-posta ayarlarını çek
+    sender_email = os.environ.get('EMAIL_USER')
+    email_password = os.environ.get('EMAIL_PASS')
+    receiver_email = os.environ.get('EMAIL_RECEIVER')
+
+    # Eğer ayarlar eksikse, hata ver (Render loglarında görünür)
+    if not sender_email or not email_password or not receiver_email:
+        logging.error("E-posta ayarları (EMAIL_USER, EMAIL_PASS, EMAIL_RECEIVER) eksik.")
+        return
+
+    try:
+        # E-posta mesajını oluştur
+        msg = EmailMessage()
+        
+        # Zaman damgası ekle
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        msg['Subject'] = f"Yeni Şema Testi Sonucu - {now}"
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+        msg.set_content(report_body)
+
+        # Gmail'in SMTP sunucusuna güvenli (SSL) bağlantı kur
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+            smtp.login(sender_email, email_password)
+            smtp.send_message(msg)
+        
+        logging.info(f"Sonuç e-postası başarıyla {receiver_email} adresine gönderildi.")
+
+    except Exception as e:
+        # E-posta gönderimi başarısız olursa logla (Render loglarında görünür)
+        # Kullanıcının testi görmesini engelleme
+        logging.error(f"E-posta gönderilirken HATA oluştu: {e}")
+
+
+# --- SUBMIT ROTASI (E-POSTA GÖNDERİMİ EKLENDİ) ---
 @app.route("/submit")
 def submit():
     # 'answers' anahtarı artık string ID'ler içeriyor
     scores = session.get('answers', {})
+    demographics = session.get('demographics', {})
     
     if not scores:
         return redirect(url_for('index'))
     
-    triggered = []
-    explanations_html = [] # HTML listesi
+    triggered_schemas_for_email = [] # E-posta için sadece isimler
+    explanations_html = [] # Kullanıcının göreceği HTML listesi
     
+    # --- Sonuçları Hesapla ---
     for name, rule in SCHEMA_RULES.items():
         # 'scores.get' için anahtarları int değil, string olarak kullan
         total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
         
         if total >= rule["threshold"]:
-            triggered.append(name)
+            triggered_schemas_for_email.append(name) # E-postaya eklenecek
             
-            # Her şema için tıklanabilir bir akordiyon kartı oluştur
+            # Kullanıcının göreceği akordiyon kartını oluştur
             card_html = f"""
             <div class="schema-card">
                 <details>
@@ -572,6 +614,36 @@ def submit():
             """
             explanations_html.append(card_html)
 
+    # --- YENİ: E-posta Raporunu Oluştur ---
+    try:
+        report_lines = []
+        report_lines.append("Yeni bir test sonucu alındı.\n")
+        report_lines.append("--- DEMOGRAFİK BİLGİLER ---")
+        for key, value in demographics.items():
+            report_lines.append(f"{key.capitalize()}: {value}")
+        
+        report_lines.append("\n--- TETİKLENEN ŞEMALAR ---")
+        if triggered_schemas_for_email:
+            for schema_name in triggered_schemas_for_email:
+                report_lines.append(f"- {schema_name}")
+        else:
+            report_lines.append("Tetiklenen şema bulunmadı.")
+            
+        report_lines.append("\n--- TÜM CEVAPLAR (HAM VERİ) ---")
+        report_lines.append(json.dumps(scores, indent=2, ensure_ascii=False))
+
+        email_body = "\n".join(report_lines)
+        
+        # E-postayı göndermeyi dene
+        send_results_email(email_body)
+        
+    except Exception as e:
+        logging.error(f"E-posta raporu oluşturulurken/gönderilirken hata: {e}")
+        # E-posta başarısız olsa bile kullanıcının sonuçları görmesine izin ver
+        
+
+    # --- Kullanıcıya Gösterilecek HTML'i Hazırla ---
+    
     # Akordiyon menüleri için güncellenmiş CSS stilleri
     result_template = """
     <!doctype html>
@@ -667,7 +739,7 @@ def submit():
     
     # Dinamik içerik oluşturuluyor
     result_content = ""
-    if triggered:
+    if explanations_html:
         # YENİ: Başlığı ve kartları ayır
         result_content += '<h3 class="section-title">Tetiklenen Şemalar:</h3>'
         result_content += "".join(explanations_html)
