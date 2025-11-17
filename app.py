@@ -19,7 +19,7 @@ except Exception as e:
     QUESTIONS = []
     TOTAL_QUESTIONS = 0
 
-# --- SİZİN GÜNCELLEDİĞİNİZ SCHEMA_RULES BURAYA EKLENDİ ---
+# --- SİZİN GÜNCELLEDİĞİNİZ SCHEMA_RULES BURADA ---
 SCHEMA_RULES = {
     "Başarısızlık Şeması": {
         "question_ids": [5, 23, 41, 59, 77],
@@ -39,7 +39,7 @@ SCHEMA_RULES = {
     "İç İçelik Şeması": {
         "question_ids": [8, 26, 44, 62, 80],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anlamsız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkiler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
+        "description": """Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anısız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkiler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
     },
     "Terk Edilme Şeması": {
         "question_ids": [1, 19, 37, 55, 73],
@@ -305,29 +305,37 @@ def index():
     """
     return render_template_string(landing_page_html)
 
-# --- BAŞLANGIÇ ROTASI (FORMU ALACAK ŞEKİLDE GÜNCELLENDİ) ---
+# --- BAŞLANGIÇ ROTASI (YENİ: VERİLERİ SESSION'A KAYDEDİYOR) ---
 @app.route("/start_test", methods=["GET", "POST"])
 def start_test():
     
+    # Testi başlatmadan önce oturumu temizle
+    session.clear()
+    
     if request.method == "POST":
-        # Demografik veriler 'request.form' içinden alınabilir.
-        # Örnek: cinsiyet = request.form.get('cinsiyet')
-        # Örnek: yas = request.form.get('yas_araligi')
-        # ŞİMDİLİK BU VERİLERİ KAYDETMİYORUZ, SADECE TESTİ BAŞLATIYORUZ.
-        # BİR SONRAKİ ADIMDA BU VERİLERİ SESSION'A EKLEYECEĞİZ.
-        pass
+        # Formdan gelen demografik verileri al ve session'a kaydet
+        demographics_data = {
+            'cinsiyet': request.form.get('cinsiyet'),
+            'yas_araligi': request.form.get('yas_araligi'),
+            'medeni_durum': request.form.get('medeni_durum'),
+            'birlikte_yasam': request.form.get('birlikte_yasam'),
+            'iliski_tanimi': request.form.get('iliski_tanimi'),
+            'iliski_suresi': request.form.get('iliski_suresi'),
+            'terapi_destegi': request.form.get('terapi_destegi')
+        }
+        session['demographics'] = demographics_data
+    else:
+        # Eğer birisi forma girmeden doğrudan /start_test'e GET yaparsa
+        # (normalde olmamalı ama bir önlem olarak)
+        session['demographics'] = {} # Boş bir demografi objesi oluştur
 
-    # Kullanıcı ister GET ister POST ile gelsin,
-    # sorular yüklenmişse oturumu sıfırla ve teste başlat.
-
+    # Soruların yüklendiğini kontrol et
     if not QUESTIONS:
         return "HATA: Sorular yüklenemedi. Lütfen 'questions.json' dosyanızı kontrol edin.", 500
         
-    # Oturumu temizle ve yeni bir teste hazırla
-    session.clear()
+    # Test için oturum değişkenlerini ayarla
     session['current_question_index'] = 0
-    session['answers'] = {} # Test cevapları için
-    session['demographics'] = {} # Demografik veriler için (bir sonraki adımda doldurulacak)
+    session['answers'] = {} 
     
     return redirect(url_for('quiz'))
 
