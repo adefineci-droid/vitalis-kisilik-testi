@@ -2,16 +2,48 @@ from flask import Flask, request, render_template_string, session, redirect, url
 import json
 import os 
 import logging
-import smtplib # E-posta için eklendi
-import ssl # E-posta için eklendi
-from email.message import EmailMessage # E-posta için eklendi
-from datetime import datetime # Zaman damgası için eklendi
+from datetime import datetime # Zaman damgası için
+
+# --- YENİ EKLENTİLER (Veritabanı için) ---
+from flask_sqlalchemy import SQLAlchemy
+# --- BİTTİ ---
+
+# --- YENİ EKLENTİLER (Sunucu Taraflı Oturum için) ---
+import redis
+from flask_session import Session
+# --- BİTTİ ---
 
 logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 # GİZLİ ANAHTAR: Oturum (Session) kullanmak için gereklidir.
 app.secret_key = 'BU_COK_UZUN_VE_SABIT_BIR_GIZLI_ANAHTARDIR_1234567890ABCDEF' 
+
+# --- YENİ VERİTABANI (DATABASE) AYARLARI ---
+# Render'daki 'DATABASE_URL' ortam değişkenini oku
+db_uri = os.environ.get('DATABASE_URL')
+# 'postgres://' URI'sini SQLAlchemy'nin anladığı 'postgresql://' formatına çevir
+if db_uri and db_uri.startswith("postgres://"):
+    db_uri = db_uri.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+# --- BİTTİ ---
+
+# --- YENİ OTURUM (SESSION) AYARLARI ---
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+try:
+    redis_url = os.environ.get('REDIS_URL')
+    if not redis_url:
+        logging.error("HATA: REDIS_URL ortam değişkeni ayarlanmamış.")
+    app.config['SESSION_REDIS'] = redis.from_url(redis_url)
+    server_session = Session(app)
+except Exception as e:
+    logging.error(f"Redis bağlantısı kurulurken HATA oluştu: {e}")
+# --- BİTTİ ---
+
 
 # Soruları yükle
 try:
@@ -23,7 +55,7 @@ except Exception as e:
     QUESTIONS = []
     TOTAL_QUESTIONS = 0
 
-# --- SİZİN GÜNCELLEDİĞİNİZ SCHEMA_RULES BURADA ---
+# --- SCHEMA_RULES (Sizin sürümünüz) ---
 SCHEMA_RULES = {
     "Başarısızlık Şeması": {
         "question_ids": [5, 23, 41, 59, 77],
@@ -33,27 +65,27 @@ SCHEMA_RULES = {
     "Bağımlılık Şeması": {
         "question_ids": [6, 24, 60, 78],
         "threshold": 16,
-        "description": """Çocuklukta oluşumu: Ebeveynlerin aşırı koruyucu, kontrolcü veya yönlendirici olduğu ailelerde görülür. Çocuk, karar alma ve deneme fırsatı bulamadığında kendi gücüne güvenmeyi öğrenemez. Ailede “sen tek başına yapamazsın, ben senin yerine hallederim” tutumu sıkça gözlemlenir.Yetişkinlikte:Bu şemaya sahip bireyler genellikle kendi kararlarını verirken tedirginlik yaşarlar. Bir işi kendi başına yapmak zorunda kaldıklarında içlerinde yoğun bir kaygı hissedebilirler. “Ya yanlış yaparsam?” düşüncesi onları sıklıkla durdurur. Çoğu zaman birine danışma, onay alma ya da destek görme ihtiyacı hissederler.İlişkinlerinde aşırı bağlanma eğilimleri olabilir; partnerleri veya aileleri olmadan karar almakta zorlanırlar. Yalnız kalmak onlarda panik, kaygı ya da değersizlik duygusu yaratabilir. Dışarıdan güçlü görünseler bile içlerinde “tek başıma kalırsam kontrolü kaybederim” inancı vardır. Bu nedenle genellikle rehberlik veya yönlendirme arayışındadırlar."""
+        "description": """Çocuklukta oluşumu: Ebeveynlerin aşırı koruyucu, kontrolcü veya yönlendirici olduğu ailelerde görülür. Çocuk, karar alma ve deneme fırsatı bulamadığında kendi gücüne güvenmeyi öğrenemez. Ailede “sen tek başına yapamazsın, ben senin yerine hallederim” tutumu sıkça gözlemlenir.Yetişkinlikte:Bu şemaya sahip bireyler genellikle kendi kararlarını verirken tedirginlik yaşarlar. Bir işi kendi başına yapmak zorunda kaldıklarında içlerinde yoğun bir kaygı hissedebilirler. “Ya yanlış yaparsam?” düşüncesi onları sıklıkla durdurur. Çoğu zaman birine danışma, onay alma ya da destek görme ihtiyacı hissederler.İlişkilerinde aşırı bağlanma eğilimleri olabilir; partnerleri veya aileleri olmadan karar almakta zorlanırlar. Yalnız kalmak onlarda panik, kaygı ya da değersizlik duygusu yaratabilir. Dışarıdan güçlü görünseler bile içlerinde “tek başıma kalırsam kontrolü kaybederim” inancı vardır. Bu nedenle genellikle rehberlik veya yönlendirme arayışındadırlar."""
     },
     "Boyun Eğicilik Şeması": {
         "question_ids": [9, 27, 45, 63, 81],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Otoriter, cezalandırıcı veya duygusal olarak tehditkâr aile ortamlarında gelişir. Çocuk, kendi düşüncelerini savunduğunda cezalandırılacağını ya da sevgiden mahrum kalacağını öğrenir. Kabul görmek için uyum sağlaması gerektiğini hisseder.Yetişkinlikte:Bu şemaya sahip kişiler genellikle çevrelerine aşırı uyum sağlar, kendi ihtiyaçlarını bastırır ve sürekli başkalarının beklentilerini öncelerler. “Hayır” demekte güçlük çekerler çünkü reddedilmekten veya çatışmadan korkarlar. İçlerinde sıklıkla şu düşünce vardır: “Kırılmaması için sessiz kalmalıyım.”Zamanla bastırılmış öfke ve kırgınlık birikir. Dışarıdan sakin, uyumlu veya anlayışlı görünseler de iç dünyalarında “kimse beni anlamıyor, hep ben veriyorum” serzenişi vardır. İlişkinlerinde kendi sınırlarını koruyamadıkları için tükenmişlik, sessiz öfke veya kendini değersiz hissetme eğilimi sık görülür.Bu şemaya sahip bireyler genellikle başkalarının onayını korumaya çalışırken kendi benliklerini arka plana atarlar. Bu da uzun vadede duygusal mesafe, bastırılmış kimlik ve içsel yalnızlık hissi yaratır."""
+        "description": """Çocuklukta oluşumu:Otoriter, cezalandırıcı veya duygusal olarak tehditkâr aile ortamlarında gelişir. Çocuk, kendi düşüncelerini savunduğunda cezalandırılacağını ya da sevgiden mahrum kalacağını öğrenir. Kabul görmek için uyum sağlaması gerektiğini hisseder.Yetişkinlikte:Bu şemaya sahip kişiler genellikle çevrelerine aşırı uyum sağlar, kendi ihtiyaçlarını bastırır ve sürekli başkalarının beklentilerini öncelerler. “Hayır” demekte güçlük çekerler çünkü reddedilmekten veya çatışmadan korkarlar. İçlerinde sıklıkla şu düşünce vardır: “Kırılmaması için sessiz kalmalıyım.”Zamanla bastırılmış öfke ve kırgınlık birikir. Dışarıdan sakin, uyumlu veya anlayışlı görünseler de iç dünyalarında “kimse beni anlamıyor, hep ben veriyorum” serzenişi vardır. İlişkilerinde kendi sınırlarını koruyamadıkları için tükenmişlik, sessiz öfke veya kendini değersiz hissetme eğilimi sık görülür.Bu şemaya sahip bireyler genellikle başkalarının onayını korumaya çalışırken kendi benliklerini arka plana atarlar. Bu da uzun vadede duygusal mesafe, bastırılmış kimlik ve içsel yalnızlık hissi yaratır."""
     },
     "İç İçelik Şeması": {
         "question_ids": [8, 26, 44, 62, 80],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anlamsız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkinler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
+        "description": """Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anlamsız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkiler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
     },
     "Terk Edilme Şeması": {
         "question_ids": [1, 19, 37, 55, 73],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Sık taşınmalar, ayrılıklar, boşanma ya da ebeveynin duygusal olarak erişilemez olduğu durumlar bu şemayı oluşturabilir. Çocuk, kendini sevilen ama her an kaybedilebilecek biri olarak algılar.Yetişkinlikte:Terk edilme şeması olan bireyler, yakın ilişkilerde yoğun kaybetme korkusu yaşarlar. Partnerleri bir süre sessiz kaldığında bile “beni artık istemiyor” kaygısı doğabilir. Küçük ilgisizlikleri büyük tehdit gibi algılarlar ve duygusal dalgalanmalar sıklıkla görülür.Bazıları terk edilmemek için fazlasıyla yapışkan, bazıları ise “nasıl olsa giderler” düşüncesiyle mesafeli ve soğuk davranabilir. İlişkinlerinde gerçek yakınlık istedikleri halde, bu yakınlık onlarda kaygı yaratır. Sıklıkla “ya benim için burada kalmazsa?” düşüncesi eşlik eder."""
+        "description": """Çocuklukta oluşumu:Sık taşınmalar, ayrılıklar, boşanma ya da ebeveynin duygusal olarak erişilemez olduğu durumlar bu şemayı oluşturabilir. Çocuk, kendini sevilen ama her an kaybedilebilecek biri olarak algılar.Yetişkinlikte:Terk edilme şeması olan bireyler, yakın ilişkilerde yoğun kaybetme korkusu yaşarlar. Partnerleri bir süre sessiz kaldığında bile “beni artık istemiyor” kaygısı doğabilir. Küçük ilgisizlikleri büyük tehdit gibi algılarlar ve duygusal dalgalanmalar sıklıkla görülür.Bazıları terk edilmemek için fazlasıyla yapışkan, bazıları ise “nasıl olsa giderler” düşüncesiyle mesafeli ve soğuk davranabilir. İlişkilerinde gerçek yakınlık istedikleri halde, bu yakınlık onlarda kaygı yaratır. Sıklıkla “ya benim için burada kalmazsa?” düşüncesi eşlik eder."""
     },
     "Duygusal Yoksunluk Şeması": {
         "question_ids": [0, 18, 36, 54, 72],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Sevgi, ilgi ya da empati gibi temel duygusal gereksinimlerin karşılanmadığı ortamlarda gelişir. Çocuk, isteklerine cevap alamadıkça duygusal ihtiyaçların önemsiz olduğuna inanabilir.Yetişkinlikte:Bu şemaya sahip kişiler genellikle “kimse beni gerçekten anlamıyor” duygusunu taşırlar. İlişilerinde hep bir eksiklik hisseder, karşısındakinin sevgisini tam olarak hissedemezler. Partnerleri onları sevse bile, içten içe “benim duygularımı anlamıyor” diye düşünürler. Bu hissetme biçimi, çoğu zaman çocuklukta ihtiyaç duyulan şefkatin yokluğundan beslenir.Bazı kişiler bu boşlukla başa çıkmak için duygusal yakınlıktan tamamen kaçınabilir — soğuk ve mesafeli görünebilirler. Bazıları ise çok fazla bağlanarak içlerindeki açlığı doldurmaya çalışırlar. Her iki durumda da temel inanç şudur: “Kimse beni gerçekten anlamaz."""
+        "description": """Çocuklukta oluşumu:Sevgi, ilgi ya da empati gibi temel duygusal gereksinimlerin karşılanmadığı ortamlarda gelişir. Çocuk, isteklerine cevap alamadıkça duygusal ihtiyaçların önemsiz olduğuna inanabilir.Yetişkinlikte:Bu şemaya sahip kişiler genellikle “kimse beni gerçekten anlamıyor” duygusunu taşırlar. İlişkilerinde hep bir eksiklik hisseder, karşısındakinin sevgisini tam olarak hissedemezler. Partnerleri onları sevse bile, içten içe “benim duygularımı anlamıyor” diye düşünürler. Bu hissetme biçimi, çoğu zaman çocuklukta ihtiyaç duyulan şefkatin yokluğundan beslenir.Bazı kişiler bu boşlukla başa çıkmak için duygusal yakınlıktan tamamen kaçınabilir — soğuk ve mesafeli görünebilirler. Bazıları ise çok fazla bağlanarak içlerindeki açlığı doldurmaya çalışırlar. Her iki durumda da temel inanç şudur: “Kimse beni gerçekten anlamaz."""
     },
     "Sosyal İzolasyon Şeması": {
         "question_ids": [3, 39, 57, 75],
@@ -63,7 +95,7 @@ SCHEMA_RULES = {
     "Duyguları Bastırma Şeması": {
         "question_ids": [11, 29, 47, 65, 83],
         "threshold": 20,
-        "description": """Çocuklukta oluşumu:Duyguların açıkça ifade edilmediği, duygusallığın zayıflık olarak görüldüğü ailelerde gelişir. Çocuk öfkesini, korkusunu veya sevgisini gösterdiğinde ayıplanmış ya da cezalandırılmış olabilir.Yetişkinlikte:Bu şemaya sahip kişiler duygularını göstermekten çekinirler. Ağlamayı, yardım istemeyi veya zayıf görünmeyi sevmeyebilirler. Dışarıdan soğukkanlı ve kontrollü görünseler de içlerinde yoğun duygusal gerilim taşırlar.İlişilerinde duygusal yakınlıktan kaçınabilirler; çünkü duygularını açarlarsa “fazla hassas” ya da “güçsüz” görüneceklerinden korkarlar. Bazen öfke, üzüntü ya da sevgi yerine mantık ve kontrol ön plana çıkar. Zihinsel olarak yakın olsalar bile duygusal bağ kurmakta zorlanabilirler."""
+        "description": """Çocuklukta oluşumu:Duyguların açıkça ifade edilmediği, duygusallığın zayıflık olarak görüldüğü ailelerde gelişir. Çocuk öfkesini, korkusunu veya sevgisini gösterdiğinde ayıplanmış ya da cezalandırılmış olabilir.Yetişkinlikte:Bu şemaya sahip kişiler duygularını göstermekten çekinirler. Ağlamayı, yardım istemeyi veya zayıf görünmeyi sevmeyebilirler. Dışarıdan soğukkanlı ve kontrollü görünseler de içlerinde yoğun duygusal gerilim taşırlar.İlişkilerinde duygusal yakınlıktan kaçınabilirler; çünkü duygularını açarlarsa “fazla hassas” ya da “güçsüz” görüneceklerinden korkarlar. Bazen öfke, üzüntü ya da sevgi yerine mantık ve kontrol ön plana çıkar. Zihinsel olarak yakın olsalar bile duygusal bağ kurmakta zorlanabilirler."""
     },
     "Kusurluluk Şeması": {
         "question_ids": [4, 22, 40, 58, 76, 42, 89],
@@ -111,6 +143,33 @@ SCHEMA_RULES = {
         "description": """Çocuklukta oluşumu:Olumsuzlukların sık vurgulandığı, kaygılı veya tehditkâr aile ortamlarında gelişir. Çocuk, sürekli bir tehlike beklentisiyle büyür.Yetişkinlikte:Bu şemaya sahip kişiler, hayatın kötü yanlarına odaklanma eğilimindedir. Geleceğe dair umut duymakta zorlanırlar; “bir şey iyi gidiyorsa mutlaka bozulur” düşüncesi sıktır. Genellikle felaket senaryoları kurarlar, riskten kaçınırlar.Kaygı, endişe ve güvensizlik duyguları belirgindir. İyi giden olaylarda bile “bir yerde hata olmalı” düşüncesiyle rahatlayamazlar. Bu durum, kişiyi sürekli tetikte ve yorgun hale getirir."""
     }
 }
+
+
+# --- YENİ VERİTABANI MODELİ (TABLOSU) ---
+# Tez verilerini saklamak için bir tablo modeli tanımla
+class TestResult(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Demografik Bilgiler
+    cinsiyet = db.Column(db.String(50))
+    yas_araligi = db.Column(db.String(50))
+    medeni_durum = db.Column(db.String(50))
+    birlikte_yasam = db.Column(db.String(50))
+    iliski_tanimi = db.Column(db.String(100))
+    iliski_suresi = db.Column(db.String(50))
+    terapi_destegi = db.Column(db.String(50))
+    
+    # Sonuçlar
+    # Tetiklenen şemaları virgülle ayrılmış bir metin olarak sakla
+    triggered_schemas = db.Column(db.Text) 
+    # Ham cevapları JSON formatında metin olarak sakla
+    all_answers_json = db.Column(db.Text)
+
+# Veritabanı tablolarını oluşturmak için uygulama bağlamı (context)
+with app.app_context():
+    db.create_all()
+# --- BİTTİ ---
 
 
 # --- GİRİŞ SAYFASI (DEMOGRAFİK FORM İLE GÜNCELLENDİ) ---
@@ -309,7 +368,7 @@ def index():
     """
     return render_template_string(landing_page_html)
 
-# --- BAŞLANGIÇ ROTASI (YENİ: VERİLERİ SESSION'A KAYDEDİYOR) ---
+# --- BAŞLANGIÇ ROTASI (VERİLERİ SESSION'A KAYDEDİYOR) ---
 @app.route("/start_test", methods=["GET", "POST"])
 def start_test():
     
@@ -543,63 +602,24 @@ def quiz():
     )
 
 
-# --- YENİ E-POSTA GÖNDERME FONKSİYONU ---
-def send_results_email(report_body):
-    # Ortam Değişkenlerinden (Environment Variables) e-posta ayarlarını çek
-    sender_email = os.environ.get('EMAIL_USER')
-    email_password = os.environ.get('EMAIL_PASS')
-    receiver_email = os.environ.get('EMAIL_RECEIVER')
-
-    # Eğer ayarlar eksikse, hata ver (Render loglarında görünür)
-    if not sender_email or not email_password or not receiver_email:
-        logging.error("E-posta ayarları (EMAIL_USER, EMAIL_PASS, EMAIL_RECEIVER) eksik.")
-        return
-
-    try:
-        # E-posta mesajını oluştur
-        msg = EmailMessage()
-        
-        # Zaman damgası ekle
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        msg['Subject'] = f"Yeni Şema Testi Sonucu - {now}"
-        msg['From'] = sender_email
-        msg['To'] = receiver_email
-        msg.set_content(report_body)
-
-        # Gmail'in SMTP sunucusuna güvenli (SSL) bağlantı kur
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-            smtp.login(sender_email, email_password)
-            smtp.send_message(msg)
-        
-        logging.info(f"Sonuç e-postası başarıyla {receiver_email} adresine gönderildi.")
-
-    except Exception as e:
-        # E-posta gönderimi başarısız olursa logla (Render loglarında görünür)
-        # Kullanıcının testi görmesini engelleme
-        logging.error(f"E-posta gönderilirken HATA oluştu: {e}")
-
-
-# --- SUBMIT ROTASI (E-POSTA GÖNDERİMİ EKLENDİ) ---
+# --- SUBMIT ROTASI (YENİ: E-POSTA KALDIRILDI, VERİTABANINA KAYIT EKLENDİ) ---
 @app.route("/submit")
 def submit():
-    # 'answers' anahtarı artık string ID'ler içeriyor
     scores = session.get('answers', {})
     demographics = session.get('demographics', {})
     
     if not scores:
         return redirect(url_for('index'))
     
-    triggered_schemas_for_email = [] # E-posta için sadece isimler
+    triggered_schemas_list = [] # Veritabanı için sadece isim listesi
     explanations_html = [] # Kullanıcının göreceği HTML listesi
     
     # --- Sonuçları Hesapla ---
     for name, rule in SCHEMA_RULES.items():
-        # 'scores.get' için anahtarları int değil, string olarak kullan
         total = sum([scores.get(str(qid), 0) for qid in rule["question_ids"]])
         
         if total >= rule["threshold"]:
-            triggered_schemas_for_email.append(name) # E-postaya eklenecek
+            triggered_schemas_list.append(name) # Veritabanına eklenecek
             
             # Kullanıcının göreceği akordiyon kartını oluştur
             card_html = f"""
@@ -614,37 +634,35 @@ def submit():
             """
             explanations_html.append(card_html)
 
-    # --- YENİ: E-posta Raporunu Oluştur ---
+    # --- YENİ: Veritabanına Kaydet ---
     try:
-        report_lines = []
-        report_lines.append("Yeni bir test sonucu alındı.\n")
-        report_lines.append("--- DEMOGRAFİK BİLGİLER ---")
-        for key, value in demographics.items():
-            report_lines.append(f"{key.capitalize()}: {value}")
-        
-        report_lines.append("\n--- TETİKLENEN ŞEMALAR ---")
-        if triggered_schemas_for_email:
-            for schema_name in triggered_schemas_for_email:
-                report_lines.append(f"- {schema_name}")
-        else:
-            report_lines.append("Tetiklenen şema bulunmadı.")
+        new_result = TestResult(
+            # Demografik bilgileri session'dan al
+            cinsiyet=demographics.get('cinsiyet'),
+            yas_araligi=demographics.get('yas_araligi'),
+            medeni_durum=demographics.get('medeni_durum'),
+            birlikte_yasam=demographics.get('birlikte_yasam'),
+            iliski_tanimi=demographics.get('iliski_tanimi'),
+            iliski_suresi=demographics.get('iliski_suresi'),
+            terapi_destegi=demographics.get('terapi_destegi'),
             
-        report_lines.append("\n--- TÜM CEVAPLAR (HAM VERİ) ---")
-        report_lines.append(json.dumps(scores, indent=2, ensure_ascii=False))
-
-        email_body = "\n".join(report_lines)
+            # Sonuçları kaydet
+            triggered_schemas=", ".join(triggered_schemas_list), # Listeyi virgüllü metne çevir
+            all_answers_json=json.dumps(scores, ensure_ascii=False) # Ham veriyi JSON metni olarak kaydet
+        )
         
-        # E-postayı göndermeyi dene
-        send_results_email(email_body)
+        db.session.add(new_result)
+        db.session.commit()
+        logging.info("Yeni test sonucu başarıyla veritabanına kaydedildi.")
         
     except Exception as e:
-        logging.error(f"E-posta raporu oluşturulurken/gönderilirken hata: {e}")
-        # E-posta başarısız olsa bile kullanıcının sonuçları görmesine izin ver
+        logging.error(f"Veritabanına kayıt sırasında HATA oluştu: {e}")
+        db.session.rollback() # Hata olursa işlemi geri al
+        # Veritabanı çökse bile kullanıcının sonuçları görmesine izin ver
         
 
     # --- Kullanıcıya Gösterilecek HTML'i Hazırla ---
     
-    # Akordiyon menüleri için güncellenmiş CSS stilleri
     result_template = """
     <!doctype html>
     <title>Young Şema Testi - Sonuç</title>
@@ -732,6 +750,9 @@ def submit():
             
             {{ result_content | safe }}
             
+            <p style.text-align: center;>
+                <strong>Teşekkürler!</strong> Sonuçlarınız tez çalışması için anonim olarak kaydedilmiştir.
+            </p>
             <p style="text-align: center;"><a href="/">Yeniden Başla</a></p>
         </div>
     </body>
@@ -749,10 +770,12 @@ def submit():
     result_content += f'<p style="text-align:center; margin-top: 20px;">Toplam Cevaplanan Soru: {len(scores)}/{TOTAL_QUESTIONS}</p>'
     
     
-    # template'i render_template_string ile işliyoruz
+    # --- DÜZELTME (BENİM HATAM): 'result_template' değişkenini ekle ---
     return render_template_string(
+        result_template,
         result_content=result_content
     )
+# --- DÜZELTME BİTTİ ---
 
 
 if __name__ == "__main__":
