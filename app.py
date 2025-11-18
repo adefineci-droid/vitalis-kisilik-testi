@@ -42,9 +42,9 @@ try:
 except Exception as e:
     logging.error(f"questions.json yüklenemedi: {e}")
 
-# --- KURALLAR (GÜNCELLENDİ: ID'ler 1-Tabanlı Sisteme Göre Ayarlandı) ---
+# --- KURALLAR (Rules) ---
 
-# 1. AŞAMA: ŞEMALAR (Eski ID'lerin hepsine +1 eklendi)
+# 1. Aşama: Şemalar (Sizin 18 şemanız buraya gelecek - Kısaltıldı)
 SCHEMA_RULES_STAGE_1 = {
     "Duygusal Yoksunluk": {
         "question_ids": [1, 19, 37, 55, 73], 
@@ -133,26 +133,23 @@ SCHEMA_RULES_STAGE_1 = {
     }
 }
 
-# 2. AŞAMA: BAŞA ÇIKMA (Görselden aldığımız kurallar)
+# 2. Aşama: Başa Çıkma (Sizin gönderdiğiniz kurallar)
 COPING_RULES_STAGE_2 = {
     "Aşırı Telafi": {
-        "question_ids": [1, 5, 8, 10], 
-        "threshold": 16,
-        "description": "Aşırı telafi biçiminde kişi, şemanın öne sürdüğü olumsuz inançların tam tersini göstermeye çalışarak şemayla savaşır. “Yetersizim” şemasına karşı mükemmeliyetçilik, “değersizim” şemasına karşı kontrolcü veya üstün davranışlar gelişebilir."
+        "question_ids": [1, 5, 8, 10], "threshold": 16,
+        "description": "Aşırı telafi biçiminde kişi, şemanın öne sürdüğü olumsuz inançların tam tersini göstermeye çalışarak şemayla savaşır..."
     },
     "Teslim": {
-        "question_ids": [2, 6, 9, 11], 
-        "threshold": 16,
-        "description": "Bu biçimde kişi, sahip olduğu olumsuz inançların doğru olduğuna inanır ve bu inançlara uygun davranır. “Ben değersizim”, “Kimse beni sevmez” gibi düşünceler davranışlarını yönlendirebilir."
+        "question_ids": [2, 6, 9, 11], "threshold": 16,
+        "description": "Bu biçimde kişi, sahip olduğu olumsuz inançların doğru olduğuna inanır ve bu inançlara uygun davranır..."
     },
     "Kaçınma": {
-        "question_ids": [3, 4, 7, 12], 
-        "threshold": 16,
-        "description": "Kaçınma biçiminde kişi, olumsuz duyguları veya hatırlatıcı durumları yaşamamak için duygusal, bilişsel ya da davranışsal olarak uzak durur."
+        "question_ids": [3, 4, 7, 12], "threshold": 16,
+        "description": "Kaçınma biçiminde kişi, olumsuz duyguları veya hatırlatıcı durumları yaşamamak için duygusal olarak uzak durur..."
     }
 }
 
-# 3. AŞAMA: ÖRNEK (Siz gönderene kadar bekliyor)
+# 3. Aşama: (Henüz göndermediniz, ÖRNEK kural)
 RULES_STAGE_3 = {
     "Örnek Mod": {
         "question_ids": [1], "threshold": 1,
@@ -177,7 +174,7 @@ class TestResult(db.Model):
     # Sonuçlar (3 Aşama)
     triggered_stage1 = db.Column(db.Text) # Şemalar
     triggered_stage2 = db.Column(db.Text) # Başa Çıkma
-    triggered_stage3 = db.Column(db.Text) # 3. Aşama
+    triggered_stage3 = db.Column(db.Text) # 3. Aşama (Modlar vb.)
     
     # Ham veri
     all_answers_json = db.Column(db.Text)
@@ -319,6 +316,14 @@ def quiz():
     stage_key = f"stage{stage}"
     current_questions = QUESTIONS_DATA.get(stage_key, [])
     total_questions = len(current_questions)
+    
+    # --- YENİ: Dinamik Başlıklar ---
+    stage_titles = {
+        1: "Bölüm 1: Young Şema Testi",
+        2: "Bölüm 2: Şema Başa Çıkma Biçimleri",
+        3: "Bölüm 3: Şema Modları" # Placeholder
+    }
+    current_title = stage_titles.get(stage, f"Bölüm {stage}")
 
     if request.method == "POST":
         qid = request.form.get('question_id')
@@ -369,7 +374,7 @@ def quiz():
     
     question_html = """
     <!doctype html>
-    <title>Bölüm {{ stage }} - Soru {{ index_display }}/{{ total }}</title>
+    <title>{{ title }} - Soru {{ index_display }}/{{ total }}</title>
     <style>
         {% raw %}
         body { font-family: sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
@@ -384,7 +389,7 @@ def quiz():
     </style>
     <body>
         <div class="container">
-            <h1>Bölüm {{ stage }}</h1>
+            <h1>{{ title }}</h1>
             <p>Soru {{ index_display }} / {{ total }}</p>
             <div style="background:#e0e0e0; height:8px; border-radius:4px; margin-bottom:20px;">
                 <div style="height:100%; background:#4CAF50; width:{{ progress }}%;"></div>
@@ -407,7 +412,7 @@ def quiz():
     </body>
     """
     
-    return render_template_string(question_html, q=question, stage=stage, index_display=index+1, total=total_questions, progress=progress_percent)
+    return render_template_string(question_html, q=question, title=current_title, index_display=index+1, total=total_questions, progress=progress_percent)
 
 
 @app.route("/submit")
