@@ -154,10 +154,19 @@
     }
   ],
   "stage3": [
-    {
-      "id": 1,
-      "text": "3. AŞAMA İÇİN ÖRNEK SORU (Bunu güncelleyeceğiz)",
-      "options": [{"value": 1, "text": "Evet"}, {"value": 0, "text": "Hayır"}]
-    }
+    { "id": 1, "text": "1-Dini konular", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 2, "text": "2-Muhabbet-sevgi gösterme", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 3, "text": "3-Temel kararların alınması", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 4, "text": "4-Cinsel yaşam", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 5, "text": "5-Doğru davranışlar", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 6, "text": "6-Eşinizin ailesi ile ilişkiler", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 7, "text": "7-İşleri birlikte yapma", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 8, "text": "8-Ne sıklıkla eşinizden ayrılmayı düşündünüz?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 9, "text": "9-Birbirinize ne sıklıkla sinirlenirsiniz?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 10, "text": "10-Fikirlerinizi ne sıklıkla eşinizle paylaşırsınız?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 11, "text": "11-Eşinize güvenir misiniz?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 12, "text": "12-Eşinizle ne sıklıkla öpüşürsünüz?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 13, "text": "13-İlişkinizdeki mutluluk derecesini nasıl değerlendirirsiniz?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] },
+    { "id": 14, "text": "14-Gelecekle ilgili planlarınız nelerdir?", "options": [{"value": 1, "text": "Hiçbir zaman anlaşamayız"}, {"value": 2, "text": "Nadiren anlaşırız"}, {"value": 3, "text": "Bazen anlaşırız"}, {"value": 4, "text": "Oldukça sık anlaşırız"}, {"value": 5, "text": "Çoğu zaman anlaşırız"}] }
   ]
 }
