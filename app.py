@@ -42,7 +42,7 @@ try:
 except Exception as e:
     logging.error(f"questions.json yüklenemedi: {e}")
 
-# --- KURALLAR (Rules) ---
+# --- KURALLAR ---
 
 # 1. Aşama: Şemalar
 SCHEMA_RULES_STAGE_1 = {
@@ -72,11 +72,6 @@ COPING_RULES_STAGE_2 = {
     "Kaçınma": { "question_ids": [3, 4, 7, 12], "threshold": 16, "description": "Kaçınma biçiminde kişi, olumsuz duyguları veya hatırlatıcı durumları yaşamamak için duygusal, bilişsel ya da davranışsal olarak uzak durur." }
 }
 
-# 3. Aşama: Çift Uyumu (Kurallar kod içinde işleniyor, burası placeholder)
-RULES_STAGE_3 = {
-    "Çift Uyumu": { "question_ids": list(range(1, 15)), "threshold": 0, "description": "" }
-}
-
 # --- VERİTABANI MODELİ ---
 class TestResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -91,10 +86,10 @@ class TestResult(db.Model):
     iliski_suresi = db.Column(db.String(50))
     terapi_destegi = db.Column(db.String(50))
     
-    # Sonuçlar (3 Aşama)
-    triggered_stage1 = db.Column(db.Text) # Şemalar
-    triggered_stage2 = db.Column(db.Text) # Başa Çıkma
-    triggered_stage3 = db.Column(db.Text) # 3. Aşama
+    # Sonuçlar
+    triggered_stage1 = db.Column(db.Text)
+    triggered_stage2 = db.Column(db.Text)
+    triggered_stage3 = db.Column(db.Text)
     
     # Ham veri
     all_answers_json = db.Column(db.Text)
@@ -206,7 +201,6 @@ def start_test():
     if request.method == "POST":
         session['demographics'] = request.form.to_dict()
     
-    # 1. Aşamayı Başlat
     session['current_stage'] = 1
     session['current_question_index'] = 0
     session['answers_stage1'] = {}
@@ -232,12 +226,10 @@ def quiz():
     stage = session.get('current_stage', 1)
     index = session.get('current_question_index', 0)
     
-    # Hangi soru setini kullanacağız?
     stage_key = f"stage{stage}"
     current_questions = QUESTIONS_DATA.get(stage_key, [])
     total_questions = len(current_questions)
     
-    # --- YENİ: Dinamik Başlıklar (GÜNCELLENDİ) ---
     stage_titles = {
         1: "Bölüm 1: Young Şema Testi",
         2: "Bölüm 2: Şema Başa Çıkma Biçimleri",
@@ -250,20 +242,13 @@ def quiz():
         ans = request.form.get(f'q{qid}')
         
         if ans:
-            # Cevabı ilgili aşamanın sözlüğüne kaydet
             session[f'answers_stage{stage}'][qid] = int(ans)
             session.modified = True
-            
-            # İlerle
             session['current_question_index'] += 1
             return redirect(url_for('quiz'))
 
-    # -- GET: Soru Gösterimi veya Geçiş Ekranı --
-    
-    # Eğer o aşamadaki sorular bittiyse:
     if index >= total_questions:
         if stage == 1:
-            # 1 -> 2 Geçişi
             return render_template_string("""
                 <div style="text-align:center; padding:50px; font-family:sans-serif;">
                     <h1 style="color:#1e88e5;">1. Bölüm Tamamlandı</h1>
@@ -272,7 +257,6 @@ def quiz():
                 </div>
             """)
         elif stage == 2:
-            # 2 -> 3 Geçişi
             return render_template_string("""
                 <div style="text-align:center; padding:50px; font-family:sans-serif;">
                     <h1 style="color:#1e88e5;">2. Bölüm Tamamlandı</h1>
@@ -281,15 +265,12 @@ def quiz():
                 </div>
             """)
         else:
-            # 3. Aşama da bitti -> Sonuçları Hesapla
             return redirect(url_for('submit'))
 
     if not current_questions:
         return f"HATA: {stage}. aşama soruları bulunamadı.", 500
 
     question = current_questions[index]
-    
-    # Şablon (Önceki ile aynı, sadece progress bar hesabı değişebilir)
     progress_percent = round(((index + 1) / total_questions) * 100)
     
     question_html = """
@@ -337,49 +318,78 @@ def quiz():
 
 @app.route("/submit")
 def submit():
-    # Tüm cevapları çek
     s1 = session.get('answers_stage1', {})
     s2 = session.get('answers_stage2', {})
     s3 = session.get('answers_stage3', {})
     
-    res1, res2, res3 = [], [], []
-    
-    # --- HESAPLAMALAR ---
-    # Aşama 1
+    # Görünüm için HTML listeleri (Akordiyonlu)
+    html_s1, html_s2, html_s3 = [], [], []
+    # Veritabanı için İsim listeleri
+    db_s1, db_s2, db_s3 = [], [], []
+
+    # --- 1. AŞAMA ---
     for name, rule in SCHEMA_RULES_STAGE_1.items():
         total = sum([s1.get(str(qid), 0) for qid in rule["question_ids"]])
         if total >= rule["threshold"]:
-            res1.append(f"<b>{name}</b><br><small>{rule['description']}</small>")
+            db_s1.append(name)
+            # HTML için Akordiyon
+            html_s1.append(f"""
+            <div class="schema-card">
+                <details>
+                    <summary>{name}</summary>
+                    <div class="details-content">
+                        <p>{rule['description']}</p>
+                    </div>
+                </details>
+            </div>
+            """)
 
-    # Aşama 2
+    # --- 2. AŞAMA ---
     for name, rule in COPING_RULES_STAGE_2.items():
         total = sum([s2.get(str(qid), 0) for qid in rule["question_ids"]])
         if total >= rule["threshold"]:
-            res2.append(f"<b>{name}</b><br><small>{rule['description']}</small>")
+            db_s2.append(name)
+            html_s2.append(f"""
+            <div class="schema-card">
+                <details>
+                    <summary>{name}</summary>
+                    <div class="details-content">
+                        <p>{rule['description']}</p>
+                    </div>
+                </details>
+            </div>
+            """)
 
-    # Aşama 3: Çift Uyumu Hesaplama (DÜZELTİLDİ: Ters Puanlama Eklendi)
+    # --- 3. AŞAMA (ÇİFT UYUMU) ---
     total_score_3 = 0
-    for qid in range(1, 15): # 1'den 14'e kadar
+    for qid in range(1, 15):
         raw_score = s3.get(str(qid), 0)
-        
-        if raw_score == 0: # Cevaplanmamışsa atla
-            continue
-
-        # 7. ve 14. sorular (dahil) arası TERS puanlanır (5-4-3-2-1)
-        # Formül: 6 - puan
-        if 7 <= qid <= 14:
+        if raw_score == 0: continue
+        if 7 <= qid <= 14: # Ters Puanlama (7-14 arası)
             score = 6 - raw_score
         else:
-            # Diğer sorular (1-6) DÜZ puanlanır
             score = raw_score
-            
         total_score_3 += score
     
+    uyum_sonuc = ""
+    uyum_detay = ""
     if total_score_3 >= 35:
-        res3.append(f"<b>İlişki Çift Uyumunuz: %50'nin Üzerindedir</b><br><small>Bu durum, ilişkide orta-yüksek düzeyde uyum olduğunu göstermektedir. Bu sonuç farkındalık amaçlıdır; kesin bir değerlendirme niteliği taşımaz.</small>")
+        uyum_sonuc = "İlişki Çift Uyumunuz: %50'nin Üzerindedir"
+        uyum_detay = "Bu durum, ilişkide orta-yüksek düzeyde uyum olduğunu göstermektedir."
     else:
-        res3.append(f"<b>İlişki Çift Uyumunuz: %50'nin Altındadır</b><br><small>Bu durum, ilişkide bazı uyum farklarının olabileceğini göstermektedir. Bu sonuç farkındalık yaratmayı amaçlar; kesin bir değerlendirme niteliği taşımaz.</small>")
-
+        uyum_sonuc = "İlişki Çift Uyumunuz: %50'nin Altındadır"
+        uyum_detay = "Bu durum, ilişkide bazı uyum farklarının olabileceğini göstermektedir."
+    
+    # 3. Aşama sonuçlarını ekle
+    db_s3.append(uyum_sonuc)
+    html_s3.append(f"""
+    <div class="schema-card">
+        <div style="padding:15px; font-weight:bold; color:#333;">
+            {uyum_sonuc} <br>
+            <span style="font-weight:normal; font-size:0.9em; color:#666;">{uyum_detay}</span>
+        </div>
+    </div>
+    """)
 
     # --- VERİTABANINA KAYIT ---
     try:
@@ -392,10 +402,10 @@ def submit():
             iliski_tanimi=demog.get('iliski_tanimi'),
             iliski_suresi=demog.get('iliski_suresi'),
             terapi_destegi=demog.get('terapi_destegi'),
-            # Sonuçları kaydet
-            triggered_stage1=" | ".join([r.split('<')[0] for r in res1]), 
-            triggered_stage2=" | ".join([r.split('<')[0] for r in res2]),
-            triggered_stage3=" | ".join([r.split('<')[0] for r in res3]),
+            # Temiz isimleri kaydet
+            triggered_stage1=" | ".join(db_s1), 
+            triggered_stage2=" | ".join(db_s2),
+            triggered_stage3=" | ".join(db_s3),
             all_answers_json=json.dumps({"s1":s1, "s2":s2, "s3":s3})
         )
         db.session.add(new_result)
@@ -403,46 +413,58 @@ def submit():
     except Exception as e:
         logging.error(f"Kayıt Hatası: {e}")
 
-    # --- SONUÇ SAYFASI (Akordiyon) ---
-    # Basitleştirilmiş HTML
-    result_html = """
+    # --- SONUÇ SAYFASI (CSS Geri Geldi) ---
+    result_template = """
     <!doctype html>
     <title>Sonuçlar</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f7f6; text-align:center; }
-        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; text-align:left; }
-        h1 { color: #1e88e5; text-align:center; }
-        h3 { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; color: #555; }
-        .result-item { background: #fff; border: 1px solid #ddd; margin-bottom: 10px; padding: 15px; border-radius: 8px; }
-        .empty-msg { color: #888; font-style: italic; }
+        {% raw %}
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; text-align: center; }
+        .container { max-width: 700px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); text-align: left; }
+        h2 { color: #1e88e5; text-align: center; margin-bottom: 20px; }
+        h3 { color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; font-size: 1.3em; }
+        
+        /* AKORDİYON STİLLERİ */
+        .schema-card { border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: box-shadow 0.2s; }
+        .schema-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+        details { font-family: inherit; }
+        summary { padding: 16px 20px; cursor: pointer; font-size: 1.1em; font-weight: 600; color: #e53935; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 1.5em; font-weight: 300; color: #1e88e5; transition: transform 0.2s; }
+        details[open] summary { border-bottom: 1px solid #eee; }
+        details[open] summary::after { content: '−'; }
+        .details-content { padding: 16px 20px; border-top: 1px solid #eee; line-height: 1.6; color: #333; }
+        .empty-msg { color: #888; font-style: italic; padding: 10px; }
+        {% endraw %}
     </style>
     <body>
         <div class="container">
-            <h1>Test Sonuçlarınız</h1>
+            <h2>Test Sonuçlarınız</h2>
             
             <h3>1. Bölüm: Şemalar</h3>
             {% if res1 %}
-                {% for r in res1 %}<div class="result-item">{{ r|safe }}</div>{% endfor %}
+                {% for r in res1 %}{{ r|safe }}{% endfor %}
             {% else %}<p class="empty-msg">Belirgin bir şema bulunamadı.</p>{% endif %}
             
             <h3>2. Bölüm: Başa Çıkma Biçimleri</h3>
             {% if res2 %}
-                {% for r in res2 %}<div class="result-item">{{ r|safe }}</div>{% endfor %}
+                {% for r in res2 %}{{ r|safe }}{% endfor %}
             {% else %}<p class="empty-msg">Belirgin bir başa çıkma biçimi bulunamadı.</p>{% endif %}
             
-            <h3>3. Bölüm: Yenilenmiş Çift Uyum Ölçeği</h3>
+            <h3>3. Bölüm: Çift Uyumu</h3>
              {% if res3 %}
-                {% for r in res3 %}<div class="result-item">{{ r|safe }}</div>{% endfor %}
+                {% for r in res3 %}{{ r|safe }}{% endfor %}
             {% else %}<p class="empty-msg">Sonuç hesaplanamadı.</p>{% endif %}
             
-            <p style="text-align:center; margin-top:40px;">
-                <a href="/" style="background:#1e88e5; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;">Çıkış / Başa Dön</a>
+            <p style="text-align: center; margin-top: 30px; font-size:0.9em; color:#666;">
+                Sonuçlarınız tez çalışması kapsamında anonim olarak kaydedilmiştir.
             </p>
+            <p style="text-align: center;"><a href="/" style="color:#1e88e5; text-decoration:none;"><b>Çıkış / Başa Dön</b></a></p>
         </div>
     </body>
     """
     
-    return render_template_string(result_html, res1=res1, res2=res2, res3=res3)
+    return render_template_string(result_template, res1=html_s1, res2=html_s2, res3=html_s3)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
