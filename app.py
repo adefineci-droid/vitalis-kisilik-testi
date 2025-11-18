@@ -102,7 +102,7 @@ def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
     receiver_email = os.environ.get('EMAIL_RECEIVER', 'tez.verilerim@gmail.com') 
     
     payload = {
-        "sender": {"name": "Vitalis Test Sistemi", "email": "adefineci@gmail.com"},
+        "sender": {"name": "Vitalis Test Sistemi", "email": "Vitalisdanismanlik@gmail.com"},
         "to": [{"email": receiver_email}],
         # Konu satırına Katılımcı No eklendi
         "subject": f"Test Raporu - Katılımcı {subject_no} - {demog.get('cinsiyet')}",
