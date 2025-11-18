@@ -44,117 +44,37 @@ except Exception as e:
 
 # --- KURALLAR (Rules) ---
 
-# 1. Aşama: Şemalar (Sizin 18 şemanız buraya gelecek - Kısaltıldı)
+# 1. Aşama: Şemalar
 SCHEMA_RULES_STAGE_1 = {
-    "Duygusal Yoksunluk": {
-        "question_ids": [1, 19, 37, 55, 73], 
-        "threshold": 20,
-        "description": "Kişinin normal düzeyde duygusal destek alamayacağına dair inancıdır (örneğin; ilgi, şefkat, koruma)."
-    },
-    "Terk Edilme": {
-        "question_ids": [2, 20, 38, 56, 74], 
-        "threshold": 20,
-        "description": "Terk edilme şeması, kişinin sevdiklerinin onu bırakacağına dair yoğun bir inanç taşımasıdır."
-    },
-    "Kuşkuculuk": {
-        "question_ids": [3, 21, 39, 57, 75, 44], 
-        "threshold": 24,
-        "description": "Başkalarının niyetlerinden şüphe duyma ve güvenmeme eğilimidir."
-    },
-    "Sosyal İzolasyon": {
-        "question_ids": [4, 40, 58, 76], 
-        "threshold": 16,
-        "description": "Kişinin kendisini dünyanın geri kalanından soyutlanmış, farklı veya bir gruba ait değilmiş gibi hissetmesidir."
-    },
-    "Kusurluluk": {
-        "question_ids": [5, 23, 41, 59, 77, 43, 90], 
-        "threshold": 28,
-        "description": "Kişinin kendisini kusurlu, kötü, istenmeyen veya aşağılık hissetmesidir."
-    },
-    "Başarısızlık": {
-        "question_ids": [6, 24, 42, 60, 78], 
-        "threshold": 20,
-        "description": "Başarısızlık şeması, bireyin kendisini yetersiz, başarısız ya da aptal hissetmesiyle karakterizedir."
-    },
-    "Bağımlılık": {
-        "question_ids": [7, 25, 61, 79], 
-        "threshold": 16,
-        "description": "Başkalarının yardımı olmadan günlük sorumlulukları yerine getirememe inancıdır."
-    },
-    "Dayanıksızlık": {
-        "question_ids": [8, 26, 80, 17, 35, 53, 89], 
-        "threshold": 28,
-        "description": "Her an bir felaketin (tıbbi, mali, doğal) başına gelebileceği korkusudur."
-    },
-    "İç İçelik": {
-        "question_ids": [9, 27, 45, 63, 81], 
-        "threshold": 20,
-        "description": "Ebeveynlerle veya partnerle aşırı duygusal yakınlık ve bireyselleşememe durumudur."
-    },
-    "Boyun Eğicilik": {
-        "question_ids": [10, 28, 46, 64, 82], 
-        "threshold": 20,
-        "description": "Başkalarının kontrolü altında hissetme ve kendi isteklerini bastırma eğilimidir."
-    },
-    "Kendini Feda": {
-        "question_ids": [11, 29, 47, 65, 83], 
-        "threshold": 20,
-        "description": "Başkalarının ihtiyaçlarını kendi ihtiyaçlarının önüne koyma eğilimidir."
-    },
-    "Duyguları Bastırma": {
-        "question_ids": [12, 30, 48, 66, 84], 
-        "threshold": 20,
-        "description": "Duyguların ve dürtülerin aşırı kontrol edilmesi ve bastırılmasıdır."
-    },
-    "Statü Arayıcılık": {
-        "question_ids": [13, 31, 14, 16, 34, 52, 70, 88], 
-        "threshold": 32,
-        "description": "Başkalarının onayı, takdiri ve statü kazanma odaklı yaşama halidir."
-    },
-    "Yetersiz Özdenetim": {
-        "question_ids": [15, 33, 51, 69, 87], 
-        "threshold": 20,
-        "description": "Kişisel hedeflere ulaşmak için gereken disiplini sağlayamama durumudur."
-    },
-    "Büyüklenmecilik": {
-        "question_ids": [22, 32, 50, 68, 86], 
-        "threshold": 20,
-        "description": "Kişinin kendisini diğerlerinden üstün görmesi ve ayrıcalıklı hissetmesidir."
-    },
-    "Cezalandırıcılık": {
-        "question_ids": [49, 67, 85, 18, 36, 59, 72], 
-        "threshold": 28,
-        "description": "Hata yapanların sert bir şekilde cezalandırılması gerektiğine dair inançtır."
-    },
-    "Ekonomik Dayanıksızlık": {
-        "question_ids": [62, 71], 
-        "threshold": 8,
-        "description": "Maddi güvencesizlik ve parasal konularda aşırı endişe duyma halidir."
-    }
+    "Duygusal Yoksunluk": { "question_ids": [1, 19, 37, 55, 73], "threshold": 20, "description": "Kişinin normal düzeyde duygusal destek alamayacağına dair inancıdır (örneğin; ilgi, şefkat, koruma)." },
+    "Terk Edilme": { "question_ids": [2, 20, 38, 56, 74], "threshold": 20, "description": "Terk edilme şeması, kişinin sevdiklerinin onu bırakacağına dair yoğun bir inanç taşımasıdır." },
+    "Kuşkuculuk": { "question_ids": [3, 21, 39, 57, 75, 44], "threshold": 24, "description": "Başkalarının niyetlerinden şüphe duyma ve güvenmeme eğilimidir." },
+    "Sosyal İzolasyon": { "question_ids": [4, 40, 58, 76], "threshold": 16, "description": "Kişinin kendisini dünyanın geri kalanından soyutlanmış, farklı veya bir gruba ait değilmiş gibi hissetmesidir." },
+    "Kusurluluk": { "question_ids": [5, 23, 41, 59, 77, 43, 90], "threshold": 28, "description": "Kişinin kendisini kusurlu, kötü, istenmeyen veya aşağılık hissetmesidir." },
+    "Başarısızlık": { "question_ids": [6, 24, 42, 60, 78], "threshold": 20, "description": "Başarısızlık şeması, bireyin kendisini yetersiz, başarısız ya da aptal hissetmesiyle karakterizedir." },
+    "Bağımlılık": { "question_ids": [7, 25, 61, 79], "threshold": 16, "description": "Başkalarının yardımı olmadan günlük sorumlulukları yerine getirememe inancıdır." },
+    "Dayanıksızlık": { "question_ids": [8, 26, 80, 17, 35, 53, 89], "threshold": 28, "description": "Her an bir felaketin (tıbbi, mali, doğal) başına gelebileceği korkusudur." },
+    "İç İçelik": { "question_ids": [9, 27, 45, 63, 81], "threshold": 20, "description": "Ebeveynlerle veya partnerle aşırı duygusal yakınlık ve bireyselleşememe durumudur." },
+    "Boyun Eğicilik": { "question_ids": [10, 28, 46, 64, 82], "threshold": 20, "description": "Başkalarının kontrolü altında hissetme ve kendi isteklerini bastırma eğilimidir." },
+    "Kendini Feda": { "question_ids": [11, 29, 47, 65, 83], "threshold": 20, "description": "Başkalarının ihtiyaçlarını kendi ihtiyaçlarının önüne koyma eğilimidir." },
+    "Duyguları Bastırma": { "question_ids": [12, 30, 48, 66, 84], "threshold": 20, "description": "Duyguların ve dürtülerin aşırı kontrol edilmesi ve bastırılmasıdır." },
+    "Statü Arayıcılık": { "question_ids": [13, 31, 14, 16, 34, 52, 70, 88], "threshold": 32, "description": "Başkalarının onayı, takdiri ve statü kazanma odaklı yaşama halidir." },
+    "Yetersiz Özdenetim": { "question_ids": [15, 33, 51, 69, 87], "threshold": 20, "description": "Kişisel hedeflere ulaşmak için gereken disiplini sağlayamama durumudur." },
+    "Büyüklenmecilik": { "question_ids": [22, 32, 50, 68, 86], "threshold": 20, "description": "Kişinin kendisini diğerlerinden üstün görmesi ve ayrıcalıklı hissetmesidir." },
+    "Cezalandırıcılık": { "question_ids": [49, 67, 85, 18, 36, 59, 72], "threshold": 28, "description": "Hata yapanların sert bir şekilde cezalandırılması gerektiğine dair inançtır." },
+    "Ekonomik Dayanıksızlık": { "question_ids": [62, 71], "threshold": 8, "description": "Maddi güvencesizlik ve parasal konularda aşırı endişe duyma halidir." }
 }
 
-# 2. Aşama: Başa Çıkma (Sizin gönderdiğiniz kurallar)
+# 2. Aşama: Başa Çıkma
 COPING_RULES_STAGE_2 = {
-    "Aşırı Telafi": {
-        "question_ids": [1, 5, 8, 10], "threshold": 16,
-        "description": "Aşırı telafi biçiminde kişi, şemanın öne sürdüğü olumsuz inançların tam tersini göstermeye çalışarak şemayla savaşır..."
-    },
-    "Teslim": {
-        "question_ids": [2, 6, 9, 11], "threshold": 16,
-        "description": "Bu biçimde kişi, sahip olduğu olumsuz inançların doğru olduğuna inanır ve bu inançlara uygun davranır..."
-    },
-    "Kaçınma": {
-        "question_ids": [3, 4, 7, 12], "threshold": 16,
-        "description": "Kaçınma biçiminde kişi, olumsuz duyguları veya hatırlatıcı durumları yaşamamak için duygusal olarak uzak durur..."
-    }
+    "Aşırı Telafi": { "question_ids": [1, 5, 8, 10], "threshold": 16, "description": "Aşırı telafi biçiminde kişi, şemanın öne sürdüğü olumsuz inançların tam tersini göstermeye çalışarak şemayla savaşır. “Yetersizim” şemasına karşı mükemmeliyetçilik, “değersizim” şemasına karşı kontrolcü veya üstün davranışlar gelişebilir." },
+    "Teslim": { "question_ids": [2, 6, 9, 11], "threshold": 16, "description": "Bu biçimde kişi, sahip olduğu olumsuz inançların doğru olduğuna inanır ve bu inançlara uygun davranır. “Ben değersizim”, “Kimse beni sevmez” gibi düşünceler davranışlarını yönlendirebilir." },
+    "Kaçınma": { "question_ids": [3, 4, 7, 12], "threshold": 16, "description": "Kaçınma biçiminde kişi, olumsuz duyguları veya hatırlatıcı durumları yaşamamak için duygusal, bilişsel ya da davranışsal olarak uzak durur." }
 }
 
-# 3. Aşama: (Henüz göndermediniz, ÖRNEK kural)
+# 3. Aşama: Çift Uyumu (Kurallar kod içinde işleniyor, burası placeholder)
 RULES_STAGE_3 = {
-    "Örnek Mod": {
-        "question_ids": [1], "threshold": 1,
-        "description": "3. Aşama kuralları buraya eklenecek."
-    }
+    "Çift Uyumu": { "question_ids": list(range(1, 15)), "threshold": 0, "description": "" }
 }
 
 # --- VERİTABANI MODELİ ---
@@ -174,7 +94,7 @@ class TestResult(db.Model):
     # Sonuçlar (3 Aşama)
     triggered_stage1 = db.Column(db.Text) # Şemalar
     triggered_stage2 = db.Column(db.Text) # Başa Çıkma
-    triggered_stage3 = db.Column(db.Text) # 3. Aşama (Modlar vb.)
+    triggered_stage3 = db.Column(db.Text) # 3. Aşama
     
     # Ham veri
     all_answers_json = db.Column(db.Text)
@@ -317,11 +237,11 @@ def quiz():
     current_questions = QUESTIONS_DATA.get(stage_key, [])
     total_questions = len(current_questions)
     
-    # --- YENİ: Dinamik Başlıklar ---
+    # --- YENİ: Dinamik Başlıklar (GÜNCELLENDİ) ---
     stage_titles = {
         1: "Bölüm 1: Young Şema Testi",
         2: "Bölüm 2: Şema Başa Çıkma Biçimleri",
-        3: "Bölüm 3: Şema Modları" # Placeholder
+        3: "Bölüm 3: Yenilenmiş Çift Uyum Ölçeği"
     }
     current_title = stage_titles.get(stage, f"Bölüm {stage}")
 
@@ -356,7 +276,7 @@ def quiz():
             return render_template_string("""
                 <div style="text-align:center; padding:50px; font-family:sans-serif;">
                     <h1 style="color:#1e88e5;">2. Bölüm Tamamlandı</h1>
-                    <p>Son bölüme geçiyoruz.</p>
+                    <p>Şimdi son bölüm olan Çift Uyum Ölçeği'ne geçiyoruz.</p>
                     <a href="/start_stage_3" style="background:#4CAF50; color:white; padding:15px 30px; text-decoration:none; border-radius:5px; font-size:1.2em;">3. Bölüme Başla</a>
                 </div>
             """)
@@ -437,11 +357,29 @@ def submit():
         if total >= rule["threshold"]:
             res2.append(f"<b>{name}</b><br><small>{rule['description']}</small>")
 
-    # Aşama 3 (Örnek)
-    for name, rule in RULES_STAGE_3.items():
-        total = sum([s3.get(str(qid), 0) for qid in rule["question_ids"]])
-        if total >= rule["threshold"]:
-            res3.append(name)
+    # Aşama 3: Çift Uyumu Hesaplama (DÜZELTİLDİ: Ters Puanlama Eklendi)
+    total_score_3 = 0
+    for qid in range(1, 15): # 1'den 14'e kadar
+        raw_score = s3.get(str(qid), 0)
+        
+        if raw_score == 0: # Cevaplanmamışsa atla
+            continue
+
+        # 7. ve 14. sorular (dahil) arası TERS puanlanır (5-4-3-2-1)
+        # Formül: 6 - puan
+        if 7 <= qid <= 14:
+            score = 6 - raw_score
+        else:
+            # Diğer sorular (1-6) DÜZ puanlanır
+            score = raw_score
+            
+        total_score_3 += score
+    
+    if total_score_3 >= 35:
+        res3.append(f"<b>İlişki Çift Uyumunuz: %50'nin Üzerindedir</b><br><small>Bu durum, ilişkide orta-yüksek düzeyde uyum olduğunu göstermektedir. Bu sonuç farkındalık amaçlıdır; kesin bir değerlendirme niteliği taşımaz.</small>")
+    else:
+        res3.append(f"<b>İlişki Çift Uyumunuz: %50'nin Altındadır</b><br><small>Bu durum, ilişkide bazı uyum farklarının olabileceğini göstermektedir. Bu sonuç farkındalık yaratmayı amaçlar; kesin bir değerlendirme niteliği taşımaz.</small>")
+
 
     # --- VERİTABANINA KAYIT ---
     try:
@@ -449,10 +387,15 @@ def submit():
         new_result = TestResult(
             cinsiyet=demog.get('cinsiyet'),
             yas_araligi=demog.get('yas_araligi'),
-            # ... diğer demografik alanlar ...
-            triggered_stage1=" | ".join([r.split('<')[0] for r in res1]), # Sadece isimleri kaydet
+            medeni_durum=demog.get('medeni_durum'),
+            birlikte_yasam=demog.get('birlikte_yasam'),
+            iliski_tanimi=demog.get('iliski_tanimi'),
+            iliski_suresi=demog.get('iliski_suresi'),
+            terapi_destegi=demog.get('terapi_destegi'),
+            # Sonuçları kaydet
+            triggered_stage1=" | ".join([r.split('<')[0] for r in res1]), 
             triggered_stage2=" | ".join([r.split('<')[0] for r in res2]),
-            triggered_stage3=" | ".join(res3),
+            triggered_stage3=" | ".join([r.split('<')[0] for r in res3]),
             all_answers_json=json.dumps({"s1":s1, "s2":s2, "s3":s3})
         )
         db.session.add(new_result)
@@ -487,10 +430,10 @@ def submit():
                 {% for r in res2 %}<div class="result-item">{{ r|safe }}</div>{% endfor %}
             {% else %}<p class="empty-msg">Belirgin bir başa çıkma biçimi bulunamadı.</p>{% endif %}
             
-            <h3>3. Bölüm: Modlar (Örnek)</h3>
+            <h3>3. Bölüm: Yenilenmiş Çift Uyum Ölçeği</h3>
              {% if res3 %}
                 {% for r in res3 %}<div class="result-item">{{ r|safe }}</div>{% endfor %}
-            {% else %}<p class="empty-msg">Belirgin bir mod bulunamadı.</p>{% endif %}
+            {% else %}<p class="empty-msg">Sonuç hesaplanamadı.</p>{% endif %}
             
             <p style="text-align:center; margin-top:40px;">
                 <a href="/" style="background:#1e88e5; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;">Çıkış / Başa Dön</a>
