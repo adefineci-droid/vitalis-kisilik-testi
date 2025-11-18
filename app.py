@@ -44,8 +44,8 @@ except Exception as e:
     logging.error(f"questions.json yüklenemedi: {e}")
 
 
-# --- YENİ: E-POSTA GÖNDERME FONKSİYONU (BREVO API) ---
-def send_report_via_brevo(demog, res1_names, res2_names, res3_text):
+# --- E-POSTA GÖNDERME FONKSİYONU (GÜNCELLENDİ: Katılımcı İfadesi) ---
+def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
     api_key = os.environ.get('BREVO_API_KEY')
     
     if not api_key:
@@ -56,8 +56,9 @@ def send_report_via_brevo(demog, res1_names, res2_names, res3_text):
     html_content = f"""
     <html>
     <body>
-        <h2 style="color:#1e88e5;">Yeni Test Raporu</h2>
+        <h2 style="color:#1e88e5;">Yeni Test Raporu (Katılımcı No: {subject_no})</h2>
         <p><strong>Tarih:</strong> {datetime.now().strftime('%d.%m.%Y %H:%M')}</p>
+        <p><strong>Katılımcı Numarası:</strong> <span style="font-size:1.2em; font-weight:bold;">{subject_no}</span></p>
         
         <h3 style="border-bottom:1px solid #ccc;">1. Demografik Bilgiler</h3>
         <table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%;">
@@ -98,27 +99,27 @@ def send_report_via_brevo(demog, res1_names, res2_names, res3_text):
         "content-type": "application/json"
     }
     
-    # Alıcı adresi (Render Environment'tan alıyoruz, yoksa kendinize gönderin)
     receiver_email = os.environ.get('EMAIL_RECEIVER', 'tez.verilerim@gmail.com') 
     
     payload = {
         "sender": {"name": "Vitalis Test Sistemi", "email": "no-reply@vitalis.com"},
         "to": [{"email": receiver_email}],
-        "subject": f"Test Sonucu Raporu - {demog.get('cinsiyet')} - {demog.get('yas_araligi')}",
+        # Konu satırına Katılımcı No eklendi
+        "subject": f"Test Raporu - Katılımcı {subject_no} - {demog.get('cinsiyet')}",
         "htmlContent": html_content
     }
 
     try:
         response = requests.post(url, json=payload, headers=headers)
         if response.status_code == 201:
-            logging.info("Rapor e-postası başarıyla gönderildi.")
+            logging.info(f"Rapor e-postası (Katılımcı {subject_no}) başarıyla gönderildi.")
         else:
             logging.error(f"E-posta gönderilemedi: {response.text}")
     except Exception as e:
         logging.error(f"API Bağlantı Hatası: {e}")
 
 
-# --- KURALLAR (TAM VE EKSİKSİZ) ---
+# --- KURALLAR ---
 
 # 1. AŞAMA: ŞEMALAR
 SCHEMA_RULES_STAGE_1 = {
@@ -562,6 +563,7 @@ def submit():
     """)
 
     # --- 1. VERİTABANINA KAYIT ---
+    subject_no = 0 # Default
     try:
         new_result = TestResult(
             cinsiyet=demog.get('cinsiyet'),
@@ -571,6 +573,7 @@ def submit():
             iliski_tanimi=demog.get('iliski_tanimi'),
             iliski_suresi=demog.get('iliski_suresi'),
             terapi_destegi=demog.get('terapi_destegi'),
+            # Temiz isimleri kaydet
             triggered_stage1=" | ".join(db_s1), 
             triggered_stage2=" | ".join(db_s2),
             triggered_stage3=" | ".join(db_s3),
@@ -578,12 +581,17 @@ def submit():
         )
         db.session.add(new_result)
         db.session.commit()
+        
+        # Kayıt sonrası ID'yi alıp 1000 ekle
+        subject_no = 1000 + new_result.id
+        
     except Exception as e:
         logging.error(f"Kayıt Hatası: {e}")
 
     # --- 2. E-POSTA RAPORU GÖNDER (YENİ) ---
     try:
-        send_report_via_brevo(demog, db_s1, db_s2, uyum_sonuc)
+        if subject_no > 0: # Sadece kayıt başarılıysa gönder
+            send_report_via_brevo(demog, db_s1, db_s2, uyum_sonuc, subject_no)
     except Exception as e:
         logging.error(f"Rapor Gönderme Hatası: {e}")
 
@@ -615,6 +623,11 @@ def submit():
         <div class="container">
             <h2>Test Sonuçlarınız</h2>
             
+            <div style="background:#e8f5e9; padding:15px; border-radius:8px; margin-bottom:20px; border:1px solid #c8e6c9; text-align:center;">
+                <h3 style="margin:0; border:none; color:#2e7d32;">Teşekkürler!</h3>
+                <p style="margin:5px 0 0 0;">Katılımcı Numaranız: <strong>{{ subject_no }}</strong></p>
+            </div>
+
             <h3>1. Bölüm: Şemalar</h3>
             {% if res1 %}
                 {% for r in res1 %}{{ r|safe }}{% endfor %}
@@ -638,7 +651,7 @@ def submit():
     </body>
     """
     
-    return render_template_string(result_template, res1=html_s1, res2=html_s2, res3=html_s3)
+    return render_template_string(result_template, res1=html_s1, res2=html_s2, res3=html_s3, subject_no=subject_no)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
