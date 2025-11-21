@@ -44,7 +44,7 @@ except Exception as e:
     logging.error(f"questions.json yüklenemedi: {e}")
 
 
-# --- E-POSTA GÖNDERME FONKSİYONU (GÜNCELLENDİ: Katılımcı İfadesi) ---
+# --- E-POSTA GÖNDERME FONKSİYONU ---
 def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
     api_key = os.environ.get('BREVO_API_KEY')
     
@@ -102,9 +102,8 @@ def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
     receiver_email = os.environ.get('EMAIL_RECEIVER', 'tez.verilerim@gmail.com') 
     
     payload = {
-        "sender": {"name": "Vitalis Test Sistemi", "email": "Vitalisdanismanlik@gmail.com"},
+        "sender": {"name": "Vitalis Test Sistemi", "email": "no-reply@vitalis.com"},
         "to": [{"email": receiver_email}],
-        # Konu satırına Katılımcı No eklendi
         "subject": f"Test Raporu - Katılımcı {subject_no} - {demog.get('cinsiyet')}",
         "htmlContent": html_content
     }
@@ -256,19 +255,63 @@ with app.app_context():
 
 # --- ROTALAR ---
 
+# YENİ: BİLGİLENDİRME SAYFASI (INDEX)
 @app.route("/")
 def index():
-    # (Mevcut Demografik Form HTML Kodunuz Buraya Gelecek - Değişmedi)
+    info_page_html = """
+    <!doctype html>
+    <title>Bilgilendirme ve Onam</title>
+    <style>
+        {% raw %}
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; text-align: center; }
+        .container { max-width: 800px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: left; }
+        h1 { color: #1e88e5; text-align: center; margin-bottom: 30px; }
+        p { line-height: 1.8; margin-bottom: 20px; font-size: 1.05em; }
+        .highlight { background-color: #eef8ff; padding: 15px; border-left: 5px solid #1e88e5; border-radius: 4px; margin: 20px 0; }
+        .start-button { display: block; width: 100%; padding: 15px; background-color: #4CAF50; color: white; text-decoration: none; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; transition: background-color 0.3s; margin-top: 40px; text-align: center; font-weight: bold; }
+        .start-button:hover { background-color: #388E3C; }
+        {% endraw %}
+    </style>
+    <body>
+        <div class="container">
+            <h1>Bilgilendirme ve Onam Formu</h1>
+            
+            <div class="highlight">
+                <p><strong>Gizlilik Bildirimi:</strong> Yapacak olduğunuz bu test tamamen gizlidir. Kim olduğunuzu bilmemiz mümkün değildir ve bilgileriniz kişisel olarak kayıt altına alınmaz. Bu çalışma, bilimsel bir tez çalışmasına katkı sunmak için yapılmaktadır.</p>
+            </div>
+
+            <p>Soruları cevaplamaya devam ederek bu çalışmaya gönüllü olarak katıldığınızı ve katkı sağlamayı kabul ettiğinizi belirtmiş olursunuz.</p>
+
+            <p>Bu test, hayatta olaylara ve insanlara bakış şeklimizi anlamaya yardımcı olur. <strong>Şema</strong> dediğimiz şey, yaşadıklarımız sonucunda kafamızda oluşan düşünme ve hissetme alışkanlıklarıdır. Hepimiz bunları fark etmeden çocukluktan beri geliştiririz. Bu şemalar çocuklukta karşılanmayan ihtiyaçlarımızdan dolayı oluşur.</p>
+
+            <p>Bazen <em>“Neden hep aynı insan tipiyle karşılaşıyorum?”</em> deriz ya… İşte bunun sebebi tamamen bizim şemalarımızdan kaynaklanır. Bu yüzden şemalarınızı bilmek hayatınızdaki tüm ilişkilerde size yardımcı olacak ve kendinizi tanımanızı sağlayacaktır.</p>
+
+            <p>Bu soruları doldurduğunuzda kendi şemalarınızı, bu şemalarla nasıl başa çıktığınızı ve ilişkilerinizde ne kadar mutlu ve memnun olduğunuzu daha iyi görebilirsiniz.</p>
+
+            <p><strong>Soruların doğru ya da yanlış cevabı yoktur;</strong> önemli olan size en yakın olanı işaretlemenizdir. Tamamen samimi ve içten cevap verdiğinizde sonuçlar sizin için çok daha doğru ve faydalı olacaktır.</p>
+
+            <p style="text-align: center; font-weight: bold; color: #d32f2f; margin-top: 30px;">
+                TESTİN SONUNDA SONUÇLARINIZI ANINDA GÖREBİLECEKSİNİZ. <br> LÜTFEN TAM VE EKSİKSİZ DOLDURUNUZ.
+            </p>
+
+            <a href="/demographics" class="start-button">Okudum, Onaylıyorum ve Başlıyorum</a>
+        </div>
+    </body>
+    """
+    return render_template_string(info_page_html)
+
+
+# YENİ: DEMOGRAFİK FORM SAYFASI (Eski Index Buraya Taşındı)
+@app.route("/demographics")
+def demographics_page():
     landing_page_html = """
     <!doctype html>
-    <title>Young Şema Testi - Giriş</title>
+    <title>Demografik Bilgiler</title>
     <style>
         {% raw %}
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; text-align: center; }
         .container { max-width: 700px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: left; }
         h1 { color: #1e88e5; text-align: center; margin-bottom: 20px; }
-        h3 { color: #555; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 25px; }
-        p { line-height: 1.6; margin-bottom: 15px; }
         .form-group { margin-bottom: 20px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9; }
         .form-group label { font-weight: 600; display: block; margin-bottom: 10px; color: #333; }
         .form-options { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -282,10 +325,8 @@ def index():
     </style>
     <body>
         <div class="container">
-            <h1>Young Şema Testine Hoş Geldiniz</h1>
-            <h3>Test Hakkında Bilgilendirme</h3>
-            <p>Bu test, toplam **3 aşamadan** oluşmaktadır ve Young Şema Terapisi modeli temel alınarak hazırlanmıştır.</p>
-            <p>Lütfen aşağıdaki demografik bilgi formunu doldurarak teste başlayın.</p>
+            <h1>Demografik Bilgiler</h1>
+            <p>Lütfen teste başlamadan önce aşağıdaki bilgileri doldurun.</p>
 
             <form action="{{ url_for('start_test') }}" method="POST">
                 <div class="form-group">
