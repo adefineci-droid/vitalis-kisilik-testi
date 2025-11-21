@@ -468,12 +468,6 @@ def quiz():
             <form method="post">
                 <input type="hidden" name="question_id" value="{{ q.id }}">
                 
-                {% if stage == 3 and index_display == 1 %}
-                    <div style="background-color:#fff3cd; color:#856404; padding:10px; margin-bottom:15px; border:1px solid #ffeeba; border-radius:5px;">
-                        <strong>Yönerge:</strong> Aşağıdaki konularda eşinizle anlaşıp anlaşamadığınızı ilgili kutucuğu işaretleyiniz.
-                    </div>
-                {% endif %}
-                
                 {% if stage == 3 and index_display == 7 %}
                     <div style="background-color:#fff3cd; color:#856404; padding:10px; margin-bottom:15px; border:1px solid #ffeeba; border-radius:5px;">
                         <strong>Yönerge:</strong> Aşağıda eşinizle ve evliliğinizle ilgili bazı ifadeler yer almaktadır. Lütfen aşağıdaki ifadeleri okuyup size ne derece uygun olduğunu ilgili kutucuğu işaretleyiniz.
