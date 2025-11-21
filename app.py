@@ -44,7 +44,7 @@ except Exception as e:
     logging.error(f"questions.json yüklenemedi: {e}")
 
 
-# --- E-POSTA GÖNDERME FONKSİYONU ---
+# --- E-POSTA GÖNDERME FONKSİYONU (DÜZELTİLDİ: Sender Adresi) ---
 def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
     api_key = os.environ.get('BREVO_API_KEY')
     
@@ -99,10 +99,15 @@ def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
         "content-type": "application/json"
     }
     
+    # Alıcı adresi (Sizin mailiniz)
     receiver_email = os.environ.get('EMAIL_RECEIVER', 'tez.verilerim@gmail.com') 
     
+    # DÜZELTME: Gönderici adresi de SİZİN mailiniz olmalı (Brevo kuralı).
+    # 'no-reply@vitalis.com' yerine alıcı mailini gönderici olarak da kullanıyoruz.
+    sender_email = receiver_email 
+    
     payload = {
-        "sender": {"name": "Vitalis Test Sistemi", "email": "no-reply@vitalis.com"},
+        "sender": {"name": "Vitalis Test Sistemi", "email": sender_email},
         "to": [{"email": receiver_email}],
         "subject": f"Test Raporu - Katılımcı {subject_no} - {demog.get('cinsiyet')}",
         "htmlContent": html_content
