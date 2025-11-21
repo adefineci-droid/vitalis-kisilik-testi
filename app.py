@@ -122,91 +122,23 @@ def send_report_via_brevo(demog, res1_names, res2_names, res3_text, subject_no):
 
 # 1. AŞAMA: ŞEMALAR
 SCHEMA_RULES_STAGE_1 = {
-    "Duygusal Yoksunluk": {
-        "question_ids": [1, 19, 37, 55, 73], 
-        "threshold": 20, 
-        "description": """Duygusal Yoksunluk Şeması:Çocuklukta oluşumu:Sevgi, ilgi ya da empati gibi temel duygusal gereksinimlerin karşılanmadığı ortamlarda gelişir. Çocuk, isteklerine cevap alamadıkça duygusal ihtiyaçların önemsiz olduğuna inanabilir.<br>Yetişkinlikte:Bu şemaya sahip kişiler genellikle “kimse beni gerçekten anlamıyor” duygusunu taşırlar. İlişkilerinde hep bir eksiklik hisseder, karşısındakinin sevgisini tam olarak hissedemezler. Partnerleri onları sevse bile, içten içe “benim duygularımı anlamıyor” diye düşünürler. Bu hissetme biçimi, çoğu zaman çocuklukta ihtiyaç duyulan şefkatin yokluğundan beslenir.<br>Bazı kişiler bu boşlukla başa çıkmak için duygusal yakınlıktan tamamen kaçınabilir — soğuk ve mesafeli görünebilirler. Bazıları ise çok fazla bağlanarak içlerindeki açlığı doldurmaya çalışırlar. Her iki durumda da temel inanç şudur: “Kimse beni gerçekten anlamaz."""
-    },
-    "Terk Edilme": {
-        "question_ids": [2, 20, 38, 56, 74], 
-        "threshold": 20, 
-        "description": """Terk Edilme Şeması:Çocuklukta oluşumu:Sık taşınmalar, ayrılıklar, boşanma ya da ebeveynin duygusal olarak erişilemez olduğu durumlar bu şemayı oluşturabilir. Çocuk, kendini sevilen ama her an kaybedilebilecek biri olarak algılar.<br>Yetişkinlikte:Terk edilme şeması olan bireyler, yakın ilişkilerde yoğun kaybetme korkusu yaşarlar. Partnerleri bir süre sessiz kaldığında bile “beni artık istemiyor” kaygısı doğabilir. Küçük ilgisizlikleri büyük tehdit gibi algılarlar ve duygusal dalgalanmalar sıklıkla görülür.<br>Bazıları terk edilmemek için fazlasıyla yapışkan, bazıları ise “nasıl olsa giderler” düşüncesiyle mesafeli ve soğuk davranabilir. İlişkilerinde gerçek yakınlık istedikleri halde, bu yakınlık onlarda kaygı yaratır. Sıklıkla “ya benim için burada kalmazsa?” düşüncesi eşlik eder."""
-    },
-    "Kuşkuculuk": {
-        "question_ids": [3, 21, 39, 57, 75, 44], 
-        "threshold": 24, 
-        "description": """Kuşkuculuk Şeması:Çocuklukta oluşumu:İhmal, aldatılma, cezalandırılma ya da sözel-fiziksel istismar deneyimleri sonucu gelişir. Çocuk, “insanlara güvenilmez” inancını öğrenir.<br>Yetişkinlikte:Kuşkuculuk şeması olan kişiler, başkalarının niyetlerinden kolayca şüphe duyarlar. “Kesin bir çıkarı var” ya da “beni bir gün incitecek” düşünceleri akıllarının bir köşesindedir. Bu kişiler çoğu zaman güven duygusunu kontrol altında tutarak sağlarlar: mesafe koymak, sınır çizmek, her şeyi denetlemek gibi.<br>İlişkilerinde tam bir teslimiyet veya yakınlık kurmak zor gelir. Çünkü zihinlerinde “çok yakınlaşırsam canım yanar” inancı vardır. Bu durum, samimiyet arzusu ile güven korkusu arasında bir gelgit yaratır."""
-    },
-    "Sosyal İzolasyon": {
-        "question_ids": [4, 40, 58, 76], 
-        "threshold": 16, 
-        "description": """Sosyal İzolasyon Şeması:Çocuklukta oluşumu:Aile içinde ya da okulda dışlanma, farklı hissettirilme ya da aidiyetin zayıf olduğu ortamlar bu şemayı besler. Çocuk kendini toplumdan ayrı ve anlaşılmamış hisseder.<br>Yetişkinlikte:Bu şemaya sahip kişiler çoğu zaman “ben onlardan değilim” düşüncesini taşırlar. Sosyal ortamlarda güvensiz hissedebilir, kalabalıklar içinde bile yalnızlık yaşayabilirler. Diğerlerinin onları yargılayacağı veya reddedeceği korkusuyla kendilerini geri çekerler.<br>Bazıları “ben zaten uymam” diye yakınlaşmaktan kaçınırken, bazıları katı bir uyum maskesi takabilir. İçlerinde sıklıkla ait olma arzusu vardır ama bu arzu “nasıl olsa anlamayacaklar” düşüncesiyle örtülüdür."""
-    },
-    "Kusurluluk": {
-        "question_ids": [5, 23, 41, 59, 77, 43, 90], 
-        "threshold": 28, 
-        "description": """Kusurluluk Şeması:Çocuklukta oluşumu:Sürekli eleştirilen, reddedilen ya da başkalarıyla kıyaslanan çocuklarda gelişir. Çocuk, sevgiyi koşullu olarak alabileceğini öğrenir: “Hatalıysam sevilmem.”<br>Yetişkinlikte:Kusurluluk şeması olan kişiler içten içe “bende bir yanlışlık var” duygusunu taşırlar. Başkalarının onları sevmesinin zor olduğunu düşünürler. İlişkilerde eleştiriye çok duyarlıdırlar; küçük bir yorum bile içlerinde büyük bir utanç yaratabilir. Bu kişiler genellikle kusurlarını gizlemeye, hatalarını örtmeye çalışır.<br>Bir yandan da sürekli olarak onay ararlar — sevilmek, kabul edilmek ve “yeterli” olduklarını duymak isterler. Ancak içlerindeki ses “yine de eksiksin” der. Bu nedenle kimi zaman geri çekilme, kimi zaman da sürekli kendini kanıtlama davranışları görülür. Kendilerini başkalarıyla kıyaslama, değersiz hissetme ve beğenilmeye çalışma çabaları sıktır."""
-    },
-    "Başarısızlık": {
-        "question_ids": [6, 24, 42, 60, 78], 
-        "threshold": 20, 
-        "description": """Başarısızlık Şeması;Çocuklukta oluşumu:Sürekli kıyaslanan, yeterince takdir edilmeyen ya da başarıları küçümsenen çocuklarda gelişir. Aileden gelen “daha iyisini yapabilirdin” gibi mesajlar çocuğa sevgiyi ancak mükemmel olursa hak ettiği inancını kazandırır.<br>Yetişkinlikte:Bu şemaya sahip kişiler, içten içe “yeterince iyi değilim” düşüncesini taşırlar. İş ya da eğitim hayatında başarı elde etseler bile bunu hak ettiklerine inanmakta zorlanabilirler. Yeni bir göreve başlarken ya da önemli bir karar verirken başarısız olma korkusu belirgindir. “Ya beceremezsem, ya rezil olursam” düşünceleri onları risk almaktan uzaklaştırabilir. Bu kişiler genellikle potansiyellerinin altında performans sergilerler çünkü hata yapma ihtimali onları felç eder.<br>Bazıları mükemmeliyetçi bir çizgiye kayarak içlerindeki başarısızlık korkusunu örtmeye çalışır; sürekli çalışır, yorulur ama hiçbir zaman tatmin olmazlar. Derinlerde hep bir “bir gün herkes benim aslında o kadar da yetkin olmadığımı anlayacak” endişesi vardır."""
-    },
-    "Bağımlılık": {
-        "question_ids": [7, 25, 61, 79], 
-        "threshold": 16, 
-        "description": """Bağımlılık Şeması:Çocuklukta oluşumu: Ebeveynlerin aşırı koruyucu, kontrolcü veya yönlendirici olduğu ailelerde görülür. Çocuk, karar alma ve deneme fırsatı bulamadığında kendi gücüne güvenmeyi öğrenemez. Ailede “sen tek başına yapamazsın, ben senin yerine hallederim” tutumu sıkça gözlemlenir.<br>Yetişkinlikte:Bu şemaya sahip bireyler genellikle kendi kararlarını verirken tedirginlik yaşarlar. Bir işi kendi başına yapmak zorunda kaldıklarında içlerinde yoğun bir kaygı hissedebilirler. “Ya yanlış yaparsam?” düşüncesi onları sıklıkla durdurur. Çoğu zaman birine danışma, onay alma ya da destek görme ihtiyacı hissederler.<br>İlişkilerinde aşırı bağlanma eğilimleri olabilir; partnerleri veya aileleri olmadan karar almakta zorlanırlar. Yalnız kalmak onlarda panik, kaygı ya da değersizlik duygusu yaratabilir. Dışarıdan güçlü görünseler bile içlerinde “tek başıma kalırsam kontrolü kaybederim” inancı vardır. Bu nedenle genellikle rehberlik veya yönlendirme arayışındadırlar."""
-    },
-    "Dayanıksızlık": {
-        "question_ids": [8, 26, 80, 17, 35, 53, 89], 
-        "threshold": 28, 
-        "description": """Dayanıksızlık / Karamsarlık Şeması:Çocuklukta oluşumu:Olumsuzlukların sık vurgulandığı, kaygılı veya tehditkâr aile ortamlarında gelişir. Çocuk, sürekli bir tehlike beklentisiyle büyür.<br>Yetişkinlikte:Bu şemaya sahip kişiler, hayatın kötü yanlarına odaklanma eğilimindedir. Geleceğe dair umut duymakta zorlanırlar; “bir şey iyi gidiyorsa mutlaka bozulur” düşüncesi sıktır. Genellikle felaket senaryoları kurarlar, riskten kaçınırlar.<br>Kaygı, endişe ve güvensizlik duyguları belirgindir. İyi giden olaylarda bile “bir yerde hata olmalı” düşüncesiyle rahatlayamazlar. Bu durum, kişiyi sürekli tetikte ve yorgun hale getirir."""
-    },
-    "İç İçelik": {
-        "question_ids": [9, 27, 45, 63, 81], 
-        "threshold": 20, 
-        "description": """İç İçelik (Gelişmemiş Benlik) Şeması:Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.<br>Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anlamsız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.<br>Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkiler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir."""
-    },
-    "Boyun Eğicilik": {
-        "question_ids": [10, 28, 46, 64, 82], 
-        "threshold": 20, 
-        "description": """Boyun Eğicilik Şeması:Çocuklukta oluşumu:Otoriter, cezalandırıcı veya duygusal olarak tehditkâr aile ortamlarında gelişir. Çocuk, kendi düşüncelerini savunduğunda cezalandırılacağını ya da sevgiden mahrum kalacağını öğrenir. Kabul görmek için uyum sağlaması gerektiğini hisseder.<br>Yetişkinlikte:Bu şemaya sahip kişiler genellikle çevrelerine aşırı uyum sağlar, kendi ihtiyaçlarını bastırır ve sürekli başkalarının beklentilerini öncelerler. “Hayır” demekte güçlük çekerler çünkü reddedilmekten veya çatışmadan korkarlar. İçlerinde sıklıkla şu düşünce vardır: “Kırılmaması için sessiz kalmalıyım.”<br>Zamanla bastırılmış öfke ve kırgınlık birikir. Dışarıdan sakin, uyumlu veya anlayışlı görünseler de iç dünyalarında “kimse beni anlamıyor, hep ben veriyorum” serzenişi vardır. İlişkilerinde kendi sınırlarını koruyamadıkları için tükenmişlik, sessiz öfke veya kendini değersiz hissetme eğilimi sık görülür.Bu şemaya sahip bireyler genellikle başkalarının onayını korumaya çalışırken kendi benliklerini arka plana atarlar. Bu da uzun vadede duygusal mesafe, bastırılmış kimlik ve içsel yalnızlık hissi yaratır."""
-    },
-    "Kendini Feda": {
-        "question_ids": [11, 29, 47, 65, 83], 
-        "threshold": 20, 
-        "description": """Kendini Feda Şeması:Çocuklukta oluşumu:Ailenin ihtiyaçlarının ön planda olduğu, çocuğun kendi duygularını ifade edemediği ailelerde gelişir. Çocuk, sevgiyi “fedakârlık yaparak” kazandığını öğrenir.<br>Yetişkinlikte:Bu şemaya sahip bireyler başkalarının mutluluğu için kendi isteklerinden vazgeçme eğilimindedirler. “Önce onlar iyi olsun” düşüncesiyle yaşarlar. Yardımsever, duyarlı ve fedakârdırlar ancak içten içe “benimle kim ilgilenecek?” sorusu yankılanır.<br>Zamanla kendi ihtiyaçlarını bastırdıkları için yorgunluk, tükenmişlik ve kırgınlık hissederler. Duygusal olarak sevilmek ve görülmek isteseler de bunu dile getirmekte zorlanırlar. Sessiz bir beklentiyle, başkalarının fark etmesini umut ederler."""
-    },
-    "Duyguları Bastırma": {
-        "question_ids": [12, 30, 48, 66, 84], 
-        "threshold": 20, 
-        "description": """Duyguları Bastırma Şeması:Çocuklukta oluşumu:Duyguların açıkça ifade edilmediği, duygusallığın zayıflık olarak görüldüğü ailelerde gelişir. Çocuk öfkesini, korkusunu veya sevgisini gösterdiğinde ayıplanmış ya da cezalandırılmış olabilir.<br>Yetişkinlikte:Bu şemaya sahip kişiler duygularını göstermekten çekinirler. Ağlamayı, yardım istemeyi veya zayıf görünmeyi sevmeyebilirler. Dışarıdan soğukkanlı ve kontrollü görünseler de içlerinde yoğun duygusal gerilim taşırlar.<br>İlişkilerinde duygusal yakınlıktan kaçınabilirler; çünkü duygularını açarlarsa “fazla hassas” ya da “güçsüz” görüneceklerinden korkarlar. Bazen öfke, üzüntü ya da sevgi yerine mantık ve kontrol ön plana çıkar. Zihinsel olarak yakın olsalar bile duygusal bağ kurmakta zorlanabilirler."""
-    },
-    "Statü Arayıcılık": {
-        "question_ids": [13, 31, 14, 16, 34, 52, 70, 88], 
-        "threshold": 32, 
-        "description": """Statü Arayıcılık Şeması:Çocuklukta oluşumu:Ailenin başarı, mevki, statü ya da görünüşe fazla önem verdiği durumlarda gelişir. Çocuk, sevginin “başarıyla kazanılan” bir şey olduğuna inanır.<br>Yetişkinlikte:Bu şemaya sahip kişiler değeri içsel özelliklerinden çok dışsal başarılarla ölçer. “Eğer başarılıysam, önemliyim.” düşüncesi baskındır. Hayatlarında sürekli bir yarış hissi vardır; daha fazla çalışır, daha fazla kazanır ama hiçbir zaman yeterli hissetmezler.<br>Başarısız olduklarında veya takdir görmediklerinde yoğun değersizlik yaşarlar. Duygusal ilişkilerde de kendilerini statüyle tanımlarlar: partnerlerinin “gözünde yükselmek” onlar için önemlidir. Yorgun, tatminsiz ve sürekli hedef peşinde koşan bir ruh hali hâkimdir."""
-    },
-    "Yetersiz Özdenetim": {
-        "question_ids": [15, 33, 51, 69, 87], 
-        "threshold": 20, 
-        "description": """Yetersiz Özdenetim Şeması:Çocuklukta oluşumu:Kuralların net olmadığı, çocuğa sınır koyulmayan ya da duygusal olarak aşırı serbest bırakılan ailelerde ortaya çıkar. Çocuk, dürtülerini düzenlemeyi ve sorumluluk almayı öğrenemez.<br>Yetişkinlikte:Bu şemaya sahip bireyler genellikle anlık isteklerine göre hareket ederler. Sabırsız, ertesi günü düşünmeden karar veren ya da sık sık “dayanamayıp” sınırlarını aşan davranışlar gösterebilirler. Öz disiplin gerektiren durumlarda (örneğin düzenli çalışma, diyet, bir alışkanlığı bırakma) zorlanırlar.<br>İçlerinde çoğu zaman “bunu şimdi istiyorum” duygusu baskındır. Bu kişiler için duygusal ya da fiziksel haz anı, uzun vadeli hedeflerin önüne geçer. Duygusal tepkileri de yoğun olabilir; öfke, hayal kırıklığı veya keyif duygusu hızla değişir."""
-    },
-    "Büyüklenmecilik": {
-        "question_ids": [22, 32, 50, 68, 86], 
-        "threshold": 20, 
-        "description": """Büyüklenmecilik Şeması:Çocuklukta oluşumu:Sınırların çizilmediği, çocuğun her isteğinin karşılandığı, kuralların belirsiz olduğu ailelerde gelişebilir. Bazen de tam tersi biçimde, değersiz hissettirilen çocuk “üstünlük duygusunu” bir savunma olarak geliştirebilir.<br>Yetişkinlikte:Bu şemaya sahip kişiler genellikle kendilerini özel veya ayrıcalıklı hissederler. “Kurallar herkes için geçerli ama benim için değil.” düşüncesi baskındır. Kimi zaman başkalarının sınırlarına saygı göstermekte zorlanabilirler. Eleştiriye kapalıdırlar ve yanıldıklarını kabul etmekte güçlük çekerler.<br>Yine de bu tutumun altında çoğu zaman derin bir görülme ve onaylanma ihtiyacı yatar. Başkalarından takdir almadıklarında değersizlik hissi yüzeye çıkar. Duygusal olarak savunmacı, bazen kibirli görünseler de aslında içlerinde kırılgan bir “beğenilme arzusu” taşırlar."""
-    },
-    "Cezalandırıcılık": {
-        "question_ids": [49, 67, 85, 18, 36, 59, 72], 
-        "threshold": 28, 
-        "description": """Cezalandırıcılık ŞemasıÇocuklukta oluşumu:Hataların sert şekilde eleştirildiği veya cezalandırıldığı ortamlarda gelişir. Çocuk, kusursuz olmanın tek kabul edilme yolu olduğuna inanır.<br>Yetişkinlikte:Bu şemaya sahip kişiler hata yapanlara karşı katı ve affetmez bir tutum sergileyebilir. Aynı sertliği kendilerine de gösterirler; bir hata yaptıklarında uzun süre kendilerini suçlar, pişmanlık hissederler. İçlerinde “yanlış yapan bedel ödemeli” inancı vardır.<br>Bu kişiler genellikle vicdan sahibi ve yüksek sorumluluk duygusuna sahip olsalar da kendilerine karşı anlayışsızdırlar. Duygusal esneklikleri azdır; iç dünyalarında “ya hata yaparsam?” korkusu baskındır."""
-    },
-    "Ekonomik Dayanıksızlık": {
-        "question_ids": [62, 71], 
-        "threshold": 8, 
-        "description": """Ekonomik Dayanıksızlık Şeması:Çocuklukta oluşumu:Maddi belirsizliklerin, yoksunlukların veya güvensizliğin yaşandığı ailelerde görülür. Çocuk, güvenli bir ortamın ancak maddi istikrarla mümkün olduğuna inanır.<br>Yetişkinlikte:Bu şemaya sahip bireyler, parasal konulara ilişkin sürekli bir “kaybetme” endişesi taşırlar. Mali durumu iyi olsa bile içlerinde “her an her şey bitebilir” korkusu vardır. Para biriktirme, tasarruf yapma ya da “kıtlık bilinciyle yaşama” eğilimleri görülür.<br>Maddi güvenlik sağlanamadığında huzurları kaçar; güven duygusunu genellikle dışsal koşullara bağlarlar. Bu kişiler için “rahatlama” hissi, geleceğe dair kontrol duygusuyla birlikte gelir."""
-    }
+    "Duygusal Yoksunluk": { "question_ids": [1, 19, 37, 55, 73], "threshold": 20, "description": """Duygusal Yoksunluk Şeması:Çocuklukta oluşumu:Sevgi, ilgi ya da empati gibi temel duygusal gereksinimlerin karşılanmadığı ortamlarda gelişir. Çocuk, isteklerine cevap alamadıkça duygusal ihtiyaçların önemsiz olduğuna inanabilir.<br>Yetişkinlikte:Bu şemaya sahip kişiler genellikle “kimse beni gerçekten anlamıyor” duygusunu taşırlar. İlişkilerinde hep bir eksiklik hisseder, karşısındakinin sevgisini tam olarak hissedemezler. Partnerleri onları sevse bile, içten içe “benim duygularımı anlamıyor” diye düşünürler. Bu hissetme biçimi, çoğu zaman çocuklukta ihtiyaç duyulan şefkatin yokluğundan beslenir.<br>Bazı kişiler bu boşlukla başa çıkmak için duygusal yakınlıktan tamamen kaçınabilir — soğuk ve mesafeli görünebilirler. Bazıları ise çok fazla bağlanarak içlerindeki açlığı doldurmaya çalışırlar. Her iki durumda da temel inanç şudur: “Kimse beni gerçekten anlamaz.""" },
+    "Terk Edilme": { "question_ids": [2, 20, 38, 56, 74], "threshold": 20, "description": """Terk Edilme Şeması:Çocuklukta oluşumu:Sık taşınmalar, ayrılıklar, boşanma ya da ebeveynin duygusal olarak erişilemez olduğu durumlar bu şemayı oluşturabilir. Çocuk, kendini sevilen ama her an kaybedilebilecek biri olarak algılar.<br>Yetişkinlikte:Terk edilme şeması olan bireyler, yakın ilişkilerde yoğun kaybetme korkusu yaşarlar. Partnerleri bir süre sessiz kaldığında bile “beni artık istemiyor” kaygısı doğabilir. Küçük ilgisizlikleri büyük tehdit gibi algılarlar ve duygusal dalgalanmalar sıklıkla görülür.<br>Bazıları terk edilmemek için fazlasıyla yapışkan, bazıları ise “nasıl olsa giderler” düşüncesiyle mesafeli ve soğuk davranabilir. İlişkilerinde gerçek yakınlık istedikleri halde, bu yakınlık onlarda kaygı yaratır. Sıklıkla “ya benim için burada kalmazsa?” düşüncesi eşlik eder.""" },
+    "Kuşkuculuk": { "question_ids": [3, 21, 39, 57, 75, 44], "threshold": 24, "description": """Kuşkuculuk Şeması:Çocuklukta oluşumu:İhmal, aldatılma, cezalandırılma ya da sözel-fiziksel istismar deneyimleri sonucu gelişir. Çocuk, “insanlara güvenilmez” inancını öğrenir.<br>Yetişkinlikte:Kuşkuculuk şeması olan kişiler, başkalarının niyetlerinden kolayca şüphe duyarlar. “Kesin bir çıkarı var” ya da “beni bir gün incitecek” düşünceleri akıllarının bir köşesindedir. Bu kişiler çoğu zaman güven duygusunu kontrol altında tutarak sağlarlar: mesafe koymak, sınır çizmek, her şeyi denetlemek gibi.<br>İlişkilerinde tam bir teslimiyet veya yakınlık kurmak zor gelir. Çünkü zihinlerinde “çok yakınlaşırsam canım yanar” inancı vardır. Bu durum, samimiyet arzusu ile güven korkusu arasında bir gelgit yaratır.""" },
+    "Sosyal İzolasyon": { "question_ids": [4, 40, 58, 76], "threshold": 16, "description": """Sosyal İzolasyon Şeması:Çocuklukta oluşumu:Aile içinde ya da okulda dışlanma, farklı hissettirilme ya da aidiyetin zayıf olduğu ortamlar bu şemayı besler. Çocuk kendini toplumdan ayrı ve anlaşılmamış hisseder.<br>Yetişkinlikte:Bu şemaya sahip kişiler çoğu zaman “ben onlardan değilim” düşüncesini taşırlar. Sosyal ortamlarda güvensiz hissedebilir, kalabalıklar içinde bile yalnızlık yaşayabilirler. Diğerlerinin onları yargılayacağı veya reddedeceği korkusuyla kendilerini geri çekerler.<br>Bazıları “ben zaten uymam” diye yakınlaşmaktan kaçınırken, bazıları katı bir uyum maskesi takabilir. İçlerinde sıklıkla ait olma arzusu vardır ama bu arzu “nasıl olsa anlamayacaklar” düşüncesiyle örtülüdür.""" },
+    "Kusurluluk": { "question_ids": [5, 23, 41, 59, 77, 43, 90], "threshold": 28, "description": """Kusurluluk Şeması:Çocuklukta oluşumu:Sürekli eleştirilen, reddedilen ya da başkalarıyla kıyaslanan çocuklarda gelişir. Çocuk, sevgiyi koşullu olarak alabileceğini öğrenir: “Hatalıysam sevilmem.”<br>Yetişkinlikte:Kusurluluk şeması olan kişiler içten içe “bende bir yanlışlık var” duygusunu taşırlar. Başkalarının onları sevmesinin zor olduğunu düşünürler. İlişkilerde eleştiriye çok duyarlıdırlar; küçük bir yorum bile içlerinde büyük bir utanç yaratabilir. Bu kişiler genellikle kusurlarını gizlemeye, hatalarını örtmeye çalışır.<br>Bir yandan da sürekli olarak onay ararlar — sevilmek, kabul edilmek ve “yeterli” olduklarını duymak isterler. Ancak içlerindeki ses “yine de eksiksin” der. Bu nedenle kimi zaman geri çekilme, kimi zaman da sürekli kendini kanıtlama davranışları görülür. Kendilerini başkalarıyla kıyaslama, değersiz hissetme ve beğenilmeye çalışma çabaları sıktır.""" },
+    "Başarısızlık": { "question_ids": [6, 24, 42, 60, 78], "threshold": 20, "description": """Başarısızlık Şeması;Çocuklukta oluşumu:Sürekli kıyaslanan, yeterince takdir edilmeyen ya da başarıları küçümsenen çocuklarda gelişir. Aileden gelen “daha iyisini yapabilirdin” gibi mesajlar çocuğa sevgiyi ancak mükemmel olursa hak ettiği inancını kazandırır.<br>Yetişkinlikte:Bu şemaya sahip kişiler, içten içe “yeterince iyi değilim” düşüncesini taşırlar. İş ya da eğitim hayatında başarı elde etseler bile bunu hak ettiklerine inanmakta zorlanabilirler. Yeni bir göreve başlarken ya da önemli bir karar verirken başarısız olma korkusu belirgindir. “Ya beceremezsem, ya rezil olursam” düşünceleri onları risk almaktan uzaklaştırabilir. Bu kişiler genellikle potansiyellerinin altında performans sergilerler çünkü hata yapma ihtimali onları felç eder.<br>Bazıları mükemmeliyetçi bir çizgiye kayarak içlerindeki başarısızlık korkusunu örtmeye çalışır; sürekli çalışır, yorulur ama hiçbir zaman tatmin olmazlar. Derinlerde hep bir “bir gün herkes benim aslında o kadar da yetkin olmadığımı anlayacak” endişesi vardır.""" },
+    "Bağımlılık": { "question_ids": [7, 25, 61, 79], "threshold": 16, "description": """Bağımlılık Şeması:Çocuklukta oluşumu: Ebeveynlerin aşırı koruyucu, kontrolcü veya yönlendirici olduğu ailelerde görülür. Çocuk, karar alma ve deneme fırsatı bulamadığında kendi gücüne güvenmeyi öğrenemez. Ailede “sen tek başına yapamazsın, ben senin yerine hallederim” tutumu sıkça gözlemlenir.<br>Yetişkinlikte:Bu şemaya sahip bireyler genellikle kendi kararlarını verirken tedirginlik yaşarlar. Bir işi kendi başına yapmak zorunda kaldıklarında içlerinde yoğun bir kaygı hissedebilirler. “Ya yanlış yaparsam?” düşüncesi onları sıklıkla durdurur. Çoğu zaman birine danışma, onay alma ya da destek görme ihtiyacı hissederler.<br>İlişkilerinde aşırı bağlanma eğilimleri olabilir; partnerleri veya aileleri olmadan karar almakta zorlanırlar. Yalnız kalmak onlarda panik, kaygı ya da değersizlik duygusu yaratabilir. Dışarıdan güçlü görünseler bile içlerinde “tek başıma kalırsam kontrolü kaybederim” inancı vardır. Bu nedenle genellikle rehberlik veya yönlendirme arayışındadırlar.""" },
+    "Dayanıksızlık": { "question_ids": [8, 26, 80, 17, 35, 53, 89], "threshold": 28, "description": """Dayanıksızlık / Karamsarlık Şeması:Çocuklukta oluşumu:Olumsuzlukların sık vurgulandığı, kaygılı veya tehditkâr aile ortamlarında gelişir. Çocuk, sürekli bir tehlike beklentisiyle büyür.<br>Yetişkinlikte:Bu şemaya sahip kişiler, hayatın kötü yanlarına odaklanma eğilimindedir. Geleceğe dair umut duymakta zorlanırlar; “bir şey iyi gidiyorsa mutlaka bozulur” düşüncesi sıktır. Genellikle felaket senaryoları kurarlar, riskten kaçınırlar.<br>Kaygı, endişe ve güvensizlik duyguları belirgindir. İyi giden olaylarda bile “bir yerde hata olmalı” düşüncesiyle rahatlayamazlar. Bu durum, kişiyi sürekli tetikte ve yorgun hale getirir.""" },
+    "İç İçelik": { "question_ids": [9, 27, 45, 63, 81], "threshold": 20, "description": """İç İçelik (Gelişmemiş Benlik) Şeması:Çocuklukta oluşumu:Bu şema genellikle ebeveynle aşırı yakın ve duygusal bağımlılığın olduğu ailelerde gelişir. Çocuğun kendi tercihlerine ve duygularına alan tanınmaz; ebeveyn çoğu kararı onun yerine verir. “Ben senin için yaşıyorum” gibi ifadeler, çocuğun kendini ebeveynin devamı gibi görmesine neden olur.<br>Yetişkinlikte:Bu şemaya sahip kişiler ilişkilerinde sıklıkla aşırı bağlılık ve duygusal bağımlılık geliştirirler. “Onsuz yaşayamam” veya “o olmayan bir hayat anlamsız” gibi düşünceler yoğundur. Partnerinin ya da aile üyesinin duygusal durumu, kendi duygusal halini belirleyebilir.<br>Zaman zaman kendi istekleriyle yakınlarının isteklerini karıştırır; nerede bittiğini, karşısındakinin nerede başladığını ayırt etmekte zorlanır. Kendi yaşam kararlarını alırken “ya onu üzersen?” endişesi baskın hale gelebilir. İlişkiler kopmaya yöneldiğinde yoğun kaygı, boşluk ve yalnızlık duyguları yaşanabilir.""" },
+    "Boyun Eğicilik": { "question_ids": [10, 28, 46, 64, 82], "threshold": 20, "description": """Boyun Eğicilik Şeması:Çocuklukta oluşumu:Otoriter, cezalandırıcı veya duygusal olarak tehditkâr aile ortamlarında gelişir. Çocuk, kendi düşüncelerini savunduğunda cezalandırılacağını ya da sevgiden mahrum kalacağını öğrenir. Kabul görmek için uyum sağlaması gerektiğini hisseder.<br>Yetişkinlikte:Bu şemaya sahip kişiler genellikle çevrelerine aşırı uyum sağlar, kendi ihtiyaçlarını bastırır ve sürekli başkalarının beklentilerini öncelerler. “Hayır” demekte güçlük çekerler çünkü reddedilmekten veya çatışmadan korkarlar. İçlerinde sıklıkla şu düşünce vardır: “Kırılmaması için sessiz kalmalıyım.”<br>Zamanla bastırılmış öfke ve kırgınlık birikir. Dışarıdan sakin, uyumlu veya anlayışlı görünseler de iç dünyalarında “kimse beni anlamıyor, hep ben veriyorum” serzenişi vardır. İlişkilerinde kendi sınırlarını koruyamadıkları için tükenmişlik, sessiz öfke veya kendini değersiz hissetme eğilimi sık görülür.Bu şemaya sahip bireyler genellikle başkalarının onayını korumaya çalışırken kendi benliklerini arka plana atarlar. Bu da uzun vadede duygusal mesafe, bastırılmış kimlik ve içsel yalnızlık hissi yaratır.""" },
+    "Kendini Feda": { "question_ids": [11, 29, 47, 65, 83], "threshold": 20, "description": """Kendini Feda Şeması:Çocuklukta oluşumu:Ailenin ihtiyaçlarının ön planda olduğu, çocuğun kendi duygularını ifade edemediği ailelerde gelişir. Çocuk, sevgiyi “fedakârlık yaparak” kazandığını öğrenir.<br>Yetişkinlikte:Bu şemaya sahip bireyler başkalarının mutluluğu için kendi isteklerinden vazgeçme eğilimindedirler. “Önce onlar iyi olsun” düşüncesiyle yaşarlar. Yardımsever, duyarlı ve fedakârdırlar ancak içten içe “benimle kim ilgilenecek?” sorusu yankılanır.<br>Zamanla kendi ihtiyaçlarını bastırdıkları için yorgunluk, tükenmişlik ve kırgınlık hissederler. Duygusal olarak sevilmek ve görülmek isteseler de bunu dile getirmekte zorlanırlar. Sessiz bir beklentiyle, başkalarının fark etmesini umut ederler.""" },
+    "Duyguları Bastırma": { "question_ids": [12, 30, 48, 66, 84], "threshold": 20, "description": """Duyguları Bastırma Şeması:Çocuklukta oluşumu:Duyguların açıkça ifade edilmediği, duygusallığın zayıflık olarak görüldüğü ailelerde gelişir. Çocuk öfkesini, korkusunu veya sevgisini gösterdiğinde ayıplanmış ya da cezalandırılmış olabilir.<br>Yetişkinlikte:Bu şemaya sahip kişiler duygularını göstermekten çekinirler. Ağlamayı, yardım istemeyi veya zayıf görünmeyi sevmeyebilirler. Dışarıdan soğukkanlı ve kontrollü görünseler de içlerinde yoğun duygusal gerilim taşırlar.<br>İlişkilerinde duygusal yakınlıktan kaçınabilirler; çünkü duygularını açarlarsa “fazla hassas” ya da “güçsüz” görüneceklerinden korkarlar. Bazen öfke, üzüntü ya da sevgi yerine mantık ve kontrol ön plana çıkar. Zihinsel olarak yakın olsalar bile duygusal bağ kurmakta zorlanabilirler.""" },
+    "Statü Arayıcılık": { "question_ids": [13, 31, 14, 16, 34, 52, 70, 88], "threshold": 32, "description": """Statü Arayıcılık Şeması:Çocuklukta oluşumu:Ailenin başarı, mevki, statü ya da görünüşe fazla önem verdiği durumlarda gelişir. Çocuk, sevginin “başarıyla kazanılan” bir şey olduğuna inanır.<br>Yetişkinlikte:Bu şemaya sahip kişiler değeri içsel özelliklerinden çok dışsal başarılarla ölçer. “Eğer başarılıysam, önemliyim.” düşüncesi baskındır. Hayatlarında sürekli bir yarış hissi vardır; daha fazla çalışır, daha fazla kazanır ama hiçbir zaman yeterli hissetmezler.<br>Başarısız olduklarında veya takdir görmediklerinde yoğun değersizlik yaşarlar. Duygusal ilişkilerde de kendilerini statüyle tanımlarlar: partnerlerinin “gözünde yükselmek” onlar için önemlidir. Yorgun, tatminsiz ve sürekli hedef peşinde koşan bir ruh hali hâkimdir.""" },
+    "Yetersiz Özdenetim": { "question_ids": [15, 33, 51, 69, 87], "threshold": 20, "description": """Yetersiz Özdenetim Şeması:Çocuklukta oluşumu:Kuralların net olmadığı, çocuğa sınır koyulmayan ya da duygusal olarak aşırı serbest bırakılan ailelerde ortaya çıkar. Çocuk, dürtülerini düzenlemeyi ve sorumluluk almayı öğrenemez.<br>Yetişkinlikte:Bu şemaya sahip bireyler genellikle anlık isteklerine göre hareket ederler. Sabırsız, ertesi günü düşünmeden karar veren ya da sık sık “dayanamayıp” sınırlarını aşan davranışlar gösterebilirler. Öz disiplin gerektiren durumlarda (örneğin düzenli çalışma, diyet, bir alışkanlığı bırakma) zorlanırlar.<br>İçlerinde çoğu zaman “bunu şimdi istiyorum” duygusu baskındır. Bu kişiler için duygusal ya da fiziksel haz anı, uzun vadeli hedeflerin önüne geçer. Duygusal tepkileri de yoğun olabilir; öfke, hayal kırıklığı veya keyif duygusu hızla değişir.""" },
+    "Büyüklenmecilik": { "question_ids": [22, 32, 50, 68, 86], "threshold": 20, "description": """Büyüklenmecilik Şeması:Çocuklukta oluşumu:Sınırların çizilmediği, çocuğun her isteğinin karşılandığı, kuralların belirsiz olduğu ailelerde gelişebilir. Bazen de tam tersi biçimde, değersiz hissettirilen çocuk “üstünlük duygusunu” bir savunma olarak geliştirebilir.<br>Yetişkinlikte:Bu şemaya sahip kişiler genellikle kendilerini özel veya ayrıcalıklı hissederler. “Kurallar herkes için geçerli ama benim için değil.” düşüncesi baskındır. Kimi zaman başkalarının sınırlarına saygı göstermekte zorlanabilirler. Eleştiriye kapalıdırlar ve yanıldıklarını kabul etmekte güçlük çekerler.<br>Yine de bu tutumun altında çoğu zaman derin bir görülme ve onaylanma ihtiyacı yatar. Başkalarından takdir almadıklarında değersizlik hissi yüzeye çıkar. Duygusal olarak savunmacı, bazen kibirli görünseler de aslında içlerinde kırılgan bir “beğenilme arzusu” taşırlar.""" },
+    "Cezalandırıcılık": { "question_ids": [49, 67, 85, 18, 36, 59, 72], "threshold": 28, "description": """Cezalandırıcılık ŞemasıÇocuklukta oluşumu:Hataların sert şekilde eleştirildiği veya cezalandırıldığı ortamlarda gelişir. Çocuk, kusursuz olmanın tek kabul edilme yolu olduğuna inanır.<br>Yetişkinlikte:Bu şemaya sahip kişiler hata yapanlara karşı katı ve affetmez bir tutum sergileyebilir. Aynı sertliği kendilerine de gösterirler; bir hata yaptıklarında uzun süre kendilerini suçlar, pişmanlık hissederler. İçlerinde “yanlış yapan bedel ödemeli” inancı vardır.<br>Bu kişiler genellikle vicdan sahibi ve yüksek sorumluluk duygusuna sahip olsalar da kendilerine karşı anlayışsızdırlar. Duygusal esneklikleri azdır; iç dünyalarında “ya hata yaparsam?” korkusu baskındır.""" },
+    "Ekonomik Dayanıksızlık": { "question_ids": [62, 71], "threshold": 8, "description": """Ekonomik Dayanıksızlık Şeması:Çocuklukta oluşumu:Maddi belirsizliklerin, yoksunlukların veya güvensizliğin yaşandığı ailelerde görülür. Çocuk, güvenli bir ortamın ancak maddi istikrarla mümkün olduğuna inanır.<br>Yetişkinlikte:Bu şemaya sahip bireyler, parasal konulara ilişkin sürekli bir “kaybetme” endişesi taşırlar. Mali durumu iyi olsa bile içlerinde “her an her şey bitebilir” korkusu vardır. Para biriktirme, tasarruf yapma ya da “kıtlık bilinciyle yaşama” eğilimleri görülür.<br>Maddi güvenlik sağlanamadığında huzurları kaçar; güven duygusunu genellikle dışsal koşullara bağlarlar. Bu kişiler için “rahatlama” hissi, geleceğe dair kontrol duygusuyla birlikte gelir.""" }
 }
 
 # 2. AŞAMA: BAŞA ÇIKMA
@@ -433,15 +365,23 @@ def quiz():
     # Dinamik Başlıklar
     stage_titles = {
         1: "Bölüm 1: Young Şema Testi",
-        2: "Bölüm 2: Şema Başa Çıkma Biçimleri",
-        3: "Bölüm 3: Yenilenmiş Çift Uyum Ölçeği"
+        2: "Bölüm 2: ŞEMA BAŞA ÇIKMA ÖLÇEĞİ",
+        3: "Bölüm 3: YENİLENMİŞ ÇİFT UYUM ÖLÇEĞİ" 
     }
     current_title = stage_titles.get(stage, f"Bölüm {stage}")
 
+    # POST İşlemi (Cevap Kaydetme veya Geri Gitme)
     if request.method == "POST":
+        action = request.form.get('action')
         qid = request.form.get('question_id')
         ans = request.form.get(f'q{qid}')
         
+        # Geri gitme işlemi
+        if action == 'previous':
+            session['current_question_index'] = max(0, session['current_question_index'] - 1)
+            return redirect(url_for('quiz'))
+
+        # İleri gitme işlemi
         if ans:
             # Cevabı ilgili aşamanın sözlüğüne kaydet
             session[f'answers_stage{stage}'][qid] = int(ans)
@@ -460,7 +400,11 @@ def quiz():
             return render_template_string("""
                 <div style="text-align:center; padding:50px; font-family:sans-serif;">
                     <h1 style="color:#1e88e5;">1. Bölüm Tamamlandı</h1>
-                    <p>Şimdi şema başa çıkma biçimlerinizi belirlemek için 2. bölüme geçiyoruz.</p>
+                    <h2 style="color:#333; margin-top:20px;">2. Bölüm: ŞEMA BAŞA ÇIKMA ÖLÇEĞİ</h2>
+                    <p style="font-size:1.1em; line-height:1.6; color:#555; max-width:700px; margin:20px auto;">
+                        Aşağıda bireylere özgü bazı davranışları tanımlayan ifadeler yer almaktadır.
+                        Lütfen her cümleyi dikkatli bir şekilde okuyup, her bir ifadenin sizi ne derece yansıttığını kendinize en uyan şekilde bir şık işaretleyin.
+                    </p>
                     <a href="/start_stage_2" style="background:#4CAF50; color:white; padding:15px 30px; text-decoration:none; border-radius:5px; font-size:1.2em;">2. Bölüme Başla</a>
                 </div>
             """)
@@ -469,7 +413,12 @@ def quiz():
             return render_template_string("""
                 <div style="text-align:center; padding:50px; font-family:sans-serif;">
                     <h1 style="color:#1e88e5;">2. Bölüm Tamamlandı</h1>
-                    <p>Şimdi son bölüm olan Çift Uyum Ölçeği'ne geçiyoruz.</p>
+                    <h2 style="color:#333; margin-top:20px;">3. Bölüm: YENİLENMİŞ ÇİFT UYUM ÖLÇEĞİ</h2>
+                    <p style="font-size:1.1em; line-height:1.6; color:#555; max-width:700px; margin:20px auto;">
+                        Bu ölçek evli ya da birlikte yaşayan çiftlerin ilişki kalitesini değerlendirmek amacıyla geliştirilmiştir.
+                        Bu ölçeği cevapladıktan sonra ilişkinizdeki çift uyumunuz hakkında bir bilgi sahibi olacaksınız.
+                        İki bölümden oluşmaktadır. Yönergelere dikkat ediniz. Kendinize en uyan şekilde bir şık işaretleyin.
+                    </p>
                     <a href="/start_stage_3" style="background:#4CAF50; color:white; padding:15px 30px; text-decoration:none; border-radius:5px; font-size:1.2em;">3. Bölüme Başla</a>
                 </div>
             """)
@@ -482,7 +431,10 @@ def quiz():
 
     question = current_questions[index]
     
-    # Şablon
+    # Daha önce verilmiş cevabı bul (Hatırlama Özelliği)
+    current_answers_dict = session.get(f'answers_stage{stage}', {})
+    existing_answer = current_answers_dict.get(str(question['id']))
+
     progress_percent = round(((index + 1) / total_questions) * 100)
     
     question_html = """
@@ -497,7 +449,12 @@ def quiz():
         .option-card:hover { background: #e6f2ff; border-color: #b3d9ff; }
         input[type="radio"]:checked + .option-card { background: #e0f7fa; border-color: #1e88e5; color: #1e88e5; }
         input[type="radio"] { display: none; }
-        input[type="submit"] { width: 100%; padding: 15px; background: #1e88e5; color: white; border: none; border-radius: 8px; margin-top: 20px; cursor: pointer; font-size: 1.1em;}
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-next { flex: 2; padding: 15px; background: #1e88e5; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em;}
+        .btn-prev { flex: 1; padding: 15px; background: #757575; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em;}
+        .btn-next:hover { background-color: #1565c0; }
+        .btn-prev:hover { background-color: #616161; }
         {% endraw %}
     </style>
     <body>
@@ -510,22 +467,40 @@ def quiz():
             
             <form method="post">
                 <input type="hidden" name="question_id" value="{{ q.id }}">
+                
+                {% if stage == 3 and index_display == 1 %}
+                    <div style="background-color:#fff3cd; color:#856404; padding:10px; margin-bottom:15px; border:1px solid #ffeeba; border-radius:5px;">
+                        <strong>Yönerge:</strong> Aşağıdaki konularda eşinizle anlaşıp anlaşamadığınızı ilgili kutucuğu işaretleyiniz.
+                    </div>
+                {% endif %}
+                
+                {% if stage == 3 and index_display == 7 %}
+                    <div style="background-color:#fff3cd; color:#856404; padding:10px; margin-bottom:15px; border:1px solid #ffeeba; border-radius:5px;">
+                        <strong>Yönerge:</strong> Aşağıda eşinizle ve evliliğinizle ilgili bazı ifadeler yer almaktadır. Lütfen aşağıdaki ifadeleri okuyup size ne derece uygun olduğunu ilgili kutucuğu işaretleyiniz.
+                    </div>
+                {% endif %}
+
                 <p style="font-size:1.2em; font-weight:bold;">{{ q.text }}</p>
                 
                 {% for opt in q.options %}
                 <label>
-                    <input type="radio" name="q{{ q.id }}" value="{{ opt.value }}" required>
+                    <input type="radio" name="q{{ q.id }}" value="{{ opt.value }}" required {% if existing_answer == opt.value %}checked{% endif %}>
                     <span class="option-card">{{ opt.text }}</span>
                 </label>
                 {% endfor %}
                 
-                <input type="submit" value="Sonraki Soru">
+                <div class="btn-group">
+                    {% if index_display > 1 %}
+                        <button type="submit" name="action" value="previous" class="btn-prev" formnovalidate>Önceki Soru</button>
+                    {% endif %}
+                    <button type="submit" name="action" value="next" class="btn-next">Sonraki Soru</button>
+                </div>
             </form>
         </div>
     </body>
     """
     
-    return render_template_string(question_html, q=question, title=current_title, index_display=index+1, total=total_questions, progress=progress_percent)
+    return render_template_string(question_html, q=question, title=current_title, stage=stage, index_display=index+1, total=total_questions, progress=progress_percent, existing_answer=existing_answer)
 
 
 @app.route("/submit")
