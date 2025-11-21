@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.secret_key = 'BU_COK_UZUN_VE_SABIT_BIR_GIZLI_ANAHTARDIR_1234567890ABCDEF' 
 
 # --- ADMIN PANELİ ŞİFRESİ (Değiştirebilirsiniz) ---
-ADMIN_PASSWORD = "tez-admin-giris"
+ADMIN_PASSWORD = "ozde8586"
 
 # --- VERİTABANI AYARLARI ---
 db_uri = os.environ.get('DATABASE_URL')
